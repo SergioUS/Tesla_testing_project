@@ -4,7 +4,7 @@
 
 ### **We are exiting to intriduce our _Tesla Testing Project!_**
 
-As a Team of professionals in QA-Automation we are testing **_[Tesla](https://www.tesla.com/)_** website from different angles such as Performance and Security testing, API, Automate testing, create QA documentation. 
+As a Team of professionals in QA-Automation we are testing **_[Tesla](https://www.tesla.com/)_** website from different angles such as Performance and Security testing, API, FE testing, Selenium WebDriver Automation testing, create QA documentation. 
 
 We also use **AI** for our Tests.
 
@@ -19,7 +19,7 @@ Join us in our journey as we strive to maintain _the highest standards for this 
     <code><img width="3%" src="https://www.freeiconspng.com/uploads/c-logo-icon-18.png"></code>
     <code><img width="3%" src="https://www.vectorlogo.zone/logos/w3_html5/w3_html5-icon.svg"></code>
     <code><img width="3%" src="https://i.imgur.com/tjPOPhB.png"></code>
-    <code><img width="3%" src="https://blog.jetbrains.com/wp-content/uploads/2019/01/pycharm_icon.svg" width="40" height="40"  alt="PyCharm"></code>
+    <code><img width="3%" src="https://blog.jetbrains.com/wp-content/uploads/2019/01/pycharm_icon.svg"></code>
     <code><img width="3%" src="https://seeklogo.com/images/I/intellij-idea-logo-F0395EF783-seeklogo.com.png"></code>
     <code><img width="3%" src="https://www.vectorlogo.zone/logos/visualstudio_code/visualstudio_code-icon.svg"></code>
     <code><img width="3%" src="https://www.bluej.org/objects-first/images/logos/bluej-128-embossed.png"></code>
@@ -59,6 +59,6 @@ _[Zagainova Elena](https://www.linkedin.com/in/elena-zagainova/)_
 
 _[Zmeu Ludmila](https://www.linkedin.com/in/ludmila-zmeu/)_
 
-_**💙 If you like the project, subscribe <code><img width="2%" src="https://github.com/user-attachments/assets/d8634330-234a-4e0e-b163-b8859a1b66bf"></code>
- our profiles 💙**_
+_**[💙 If you like the project, subscribe <code><img width="2%" src="https://github.com/user-attachments/assets/d8634330-234a-4e0e-b163-b8859a1b66bf"></code>
+ our profiles 💙](https://www.linkedin.com/)**_
 
