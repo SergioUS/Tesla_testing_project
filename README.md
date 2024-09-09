@@ -37,27 +37,27 @@ Join us in our journey as we strive to maintain _the highest standards for this 
 ## 🚀 Our Team
 
 
-_[Antipenco Dmitry](https://www.linkedin.com/in/dmitry--antipenko)_
+_[Dmitry Antipenko](https://www.linkedin.com/in/dmitry--antipenko)_
 
-_[Artykov Ilhom](https://www.linkedin.com/in/ilhom-artykov/)_
+_[Ilhom Artykov](https://www.linkedin.com/in/ilhom-artykov/)_
 
-_[Butusova Anastasia](https://www.linkedin.com/in/bu2soffa/)_
+_[Anastasia Butusova](https://www.linkedin.com/in/bu2soffa/)_
 
-_[Delmar Julia](https://www.linkedin.com/in/julia-delmar/)_
+_[Julia Delmar](https://www.linkedin.com/in/julia-delmar/)_
 
-_[Lysyy Vasyl](https://www.linkedin.com/in/vasyl-lysyy/)_
+_[Vasyl Lysyy](https://www.linkedin.com/in/vasyl-lysyy/)_
 
-_[Ponomarev Ivan](https://linkedin.com/in/ivan-ponomarev-qa)_
+_[Ivan Ponomarev](https://linkedin.com/in/ivan-ponomarev-qa)_
 
-_[Rakhmatullina Vinera](https://www.linkedin.com/in/vinera-r/)_
+_[Vinera Rakhmatullina](https://www.linkedin.com/in/vinera-r/)_
 
-_[Rakhmatullin Almaz](https://www.linkedin.com/in/almaz-r/)_
+_[Almaz Rakhmatullin](https://www.linkedin.com/in/almaz-r/)_
 
-_[Skubii Natalia](https://www.linkedin.com/in/natalia-skubii)_
+_[Natalia Skubii](https://www.linkedin.com/in/natalia-skubii)_
 
-_[Zagainova Elena](https://www.linkedin.com/in/elena-zagainova/)_
+_[Elena Zagainova](https://www.linkedin.com/in/elena-zagainova/)_
 
-_[Zmeu Ludmila](https://www.linkedin.com/in/ludmila-zmeu/)_
+_[Ludmila Zmeu](https://www.linkedin.com/in/ludmila-zmeu/)_
 
 _**[💙 If you like the project, subscribe <code><img width="2%" src="https://github.com/user-attachments/assets/d8634330-234a-4e0e-b163-b8859a1b66bf"></code>
  our profiles 💙](https://www.linkedin.com/)**_
