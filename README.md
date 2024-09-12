@@ -47,6 +47,8 @@ _[Julia Delmar](https://www.linkedin.com/in/julia-delmar/)_
 
 _[Vasyl Lysyy](https://www.linkedin.com/in/vasyl-lysyy/)_
 
+_[Karina Novikova](https://www.linkedin.com/in/karina-novikova-01157b31b/)_
+
 _[Ivan Ponomarev](https://linkedin.com/in/ivan-ponomarev-qa)_
 
 _[Vinera Rakhmatullina](https://www.linkedin.com/in/vinera-r/)_
