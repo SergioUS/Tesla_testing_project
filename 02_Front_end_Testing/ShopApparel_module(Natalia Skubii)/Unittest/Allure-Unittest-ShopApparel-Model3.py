@@ -11,6 +11,7 @@ from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.service import Service as ChromeService
 from selenium.webdriver.firefox.options import Options
 import HelpersShopApparelModel3 as H
+import AllureReports
 from webdriver_manager.firefox import GeckoDriverManager
 from selenium.webdriver.firefox.service import Service as FirefoxService
 from webdriver_manager.microsoft import EdgeChromiumDriverManager
@@ -69,7 +70,7 @@ class ChromePositiveNegativeTestCases(unittest.TestCase):
         print("        !!!  test_case_026  PASS   !!!                                                              ")
         print("        --------------------                                                                        ")
 
-
+        self.driver.quit()
     def test_case_027(self):
         driver = self.driver
         print("                                                                                                     ")
@@ -123,6 +124,7 @@ class ChromePositiveNegativeTestCases(unittest.TestCase):
         print("        !!!  test_case_027  PASS   !!!                                                             ")
         print("         -----------------------------                                                             ")
 
+        self.driver.quit()
     def test_case_028(self):
         driver = self.driver
         print("                                                                                                     ")
@@ -195,6 +197,7 @@ class ChromePositiveNegativeTestCases(unittest.TestCase):
         print("        !!!  test_case_028  PASS   !!!                                                             ")
         print("         -----------------------------                                                             ")
 
+        self.driver.quit()
     def test_case_029(self):
         driver = self.driver
         print("                                                                                                     ")
@@ -203,6 +206,7 @@ class ChromePositiveNegativeTestCases(unittest.TestCase):
 
         #Go to https://www.tesla.com/
         driver.get(H.tesla_url)
+        time.sleep(5)
 
         #Click on the header menu "Vehicles"
         vehicles_menu = WebDriverWait(driver, 5).until(
@@ -258,6 +262,7 @@ class ChromePositiveNegativeTestCases(unittest.TestCase):
         print("        !!!  test_case_029  PASS   !!!                                                             ")
         print("         -----------------------------                                                             ")
 
+        self.driver.quit()
     def test_case_030(self):
         driver = self.driver
         print("                                                                                                     ")
@@ -332,8 +337,8 @@ class ChromePositiveNegativeTestCases(unittest.TestCase):
         print("        !!!  test_case_030  PASS   !!!                                                            ")
         print("         -----------------------------                                                            ")
 
+        self.driver.quit()
     def test_case_026_26(self):
-        driver = self.driver
         driver = self.driver
         print("                                                                                                    ")
         print("                                          TESLA--(MODEL 3)                                          ")
@@ -348,6 +353,7 @@ class ChromePositiveNegativeTestCases(unittest.TestCase):
 
         #Go to https://www.tesla.com/
         driver.get(H.tesla_url)
+
 
         # Click on the header menu "Vehicles"
         vehicles_menu = WebDriverWait(driver, 5).until(
@@ -401,7 +407,7 @@ class ChromePositiveNegativeTestCases(unittest.TestCase):
 
         submit = driver.switch_to.active_element
         submit.send_keys(Keys.PAGE_DOWN)
-        delay()
+        time.sleep(5)
 
 
         #Click on the button "Submit"
@@ -424,6 +430,7 @@ class ChromePositiveNegativeTestCases(unittest.TestCase):
         print("        !!!  test_case_026_26  PASS   !!!                                                         ")
         print("         -----------------------------                                                            ")
 
+        self.driver.quit()
     def test_case_027_27(self):
         driver = self.driver
         print("                                                                                                    ")
@@ -510,6 +517,7 @@ class ChromePositiveNegativeTestCases(unittest.TestCase):
         print("        !!!  test_case_027_27  PASS   !!!                                                         ")
         print("         -----------------------------                                                            ")
 
+        self.driver.quit()
     def test_case_028_28(self):
         driver = self.driver
         print("                                                                                                    ")
@@ -584,7 +592,7 @@ class ChromePositiveNegativeTestCases(unittest.TestCase):
         print("                                                                                                  ")
         print("        !!!  test_case_028_28  PASS   !!!                                                            ")
         print("         -----------------------------                                                            ")
-
+        self.driver.quit()
     def test_case_029_29(self):
         driver = self.driver
         print("                                                                                                    ")
@@ -671,6 +679,7 @@ class ChromePositiveNegativeTestCases(unittest.TestCase):
         print("        !!!  test_case_029_29  FAIL   !!!                                                         ")
         print("         -----------------------------                                                            ")
 
+        self.driver.quit()
     def test_case_030_30(self):
         driver = self.driver
         print("                                                                                                    ")
@@ -754,6 +763,10 @@ class ChromePositiveNegativeTestCases(unittest.TestCase):
         print("                                                                                                  ")
         print("        !!!  test_case_030_30  PASS   !!!                                                         ")
         print("         -----------------------------                                                            ")
+
+
+    def tearDown(self):
+        self.driver.quit()
 class EdgePositiveNegativeTestCases(unittest.TestCase):
     def setUp(self):
         service = EdgeService(EdgeChromiumDriverManager().install())
@@ -801,6 +814,7 @@ class EdgePositiveNegativeTestCases(unittest.TestCase):
         print("        !!!  test_case_026  PASS   !!!                                                              ")
         print("        --------------------                                                                        ")
 
+        self.driver.quit()
     def test_case_027(self):
         driver = self.driver
         print("                                                                                                     ")
@@ -854,6 +868,7 @@ class EdgePositiveNegativeTestCases(unittest.TestCase):
         print("        !!!  test_case_027  PASS   !!!                                                             ")
         print("         -----------------------------                                                             ")
 
+        self.driver.quit()
     def test_case_028(self):
         driver = self.driver
         print("                                                                                                     ")
@@ -926,6 +941,7 @@ class EdgePositiveNegativeTestCases(unittest.TestCase):
         print("        !!!  test_case_028  PASS   !!!                                                             ")
         print("         -----------------------------                                                             ")
 
+        self.driver.quit()
     def test_case_029(self):
         driver = self.driver
         print("                                                                                                     ")
@@ -989,6 +1005,7 @@ class EdgePositiveNegativeTestCases(unittest.TestCase):
         print("        !!!  test_case_029  PASS   !!!                                                             ")
         print("         -----------------------------                                                             ")
 
+        self.driver.quit()
     def test_case_030(self):
         driver = self.driver
         print("                                                                                                     ")
@@ -1062,7 +1079,7 @@ class EdgePositiveNegativeTestCases(unittest.TestCase):
         print("                                                                                                  ")
         print("        !!!  test_case_030  PASS   !!!                                                            ")
         print("         -----------------------------                                                            ")
-
+        self.driver.quit()
     def test_case_026_26(self):
         driver = self.driver
         driver = self.driver
@@ -1110,7 +1127,7 @@ class EdgePositiveNegativeTestCases(unittest.TestCase):
 
         last_name = driver.switch_to.active_element
         last_name.send_keys(Keys.PAGE_DOWN)
-        delay()
+        time.sleep(5)
 
         #Enter Last name
         last_name = WebDriverWait(driver, 5).until(
@@ -1155,6 +1172,7 @@ class EdgePositiveNegativeTestCases(unittest.TestCase):
         print("        !!!  test_case_026_26  PASS   !!!                                                         ")
         print("         -----------------------------                                                            ")
 
+        self.driver.quit()
     def test_case_027_27(self):
         driver = self.driver
         print("                                                                                                    ")
@@ -1163,6 +1181,7 @@ class EdgePositiveNegativeTestCases(unittest.TestCase):
 
         # Go to https://www.tesla.com/
         driver.get(H.tesla_url)
+        time.sleep(5)
 
         # Click on the header menu "Vehicles"
         vehicles_menu = WebDriverWait(driver, 5).until(
@@ -1195,7 +1214,7 @@ class EdgePositiveNegativeTestCases(unittest.TestCase):
 
         last_name = driver.switch_to.active_element
         last_name.send_keys(Keys.PAGE_DOWN)
-        time.sleep(3)
+        time.sleep(5)
 
         #Enter First name
         first_name = WebDriverWait(driver, 5).until(
@@ -1241,6 +1260,7 @@ class EdgePositiveNegativeTestCases(unittest.TestCase):
         print("        !!!  test_case_027_27  PASS   !!!                                                         ")
         print("         -----------------------------                                                            ")
 
+        self.driver.quit()
     def test_case_028_28(self):
         driver = self.driver
         print("                                                                                                    ")
@@ -1316,6 +1336,7 @@ class EdgePositiveNegativeTestCases(unittest.TestCase):
         print("        !!!  test_case_028_28  PASS   !!!                                                            ")
         print("         -----------------------------                                                            ")
 
+        self.driver.quit()
     def test_case_029_29(self):
         driver = self.driver
         print("                                                                                                    ")
@@ -1402,6 +1423,7 @@ class EdgePositiveNegativeTestCases(unittest.TestCase):
         print("        !!!  test_case_029_29  FAIL   !!!                                                         ")
         print("         -----------------------------                                                            ")
 
+        self.driver.quit()
     def test_case_030_30(self):
         driver = self.driver
         print("                                                                                                    ")
@@ -1485,7 +1507,10 @@ class EdgePositiveNegativeTestCases(unittest.TestCase):
         print("                                                                                                  ")
         print("        !!!  test_case_030_30  PASS   !!!                                                         ")
         print("         -----------------------------                                                            ")
-class FirefoxPositiveNegativeTestCases(unittest.TestCase):
+
+    def tearDown(self):
+        self.driver.quit()
+class FireFoxPositiveNegativeTestCases(unittest.TestCase):
     def setUp(self):
         profile = webdriver.FirefoxProfile()
 
@@ -1495,7 +1520,8 @@ class FirefoxPositiveNegativeTestCases(unittest.TestCase):
         profile.set_preference("geo.enabled", True)
         profile.set_preference("geo.provider.use_corelocation", True)
         profile.set_preference("geo.provider.use_gpsd", False)
-        profile.set_preference("geo.wifi.uri", "data:application/json,{\"location\": {\"lat\": 50.455755, \"lng\": 30.511565}, \"accuracy\": 100.0}")
+        profile.set_preference("geo.wifi.uri",
+                               "data:application/json,{\"location\": {\"lat\": 50.455755, \"lng\": 30.511565}, \"accuracy\": 100.0}")
 
         # Set up Firefox options
         options = Options()
@@ -1505,6 +1531,7 @@ class FirefoxPositiveNegativeTestCases(unittest.TestCase):
         service = FirefoxService(GeckoDriverManager().install())
         self.driver = webdriver.Firefox(service=service, options=options)
         self.driver.maximize_window()
+
 
     def test_case_026(self):
         driver = self.driver
@@ -1521,9 +1548,8 @@ class FirefoxPositiveNegativeTestCases(unittest.TestCase):
 
         #Go to https://www.tesla.com/
         driver.get(H.tesla_url)
-        time.sleep(3)
+        time.sleep(5)
 
-        H.moving_to_new_window(driver)
 
         #Click on the header menu "Shop"
         shop_menu = driver.find_element(By.XPATH, H.shop_link)
@@ -1547,6 +1573,7 @@ class FirefoxPositiveNegativeTestCases(unittest.TestCase):
         print("        !!!  test_case_026  PASS   !!!                                                              ")
         print("        --------------------                                                                        ")
 
+        self.driver.quit()
     def test_case_027(self):
         driver = self.driver
         print("                                                                                                     ")
@@ -1555,7 +1582,7 @@ class FirefoxPositiveNegativeTestCases(unittest.TestCase):
 
         # Go to https://www.tesla.com/
         driver.get(H.tesla_url)
-        time.sleep(3)
+        time.sleep(5)
 
         # Click on the header menu "Shop"
         shop_menu = driver.find_element(By.XPATH, H.shop_link)
@@ -1600,6 +1627,7 @@ class FirefoxPositiveNegativeTestCases(unittest.TestCase):
         print("        !!!  test_case_027  PASS   !!!                                                             ")
         print("         -----------------------------                                                             ")
 
+        self.driver.quit()
     def test_case_028(self):
         driver = self.driver
         print("                                                                                                     ")
@@ -1608,12 +1636,12 @@ class FirefoxPositiveNegativeTestCases(unittest.TestCase):
 
         # Go to https://www.tesla.com/
         driver.get(H.tesla_url)
-        time.sleep(3)
+        time.sleep(5)
 
         # Click on the header menu "Shop"
         shop_menu = driver.find_element(By.XPATH, H.shop_link)
         shop_menu.click()
-        delay()
+        time.sleep(5)
 
         # Navigate on the Apparel link and click on the Men - Tees link
         apparel = driver.find_element(By.XPATH, '//*[@id="main-menu"]/div[1]/ol/li[3]/div')
@@ -1630,7 +1658,7 @@ class FirefoxPositiveNegativeTestCases(unittest.TestCase):
         tees = driver.find_element(By.XPATH, H.tees)
         action = ActionChains(driver)
         action.move_to_element(tees).click().perform()
-        delay()
+        time.sleep(5)
 
         #Click on the link "Men's Cybertruck Cityscape Tee"
         driver.find_element(By.XPATH, H.partial_link).click()
@@ -1672,6 +1700,7 @@ class FirefoxPositiveNegativeTestCases(unittest.TestCase):
         print("        !!!  test_case_028  PASS   !!!                                                             ")
         print("         -----------------------------                                                             ")
 
+        self.driver.quit()
     def test_case_029(self):
         driver = self.driver
         print("                                                                                                     ")
@@ -1680,6 +1709,7 @@ class FirefoxPositiveNegativeTestCases(unittest.TestCase):
 
         #Go to https://www.tesla.com/
         driver.get(H.tesla_url)
+        time.sleep(5)
 
         #Click on the header menu "Vehicles"
         vehicles_menu = WebDriverWait(driver, 5).until(
@@ -1735,6 +1765,7 @@ class FirefoxPositiveNegativeTestCases(unittest.TestCase):
         print("        !!!  test_case_029  PASS   !!!                                                             ")
         print("         -----------------------------                                                             ")
 
+        self.driver.quit()
     def test_case_030(self):
         driver = self.driver
         print("                                                                                                     ")
@@ -1744,6 +1775,7 @@ class FirefoxPositiveNegativeTestCases(unittest.TestCase):
 
         #Go to https://www.tesla.com/
         driver.get(H.tesla_url)
+        time.sleep(5)
 
         #Click on the header menu "Shop"
         shop_menu = driver.find_element(By.XPATH, H.shop_link)
@@ -1809,8 +1841,8 @@ class FirefoxPositiveNegativeTestCases(unittest.TestCase):
         print("        !!!  test_case_030  PASS   !!!                                                            ")
         print("         -----------------------------                                                            ")
 
+        self.driver.quit()
     def test_case_026_26(self):
-        driver = self.driver
         driver = self.driver
         print("                                                                                                    ")
         print("                                          TESLA--(MODEL 3)                                          ")
@@ -1825,6 +1857,7 @@ class FirefoxPositiveNegativeTestCases(unittest.TestCase):
 
         #Go to https://www.tesla.com/
         driver.get(H.tesla_url)
+        time.sleep(3)
 
         # Click on the header menu "Vehicles"
         vehicles_menu = WebDriverWait(driver, 5).until(
@@ -1901,6 +1934,7 @@ class FirefoxPositiveNegativeTestCases(unittest.TestCase):
         print("        !!!  test_case_026_26  PASS   !!!                                                         ")
         print("         -----------------------------                                                            ")
 
+        self.driver.quit()
     def test_case_027_27(self):
         driver = self.driver
         print("                                                                                                    ")
@@ -1909,6 +1943,7 @@ class FirefoxPositiveNegativeTestCases(unittest.TestCase):
 
         # Go to https://www.tesla.com/
         driver.get(H.tesla_url)
+        time.sleep(3)
 
         # Click on the header menu "Vehicles"
         vehicles_menu = WebDriverWait(driver, 5).until(
@@ -1987,6 +2022,7 @@ class FirefoxPositiveNegativeTestCases(unittest.TestCase):
         print("        !!!  test_case_027_27  PASS   !!!                                                         ")
         print("         -----------------------------                                                            ")
 
+        self.driver.quit()
     def test_case_028_28(self):
         driver = self.driver
         print("                                                                                                    ")
@@ -1995,6 +2031,7 @@ class FirefoxPositiveNegativeTestCases(unittest.TestCase):
 
         # Go to https://www.tesla.com/
         driver.get(H.tesla_url)
+        time.sleep(3)
 
         # Click on the header menu "Vehicles"
         vehicles_menu = WebDriverWait(driver, 5).until(
@@ -2062,6 +2099,7 @@ class FirefoxPositiveNegativeTestCases(unittest.TestCase):
         print("        !!!  test_case_028_28  PASS   !!!                                                            ")
         print("         -----------------------------                                                            ")
 
+        self.driver.quit()
     def test_case_029_29(self):
         driver = self.driver
         print("                                                                                                    ")
@@ -2070,6 +2108,7 @@ class FirefoxPositiveNegativeTestCases(unittest.TestCase):
 
         # Go to https://www.tesla.com/
         driver.get(H.tesla_url)
+        time.sleep(5)
 
         # Click on the header menu "Vehicles"
         vehicles_menu = WebDriverWait(driver, 5).until(
@@ -2119,8 +2158,7 @@ class FirefoxPositiveNegativeTestCases(unittest.TestCase):
             EC.visibility_of_element_located((By.XPATH, H.email_address)))
         email_address.send_keys("pacara4727@eachart.com")
 
-
-        #Enter Phone number
+        # Enter Phone number
         phone = WebDriverWait(driver, 5).until(
             EC.visibility_of_element_located((By.XPATH, H.phone)))
         phone.send_keys("7175555555")
@@ -2132,7 +2170,7 @@ class FirefoxPositiveNegativeTestCases(unittest.TestCase):
         submit.send_keys(Keys.PAGE_DOWN)
         delay()
 
-       # Click on the button "Submit"
+        # Click on the button "Submit"
         submit = WebDriverWait(driver, 5).until(
             EC.visibility_of_element_located((By.XPATH, H.submit)))
         submit.click()
@@ -2148,6 +2186,7 @@ class FirefoxPositiveNegativeTestCases(unittest.TestCase):
         print("        !!!  test_case_029_29  FAIL   !!!                                                         ")
         print("         -----------------------------                                                            ")
 
+        self.driver.quit()
     def test_case_030_30(self):
         driver = self.driver
         print("                                                                                                    ")
@@ -2156,6 +2195,7 @@ class FirefoxPositiveNegativeTestCases(unittest.TestCase):
 
         # Go to https://www.tesla.com/
         driver.get(H.tesla_url)
+        time.sleep(3)
 
         # Click on the header menu "Vehicles"
         vehicles_menu = WebDriverWait(driver, 5).until(
@@ -2237,4 +2277,4 @@ class FirefoxPositiveNegativeTestCases(unittest.TestCase):
         self.driver.quit()
 
 if __name__ == "__main__":
-    unittest.main()
+    unittest.main(AllureReports)
