@@ -52,11 +52,11 @@ PetLiner_link = '//*[@id="category--model_x--mx_interior"]/ul/li[1]/div[2]/div/d
 # Vehicle Accessories Model X Pet Liner url
 PetLiner_url = "https://shop.tesla.com/product/model-x-pet-liner"
 
-# Vehicle Accessories Model X Car Cover link
-CarCover_link = "//a[contains(text(),'Model X Car Cover')]"
+# Vehicle Accessories Model X License Plate Frame link
+LPF_link = "//a[contains(.,'Powered By the Sun License Plate Frame')]"
 
-# Vehicle Accessories/Model-X/Car Cover url
-CarCover_url = "https://shop.tesla.com/product/model-x-car-cover"
+# Vehicle Accessories/Model-X/License Plate Frame url
+LPF_url = "https://shop.tesla.com/product/powered-by-the-sun-license-plate-frame"
 
 # Vehicle Accessories Model X Key Fob link
 KeyFob_link = "//a[contains(text(),'Model X Key Fob')]"
@@ -90,6 +90,9 @@ FN_link = "(//input[contains(@class,'tds-form-input-text')])[2]"
 LN_link = "(//input[contains(@class,'tds-form-input-text')])[3]"
 Email_link = "//input[contains(@name,'email')]"
 PN_link = "//input[contains(@name,'phone')]"
+FN2_link = "//input[contains(@name,'guestInfo.guestFirstName')]"
+LN2_link = "//input[contains(@name,'guestInfo.guestLastName')]"
+Next2_link = "//button[contains(.,'Next')]"
 Submit = "//button[contains(.,'Submit')]"
 
 # Vehicle Accessories/Model-X/Mud Flaps/Checkout link
@@ -124,6 +127,5 @@ page_cart = "//body/main[@id='content-main']/div[1]/div[1]/div[2]/div[1]"
 # Search Line for Model X link
 S_l_ModelX_link = "//input[contains(@id,'1')]"
 page_s_l_model_x = "//input[contains(@id,'1')]"
-
 
 

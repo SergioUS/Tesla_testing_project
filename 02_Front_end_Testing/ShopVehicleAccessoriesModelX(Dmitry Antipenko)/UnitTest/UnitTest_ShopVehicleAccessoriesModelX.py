@@ -4,8 +4,8 @@
 import random
 import time
 import unittest
-from time import sleep
-import requests
+
+#import requests
 from selenium import webdriver
 from selenium.webdriver.chrome.service import Service as ChromeService
 from selenium.webdriver.common.by import By
@@ -29,7 +29,7 @@ def delay():
 
 
 #def scroll_to_element(iframe):
-#   pass
+#    pass
 
 class ChromePositiveTests(unittest.TestCase):
 
@@ -101,7 +101,7 @@ class ChromePositiveTests(unittest.TestCase):
                         """
         driver.execute_script(hover_script, VehicleAccessories_menu)
 
-        time.sleep(2)
+        time.sleep(5)
 
         VehicleAccessoriesModelX = driver.find_element(By.XPATH, H.VehicleAccessoriesModelX_link)
         action = ActionChains(driver)
@@ -116,7 +116,7 @@ class ChromePositiveTests(unittest.TestCase):
         PetLiner_link = driver.find_element(By.XPATH, H.PetLiner_link)
         PetLiner_link.click()
 
-        time.sleep(5)
+        time.sleep(4)
 
 
         # Verify that the Vehicle Accessories Model X Pet Liner page is loaded by checking URL or page title
@@ -181,7 +181,6 @@ class ChromePositiveTests(unittest.TestCase):
 
         time.sleep(5)
 
-        #add_to_cart_page = WebDriverWait(driver, 10).until(EC.visibility_of_element_located((By.XPATH, H.page_cart)))
 
         # Validate that "Add to Cart" button has worked and cart page is displayed
         add_to_cart_confirmation = WebDriverWait(driver, 10).until(EC.visibility_of_element_located((By.XPATH, H.add_to_cart)))
@@ -195,7 +194,7 @@ class ChromePositiveTests(unittest.TestCase):
         delay()
 
 
-    # Test case 064: Verify that item "Model X Car Cover" can be added to cart.
+    # Test case 064: Verify that item "Model X Powered By the Sun License Plate Frame" can be added to cart.
     def test_case_064(self):
         driver = self.driver
         print("Test Case 064")
@@ -234,15 +233,15 @@ class ChromePositiveTests(unittest.TestCase):
         time.sleep(4)
 
         driver.execute_script("window.scrollTo(0,4000)")
-        CarCover_link = driver.find_element(By.XPATH, H.CarCover_link)
-        CarCover_link.click()
+        LPF_link = driver.find_element(By.XPATH, H.LPF_link)
+        LPF_link.click()
 
         time.sleep(2)
 
-        # Choose quantity (1)
+        # Choose quantity (2)
         quantity_input = WebDriverWait(driver, 8).until(EC.visibility_of_element_located((By.XPATH, H.quantity_input)))
         quantity_input.clear()
-        quantity_input.send_keys("1")
+        quantity_input.send_keys("2")
 
         delay()
 
@@ -570,23 +569,32 @@ class ChromeNegativeTests(unittest.TestCase):
         driver.find_element(By.XPATH, H.Checkout).click()
         time.sleep(3)
 
-        # Not enter email address and click on the button "Continue"
+        # Not enter email address and click on the button "Continue as Guest"
         driver.find_element(By.XPATH, H.Continue2).click()
         time.sleep(3)
 
-
-
+        # Fill out the guest form
+        FN2_link = WebDriverWait(driver, 8).until(EC.visibility_of_element_located((By.XPATH, H.FN2_link)))
+        FN2_link.clear()
+        FN2_link.send_keys("Dmitry")
+        time.sleep(2)
+        LN2_link = WebDriverWait(driver, 8).until(EC.visibility_of_element_located((By.XPATH, H.LN2_link)))
+        LN2_link.clear()
+        LN2_link.send_keys("Lan")
+        time.sleep(3)
+        driver.find_element(By.XPATH, H.Next2_link).click()
+        time.sleep(5)
 
         # Make sure this item added to cart
-        by_mun_flaps_confirmation = WebDriverWait(driver, 10).until(
-            EC.visibility_of_element_located((By.XPATH, H.Continue2)))
+        by_mun_flaps_confirmation = WebDriverWait(driver, 5).until(
+            EC.visibility_of_element_located((By.XPATH, H.Next2_link)))
 
-        self.assertTrue(by_mun_flaps_confirmation.is_displayed(), "Enter password")
+        self.assertTrue(by_mun_flaps_confirmation.is_displayed(), "Button Next")
         if by_mun_flaps_confirmation.is_displayed():
             print(
-                'The user not entered an email, a message appeared "Please enter email" - Test Case 063_63 passed')
+                'The user not entered an email, a message appeared "Please populate this field - Email" - Test Case 063_63 passed')
         else:
-            raise Exception("Enter password - Test Case 063_63 failed")
+            raise Exception("Button Next - Test Case 063_63 failed")
         delay()
 
 
@@ -750,7 +758,6 @@ class FirefoxPositiveTests(unittest.TestCase):
         self.driver = webdriver.Firefox(service=Service(GeckoDriverManager().install()), options=options)
         self.driver.maximize_window()
 
-
     # Test Case 061: Verify that "Shop" button clickable in the main page and transfer to correct page
     def test_case_061(self):
         driver = self.driver
@@ -761,7 +768,7 @@ class FirefoxPositiveTests(unittest.TestCase):
 
         delay()
 
-        #Click on the header menu "Shop"
+        # Click on the header menu "Shop"
         shop_menu = driver.find_element(By.XPATH, H.shop_link)
         shop_menu.click()
 
@@ -780,7 +787,6 @@ class FirefoxPositiveTests(unittest.TestCase):
             print("Vehicle Accessories is available - Test Case 061 passed")
 
         delay()
-
 
     # Test case 062: Verify that  button "Model X Pet Liner" page is visible in the header and link is clickable
     def test_case_062(self):
@@ -812,7 +818,7 @@ class FirefoxPositiveTests(unittest.TestCase):
                         """
         driver.execute_script(hover_script, VehicleAccessories_menu)
 
-        time.sleep(2)
+        time.sleep(5)
 
         VehicleAccessoriesModelX = driver.find_element(By.XPATH, H.VehicleAccessoriesModelX_link)
         action = ActionChains(driver)
@@ -827,14 +833,13 @@ class FirefoxPositiveTests(unittest.TestCase):
         PetLiner_link = driver.find_element(By.XPATH, H.PetLiner_link)
         PetLiner_link.click()
 
-        time.sleep(5)
-
+        time.sleep(4)
 
         # Verify that the Vehicle Accessories Model X Pet Liner page is loaded by checking URL or page title
-        self.assertIn("model-x-pet-liner", driver.current_url.lower(), "Vehicle Accessories Model X Pet Liner page not loaded")
+        self.assertIn("model-x-pet-liner", driver.current_url.lower(),
+                      "Vehicle Accessories Model X Pet Liner page not loaded")
 
         delay()
-
 
     # Test case 063: Verify that item "Model X Key Fob" can be added to cart.
     def test_case_063(self):
@@ -892,9 +897,9 @@ class FirefoxPositiveTests(unittest.TestCase):
 
         time.sleep(5)
 
-
         # Validate that "Add to Cart" button has worked and cart page is displayed
-        add_to_cart_confirmation = WebDriverWait(driver, 10).until(EC.visibility_of_element_located((By.XPATH, H.add_to_cart)))
+        add_to_cart_confirmation = WebDriverWait(driver, 10).until(
+            EC.visibility_of_element_located((By.XPATH, H.add_to_cart)))
 
         self.assertTrue(add_to_cart_confirmation.is_displayed(), "Add to Cart confirmation not displayed")
         if add_to_cart_confirmation.is_displayed():
@@ -904,8 +909,7 @@ class FirefoxPositiveTests(unittest.TestCase):
 
         delay()
 
-
-    # Test case 064: Verify that item "Model X Car Cover" can be added to cart.
+    # Test case 064: Verify that item "Model X Powered By the Sun License Plate Frame" can be added to cart.
     def test_case_064(self):
         driver = self.driver
         print("Test Case 064")
@@ -944,15 +948,15 @@ class FirefoxPositiveTests(unittest.TestCase):
         time.sleep(4)
 
         driver.execute_script("window.scrollTo(0,4000)")
-        CarCover_link = driver.find_element(By.XPATH, H.CarCover_link)
-        CarCover_link.click()
+        LPF_link = driver.find_element(By.XPATH, H.LPF_link)
+        LPF_link.click()
 
         time.sleep(2)
 
-        # Choose quantity (1)
+        # Choose quantity (2)
         quantity_input = WebDriverWait(driver, 8).until(EC.visibility_of_element_located((By.XPATH, H.quantity_input)))
         quantity_input.clear()
-        quantity_input.send_keys("1")
+        quantity_input.send_keys("2")
 
         delay()
 
@@ -961,9 +965,9 @@ class FirefoxPositiveTests(unittest.TestCase):
 
         time.sleep(5)
 
-
         # Validate that "Add to Cart" button has worked and cart page is displayed
-        add_to_cart_confirmation = WebDriverWait(driver, 10).until(EC.visibility_of_element_located((By.XPATH, H.add_to_cart)))
+        add_to_cart_confirmation = WebDriverWait(driver, 10).until(
+            EC.visibility_of_element_located((By.XPATH, H.add_to_cart)))
 
         self.assertTrue(add_to_cart_confirmation.is_displayed(), "Add to Cart confirmation not displayed")
         if add_to_cart_confirmation.is_displayed():
@@ -972,7 +976,6 @@ class FirefoxPositiveTests(unittest.TestCase):
             raise Exception("Add to cart confirmation is not visible - Test Case 064 failed")
 
         delay()
-
 
     # Test case 065: Verify that when you click on "Model X", a catalog with accessories for the "Tesla Model X" opens and works
     def test_case_065(self):
@@ -1039,7 +1042,6 @@ class FirefoxPositiveTests(unittest.TestCase):
         self.assertIn("model-x", driver.current_url.lower(), "Vehicle Accessories Model X opens and works")
 
         delay()
-
 
     def tearDown(self):
         self.driver.quit()
@@ -1280,23 +1282,32 @@ class FirefoxNegativeTests(unittest.TestCase):
         driver.find_element(By.XPATH, H.Checkout).click()
         time.sleep(3)
 
-        # Not enter email address and click on the button "Continue"
+        # Not enter email address and click on the button "Continue as Guest"
         driver.find_element(By.XPATH, H.Continue2).click()
         time.sleep(3)
 
-
-
+        # Fill out the guest form
+        FN2_link = WebDriverWait(driver, 8).until(EC.visibility_of_element_located((By.XPATH, H.FN2_link)))
+        FN2_link.clear()
+        FN2_link.send_keys("Dmitry")
+        time.sleep(2)
+        LN2_link = WebDriverWait(driver, 8).until(EC.visibility_of_element_located((By.XPATH, H.LN2_link)))
+        LN2_link.clear()
+        LN2_link.send_keys("Lan")
+        time.sleep(3)
+        driver.find_element(By.XPATH, H.Next2_link).click()
+        time.sleep(5)
 
         # Make sure this item added to cart
-        by_mun_flaps_confirmation = WebDriverWait(driver, 10).until(
-            EC.visibility_of_element_located((By.XPATH, H.Continue2)))
+        by_mun_flaps_confirmation = WebDriverWait(driver, 5).until(
+            EC.visibility_of_element_located((By.XPATH, H.Next2_link)))
 
-        self.assertTrue(by_mun_flaps_confirmation.is_displayed(), "Enter password")
+        self.assertTrue(by_mun_flaps_confirmation.is_displayed(), "Button Next")
         if by_mun_flaps_confirmation.is_displayed():
             print(
-                'The user not entered an email, a message appeared "Please enter email" - Test Case 063_63 passed')
+                'The user not entered an email, a message appeared "Please populate this field - Email" - Test Case 063_63 passed')
         else:
-            raise Exception("Enter password - Test Case 063_63 failed")
+            raise Exception("Button Next - Test Case 063_63 failed")
         delay()
 
 
@@ -1522,7 +1533,7 @@ class EdgePositiveTests(unittest.TestCase):
                         """
         driver.execute_script(hover_script, VehicleAccessories_menu)
 
-        time.sleep(2)
+        time.sleep(5)
 
         VehicleAccessoriesModelX = driver.find_element(By.XPATH, H.VehicleAccessoriesModelX_link)
         action = ActionChains(driver)
@@ -1537,7 +1548,7 @@ class EdgePositiveTests(unittest.TestCase):
         PetLiner_link = driver.find_element(By.XPATH, H.PetLiner_link)
         PetLiner_link.click()
 
-        time.sleep(5)
+        time.sleep(4)
 
 
         # Verify that the Vehicle Accessories Model X Pet Liner page is loaded by checking URL or page title
@@ -1615,7 +1626,7 @@ class EdgePositiveTests(unittest.TestCase):
         delay()
 
 
-    # Test case 064: Verify that item "Model X Car Cover" can be added to cart.
+    # Test case 064: Verify that item "Model X Powered By the Sun License Plate Frame" can be added to cart.
     def test_case_064(self):
         driver = self.driver
         print("Test Case 064")
@@ -1654,15 +1665,15 @@ class EdgePositiveTests(unittest.TestCase):
         time.sleep(4)
 
         driver.execute_script("window.scrollTo(0,4000)")
-        CarCover_link = driver.find_element(By.XPATH, H.CarCover_link)
-        CarCover_link.click()
+        LPF_link = driver.find_element(By.XPATH, H.LPF_link)
+        LPF_link.click()
 
         time.sleep(2)
 
-        # Choose quantity (1)
+        # Choose quantity (2)
         quantity_input = WebDriverWait(driver, 8).until(EC.visibility_of_element_located((By.XPATH, H.quantity_input)))
         quantity_input.clear()
-        quantity_input.send_keys("1")
+        quantity_input.send_keys("2")
 
         delay()
 
@@ -1990,23 +2001,32 @@ class EdgeNegativeTests(unittest.TestCase):
         driver.find_element(By.XPATH, H.Checkout).click()
         time.sleep(3)
 
-        # Not enter email address and click on the button "Continue"
+        # Not enter email address and click on the button "Continue as Guest"
         driver.find_element(By.XPATH, H.Continue2).click()
         time.sleep(3)
 
-
-
+        # Fill out the guest form
+        FN2_link = WebDriverWait(driver, 8).until(EC.visibility_of_element_located((By.XPATH, H.FN2_link)))
+        FN2_link.clear()
+        FN2_link.send_keys("Dmitry")
+        time.sleep(2)
+        LN2_link = WebDriverWait(driver, 8).until(EC.visibility_of_element_located((By.XPATH, H.LN2_link)))
+        LN2_link.clear()
+        LN2_link.send_keys("Lan")
+        time.sleep(3)
+        driver.find_element(By.XPATH, H.Next2_link).click()
+        time.sleep(5)
 
         # Make sure this item added to cart
-        by_mun_flaps_confirmation = WebDriverWait(driver, 10).until(
-            EC.visibility_of_element_located((By.XPATH, H.Continue2)))
+        by_mun_flaps_confirmation = WebDriverWait(driver, 5).until(
+            EC.visibility_of_element_located((By.XPATH, H.Next2_link)))
 
-        self.assertTrue(by_mun_flaps_confirmation.is_displayed(), "Enter password")
+        self.assertTrue(by_mun_flaps_confirmation.is_displayed(), "Button Next")
         if by_mun_flaps_confirmation.is_displayed():
             print(
-                'The user not entered an email, a message appeared "Please enter email" - Test Case 063_63 passed')
+                'The user not entered an email, a message appeared "Please populate this field - Email" - Test Case 063_63 passed')
         else:
-            raise Exception("Enter password - Test Case 063_63 failed")
+            raise Exception("Button Next - Test Case 063_63 failed")
         delay()
 
 
@@ -2157,9 +2177,8 @@ class EdgeNegativeTests(unittest.TestCase):
         time.sleep(4)
 
 
-
 def teardown(self):
-    self.driver.quit()
+        self.driver.quit()
 
 
 #if __name__ == "__main__":
