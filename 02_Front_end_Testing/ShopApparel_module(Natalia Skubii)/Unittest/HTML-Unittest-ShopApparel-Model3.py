@@ -2251,10 +2251,10 @@ class FireFoxPositiveNegativeTestCases(unittest.TestCase):
     def tearDown(self):
         self.driver.quit()
 if __name__ == "__main__":
-        suite = unittest.TestSuite()
-        #suite.addTest(unittest.TestLoader().loadTestsFromTestCase(ChromePositiveNegativeTestCases))
-        #suite.addTest(unittest.TestLoader().loadTestsFromTestCase(EdgePositiveNegativeTestCases))
-        suite.addTest(unittest.TestLoader().loadTestsFromTestCase(FireFoxPositiveNegativeTestCases))
-        runner = HtmlTestRunner.HTMLTestRunner(
-            output='C:/Users/natal/PycharmProjects/Tesla_testing_project/02_Front_end_Testing/ShopApparel_module(Natalia Skubii)/HTML_report')
-        runner.run(suite)
+     suite = unittest.TestSuite()
+     suite.addTest(unittest.TestLoader().loadTestsFromTestCase(ChromePositiveNegativeTestCases))
+     suite.addTest(unittest.TestLoader().loadTestsFromTestCase(EdgePositiveNegativeTestCases))
+     suite.addTest(unittest.TestLoader().loadTestsFromTestCase(FireFoxPositiveNegativeTestCases))
+     runner = HtmlTestRunner.HTMLTestRunner(
+         output='C:/Users/natal/PycharmProjects/Tesla_testing_project/02_Front_end_Testing/ShopApparel_module(Natalia Skubii)/HTML_report')
+     runner.run(suite)
