@@ -2,7 +2,7 @@
 
 ![model-s-driving](https://github.com/user-attachments/assets/92c3fe5b-508a-4eb2-a43c-670c9107cfd0)
 
-### **We are exiting to intriduce our _Tesla Testing Project!_**
+### **We are exciting to introduce our _Tesla Testing Project!_**
 
 As a Team of professionals in QA-Automation we are testing **_[Tesla](https://www.tesla.com/)_** website from different angles such as Performance and Security testing, API, FE testing, Selenium WebDriver Automation testing, create QA documentation. 
 
