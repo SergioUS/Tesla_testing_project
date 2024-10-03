@@ -1,0 +1,702 @@
+{
+	"info": {
+		"_postman_id": "e0ea1821-da7b-4c63-94f5-6f58a09dd2a8",
+		"name": "Tesla_Shop",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "38033375"
+	},
+	"item": [
+		{
+			"name": "https://shop.tesla.com/carts.json Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let jsonData = pm.response.json();\r",
+							"pm.environment.set(\"cartId\", jsonData.cartId);\r",
+							"pm.environment.set(\"lineitemId\", jsonData.cartItemModelList[0].lineitemId);\r",
+							"\r",
+							"\r",
+							"\r",
+							"pm.test(\"Response status code is 200\", function () {\r",
+							"  pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Response body time is within acceptable range\", function () {\r",
+							"    const minTime = 100; \r",
+							"    const maxTime = 4000; \r",
+							"    const bodyTime = pm.response.responseTime; \r",
+							"\r",
+							"    pm.expect(bodyTime).to.be.within(minTime, maxTime);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Response size is less than 4000B\", function () {\r",
+							"    pm.expect(pm.response.responseSize).to.be.below(4000);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Header is correct\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\", \"application/json;charset=UTF-8\");\r",
+							"    pm.response.to.have.header(\"Vary\", \"accept-encoding\");\r",
+							"    pm.response.to.have.header(\"Content-Encoding\", \"gzip\");\r",
+							"    pm.response.to.have.header(\"Content-Language\", \"en-US\");\r",
+							"    pm.response.to.have.header(\"Cache-Control\", \"no-cache, no-store\");\r",
+							"    pm.response.to.have.header(\"X-TZLA-EDGE-HOSTNAME-VCL\", \"shop\");\r",
+							"    pm.response.to.have.header(\"X-TZLA-EDGE-BACKEND-FETCH-IF-STALE\", \"false\");\r",
+							"    pm.response.to.have.header(\"X-Frame-Options\", \"SAMEORIGIN\");\r",
+							"    pm.response.to.have.header(\"X-Content-Type-Options\", \"nosniff\");\r",
+							"    pm.response.to.have.header(\"Connection\", \"keep-alive\");\r",
+							"    pm.response.to.have.header(\"Permissions-Policy\", \"interest-cohort=()\");\r",
+							"    \r",
+							"});\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "sec-ch-ua-platform",
+						"value": "\"Windows\""
+					},
+					{
+						"key": "X-Requested-With",
+						"value": "XMLHttpRequest"
+					},
+					{
+						"key": "User-Agent",
+						"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36"
+					},
+					{
+						"key": "Accept",
+						"value": "*/*"
+					},
+					{
+						"key": "sec-ch-ua",
+						"value": "\"Google Chrome\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "sec-ch-ua-mobile",
+						"value": "?0"
+					},
+					{
+						"key": "Sec-Fetch-Site",
+						"value": "same-origin"
+					},
+					{
+						"key": "Sec-Fetch-Mode",
+						"value": "cors"
+					},
+					{
+						"key": "Sec-Fetch-Dest",
+						"value": "empty"
+					},
+					{
+						"key": "host",
+						"value": "shop.tesla.com"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"followLocation\": true,\r\n    \"skuCode\": \"1473823-00-A\",\r\n    \"quantity\": 4\r\n}"
+				},
+				"url": {
+					"raw": "https://shop.tesla.com/carts.json",
+					"protocol": "https",
+					"host": [
+						"shop",
+						"tesla",
+						"com"
+					],
+					"path": [
+						"carts.json"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://shop.tesla.com/cart",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response status code is 200\", function () {\r",
+							"  pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"\r",
+							"pm.test(\"Response body time is within acceptable range\", function () {\r",
+							"    const minTime = 100; \r",
+							"    const maxTime = 1000; \r",
+							"    const bodyTime = pm.response.responseTime; \r",
+							"\r",
+							"    pm.expect(bodyTime).to.be.within(minTime, maxTime);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Response size is less than 500000B\", function () {\r",
+							"    pm.expect(pm.response.responseSize).to.be.below(500000);\r",
+							"});\r",
+							"    \r",
+							"\r",
+							"pm.test(\"Header is correct\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\", \"text/html;charset=UTF-8\");\r",
+							"    pm.response.to.have.header(\"Vary\", \"accept-encoding\");\r",
+							"    pm.response.to.have.header(\"Content-Language\", \"en-US\");\r",
+							"    pm.response.to.have.header(\"X-TZLA-EDGE-HOSTNAME-VCL\", \"shop\");\r",
+							"    pm.response.to.have.header(\"X-Frame-Options\", \"SAMEORIGIN\");\r",
+							"    pm.response.to.have.header(\"X-Content-Type-Options\", \"nosniff\");\r",
+							"    pm.response.to.have.header(\"Connection\", \"keep-alive\");\r",
+							"    pm.response.to.have.header(\"Content-Encoding\", \"gzip\");\r",
+							"    pm.response.to.have.header(\"Accept-Ranges\", \"bytes\");\r",
+							"    \r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "sec-ch-ua",
+						"value": "\"Google Chrome\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\""
+					},
+					{
+						"key": "sec-ch-ua-mobile",
+						"value": "?0"
+					},
+					{
+						"key": "sec-ch-ua-platform",
+						"value": "\"Windows\""
+					},
+					{
+						"key": "Upgrade-Insecure-Requests",
+						"value": "1"
+					},
+					{
+						"key": "User-Agent",
+						"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36"
+					},
+					{
+						"key": "Accept",
+						"value": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7"
+					},
+					{
+						"key": "Sec-Fetch-Site",
+						"value": "same-origin"
+					},
+					{
+						"key": "Sec-Fetch-Mode",
+						"value": "navigate"
+					},
+					{
+						"key": "Sec-Fetch-Dest",
+						"value": "document"
+					},
+					{
+						"key": "host",
+						"value": "shop.tesla.com"
+					}
+				],
+				"url": {
+					"raw": "https://shop.tesla.com/cart",
+					"protocol": "https",
+					"host": [
+						"shop",
+						"tesla",
+						"com"
+					],
+					"path": [
+						"cart"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://shop.tesla.com/carts/ural7rd6zvg3ylrukg3prbbtni772e6tqqnicq6fn2jdbr6miv7kqzinfzgbvdtj6yqbdrgsvawxbiem3umggyp64r3ixge3tddgjzy=/shippingfees/v1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"pm.test(\"Response status code is 200\", function () {\r",
+							"  pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Response body time is within acceptable range\", function () {\r",
+							"    const minTime = 100; \r",
+							"    const maxTime = 1000; \r",
+							"    const bodyTime = pm.response.responseTime; \r",
+							"\r",
+							"    pm.expect(bodyTime).to.be.within(minTime, maxTime);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Response size is less than 3000B\", function () {\r",
+							"    pm.expect(pm.response.responseSize).to.be.below(3000);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"pm.test(\"Header is correct\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\", \"application/json;charset=UTF-8\");\r",
+							"    pm.response.to.have.header(\"Vary\", \"accept-encoding\");\r",
+							"    pm.response.to.have.header(\"Content-Encoding\", \"gzip\");\r",
+							"    pm.response.to.have.header(\"Content-Language\", \"en-US\");\r",
+							"    pm.response.to.have.header(\"Cache-Control\", \"no-cache, no-store\");\r",
+							"    pm.response.to.have.header(\"X-TZLA-EDGE-HOSTNAME-VCL\", \"shop\");\r",
+							"    pm.response.to.have.header(\"X-TZLA-EDGE-BACKEND-FETCH-IF-STALE\", \"false\");\r",
+							"    pm.response.to.have.header(\"X-Frame-Options\", \"SAMEORIGIN\");\r",
+							"    pm.response.to.have.header(\"X-Content-Type-Options\", \"nosniff\");\r",
+							"    pm.response.to.have.header(\"Connection\", \"keep-alive\");\r",
+							"    pm.response.to.have.header(\"Permissions-Policy\", \"interest-cohort=()\");\r",
+							"    \r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Shipping cost object has the correct structure\", function () {\r",
+							"  const responseData = pm.response.json();\r",
+							"  \r",
+							"  pm.expect(responseData).to.be.an('object');\r",
+							"  pm.expect(responseData.shippingCost).to.exist.and.to.be.an('object');\r",
+							"  pm.expect(responseData.shippingCost.amount).to.exist.and.to.be.a('number');\r",
+							"  pm.expect(responseData.shippingCost.displayAmount).to.exist.and.to.be.a('string');\r",
+							"  pm.expect(responseData.shippingCost.currency).to.exist.and.to.be.a('string');\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Amount, displayAmount, and currency are present in the response and have the expected data types\", function () {\r",
+							"    const responseData = pm.response.json();\r",
+							"    \r",
+							"    pm.expect(responseData).to.be.an('object');\r",
+							"    pm.expect(responseData.shippingCost).to.be.an('object');\r",
+							"    pm.expect(responseData.shippingCost.amount).to.be.a('number');\r",
+							"    pm.expect(responseData.shippingCost.displayAmount).to.be.a('string');\r",
+							"    pm.expect(responseData.shippingCost.currency).to.be.a('string');\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "sec-ch-ua-platform",
+						"value": "\"Windows\""
+					},
+					{
+						"key": "User-Agent",
+						"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json, text/plain, */*"
+					},
+					{
+						"key": "sec-ch-ua",
+						"value": "\"Google Chrome\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\""
+					},
+					{
+						"key": "sec-ch-ua-mobile",
+						"value": "?0"
+					},
+					{
+						"key": "Sec-Fetch-Site",
+						"value": "same-origin"
+					},
+					{
+						"key": "Sec-Fetch-Mode",
+						"value": "cors"
+					},
+					{
+						"key": "Sec-Fetch-Dest",
+						"value": "empty"
+					},
+					{
+						"key": "host",
+						"value": "shop.tesla.com"
+					}
+				],
+				"url": {
+					"raw": "https://shop.tesla.com/carts/{{cartId}}/shippingfees/v1",
+					"protocol": "https",
+					"host": [
+						"shop",
+						"tesla",
+						"com"
+					],
+					"path": [
+						"carts",
+						"{{cartId}}",
+						"shippingfees",
+						"v1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://shop.tesla.com/carts/ural7rd6zvg3ylrukg3prbbtni772e6tqqnicq6fn2jdbr6miv7kqzinfzgbvdtj6yqbdrgsvawxbiem3umggyp64r3ixge3tddgjzy=/items/uslufqc437oymexcvrvjawfljofuot775mzmisd34bmcwm45vclg4334zcrrjgigi2o6p2cehc5wl4zzdrrjbxoovc2hxzbbwy2dl3a=/v1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 3000\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(3000);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response size is less than 4000B\", function () {\r",
+							"    pm.expect(pm.response.responseSize).to.be.below(4000);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Header is correct\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\", \"application/json;charset=UTF-8\");\r",
+							"    pm.response.to.have.header(\"Vary\", \"accept-encoding\");\r",
+							"    pm.response.to.have.header(\"Content-Encoding\", \"gzip\");\r",
+							"    pm.response.to.have.header(\"Content-Language\", \"en-US\");\r",
+							"    pm.response.to.have.header(\"Cache-Control\", \"no-cache, no-store\");\r",
+							"    pm.response.to.have.header(\"X-TZLA-EDGE-HOSTNAME-VCL\", \"shop\");\r",
+							"    pm.response.to.have.header(\"X-TZLA-EDGE-BACKEND-FETCH-IF-STALE\", \"false\");\r",
+							"    pm.response.to.have.header(\"X-Frame-Options\", \"SAMEORIGIN\");\r",
+							"    pm.response.to.have.header(\"X-Content-Type-Options\", \"nosniff\");\r",
+							"    pm.response.to.have.header(\"Connection\", \"keep-alive\");\r",
+							"    pm.response.to.have.header(\"Permissions-Policy\", \"interest-cohort=()\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Validate cartItemModelList properties\", function () {\r",
+							"    const responseData = pm.response.json();\r",
+							"\r",
+							"    pm.expect(responseData.cartItemModelList).to.be.an('array').that.is.not.empty;\r",
+							"\r",
+							"    responseData.cartItemModelList.forEach(function(item) {\r",
+							"        pm.expect(item).to.have.property('color').that.is.a('string');\r",
+							"        pm.expect(item).to.have.property('lineitemId').that.is.a('string');\r",
+							"        pm.expect(item).to.have.property('cartId').that.is.a('string');\r",
+							"        pm.expect(item).to.have.property('imagePath').that.is.a('string');\r",
+							"        pm.expect(item).to.have.property('listPrice').that.is.an('object');\r",
+							"        pm.expect(item).to.have.property('name').that.is.a('string');\r",
+							"        pm.expect(item).to.have.property('purchasePrice').that.is.an('object');\r",
+							"        pm.expect(item).to.have.property('quantity').that.is.a('number');\r",
+							"        pm.expect(item).to.have.property('serviceInstall').that.is.a('boolean');\r",
+							"        pm.expect(item).to.have.property('extServiceInstall').that.is.a('boolean');\r",
+							"        pm.expect(item).to.have.property('size').that.is.a('string');\r",
+							"        pm.expect(item).to.have.property('sku').that.is.a('string');\r",
+							"        pm.expect(item).to.have.property('purchasable').that.is.a('boolean');\r",
+							"        pm.expect(item).to.have.property('installationFlowEnabled').that.is.a('boolean');\r",
+							"        pm.expect(item).to.have.property('wcInstallerIdEligibleProduct').that.is.a('boolean');\r",
+							"        pm.expect(item).to.have.property('isVinEligibilityCheckRequired').that.is.a('boolean');\r",
+							"        pm.expect(item).to.have.property('optionDisplayName').that.is.a('string');\r",
+							"        pm.expect(item).to.have.property('restrictedStatesForShipping').that.is.an('array');\r",
+							"        pm.expect(item).to.have.property('timeboundCharging').that.is.a('boolean');\r",
+							"        pm.expect(item).to.have.property('teslaPayInstallmentFeeApplicable').that.is.a('boolean');\r",
+							"        pm.expect(item).to.have.property('wrapSupportedProduct').that.is.a('boolean');\r",
+							"        pm.expect(item).to.have.property('ignoreShippingThreshold').that.is.a('boolean');\r",
+							"    });\r",
+							"});\r",
+							"\r",
+							" \r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "sec-ch-ua-platform",
+						"value": "\"Windows\""
+					},
+					{
+						"key": "User-Agent",
+						"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json, text/plain, */*"
+					},
+					{
+						"key": "sec-ch-ua",
+						"value": "\"Google Chrome\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json;charset=UTF-8"
+					},
+					{
+						"key": "sec-ch-ua-mobile",
+						"value": "?0"
+					},
+					{
+						"key": "Sec-Fetch-Site",
+						"value": "same-origin"
+					},
+					{
+						"key": "Sec-Fetch-Mode",
+						"value": "cors"
+					},
+					{
+						"key": "Sec-Fetch-Dest",
+						"value": "empty"
+					},
+					{
+						"key": "host",
+						"value": "shop.tesla.com"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"followLocation\": true,\r\n    \"includeCartOrder\": false,\r\n    \"partNumber\": \"1473823-00-A\",\r\n    \"quantity\": 3\r\n}"
+				},
+				"url": {
+					"raw": "https://shop.tesla.com/carts/{{cartId}}/items/{{lineitemId}}/v1",
+					"protocol": "https",
+					"host": [
+						"shop",
+						"tesla",
+						"com"
+					],
+					"path": [
+						"carts",
+						"{{cartId}}",
+						"items",
+						"{{lineitemId}}",
+						"v1"
+					]
+				},
+				"description": "### Update Cart Item\n\nThis endpoint allows the user to update a specific item in the shopping cart.\n\n#### Request Body\n\n- `followLocation` (boolean): Indicates whether to follow the location after the request.\n    \n- `includeCartOrder` (boolean): Indicates whether to include the cart order in the request.\n    \n- `partNumber` (string): The part number of the item to be updated.\n    \n- `quantity` (integer): The quantity of the item to be updated.\n    \n\n#### Response\n\nThe response is a JSON object with the following schema:\n\n``` json\n{\n  \"cartItemModelList\": [\n    {\n      \"color\": \"\",\n      \"lineitemId\": \"\",\n      \"cartId\": \"\",\n      \"imagePath\": \"\",\n      \"isSignatureRequired\": null,\n      \"listPrice\": {\n        \"amount\": 0,\n        \"displayAmount\": \"\",\n        \"currency\": \"\"\n      },\n      \"name\": \"\",\n      \"purchasePrice\": {\n        \"amount\": 0,\n        \"displayAmount\": \"\",\n        \"currency\": \"\"\n      },\n      \"quantity\": 0,\n      \"serviceInstall\": true,\n      \"extServiceInstall\": true,\n      \"size\": \"\",\n      \"sku\": \"\",\n      \"vehicles\": null,\n      \"purchasable\": true,\n      \"alternateVariantValue\": null,\n      \"editPath\": \"\",\n      \"productLink\": \"\",\n      \"productType\": \"\",\n      \"maxQuantityLimit\": 0,\n      \"consentRequiredForElectronicProducts\": true,\n      \"installationFlowEnabled\": true,\n      \"wcInstallerIdEligibleProduct\": true,\n      \"productNotice\": null,\n      \"isVinEligibilityCheckRequired\": true,\n      \"optionDisplayName\": \"\",\n      \"cartItemConfigurationModel\": null,\n      \"restrictedStatesForShipping\": [],\n      \"timeboundCharging\": true,\n      \"productGroup\": null,\n      \"packageSubSkus\": [],\n      \"sizeEditable\": true,\n      \"activationDateRequiredForSC\": true,\n      \"effectiveNumberOfDaysForSC\": null,\n      \"teslaPayInstallmentFeeApplicable\": true,\n      \"wrapSupportedProduct\": true,\n      \"materialInfo\": null,\n      \"ignoreShippingThreshold\": true,\n      \"correctionProductType\": null\n    }\n  ],\n  \"cartTotal\": {\n    \"amount\": 0,\n    \"displayAmount\": \"\",\n    \"currency\": \"\"\n  },\n  \"cartTotalWithoutTax\": {\n    \"amount\": 0,\n    \"displayAmount\": \"\",\n    \"currency\": \"\"\n  },\n  \"totalQuantity\": 0,\n  \"cartId\": \"\",\n  \"orderId\": \"\",\n  \"invoiceModel\": null,\n  \"orderTotal\": null,\n  \"orderTax\": null,\n  \"orderShippingCost\": null,\n  \"shippingRequired\": true,\n  \"serviceCenterRequired\": true,\n  \"extServiceCenterRequired\": true,\n  \"promotionsDetails\": null,\n  \"selectedShippingOption\": null,\n  \"availableShippingOption\": null,\n  \"messages\": [],\n  \"subTotal\": null,\n  \"subTotalWithoutDiscount\": null,\n  \"totalOrderDiscount\": null,\n  \"dogeProductIncluded\": true,\n  \"updateCartNeeded\": true\n}\n\n ```"
+			},
+			"response": []
+		},
+		{
+			"name": "https://shop.tesla.com/carts/ural7rd6zvg3ylrukg3prbbtni772e6tqqnicq6fn2jdbr6miv7kqzinfzgbvdtj6yqbdrgsvawxbiem3umggyp64r3ixge3tddgjzy=/items/uslufqc437oymexcvrvjawfljofuot775mzmisd34bmcwm45vclg4334zcrrjgigi2o6p2cehc5wl4zzdrrjbxoovc2hxzbbwy2dl3a=/v1?followL",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Response time is less than 3000\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(3000);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Response size is less than 10000B\", function () {\r",
+							"    pm.expect(pm.response.responseSize).to.be.below(10000);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Header is correct\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\", \"application/json;charset=UTF-8\");\r",
+							"    pm.response.to.have.header(\"Vary\", \"accept-encoding\");\r",
+							"    pm.response.to.have.header(\"Content-Encoding\", \"gzip\");\r",
+							"    pm.response.to.have.header(\"Content-Language\", \"en-US\");\r",
+							"    pm.response.to.have.header(\"Cache-Control\", \"no-cache, no-store\");\r",
+							"    pm.response.to.have.header(\"X-TZLA-EDGE-HOSTNAME-VCL\", \"shop\");\r",
+							"    pm.response.to.have.header(\"X-TZLA-EDGE-BACKEND-FETCH-IF-STALE\", \"false\");\r",
+							"    pm.response.to.have.header(\"X-Frame-Options\", \"SAMEORIGIN\");\r",
+							"    pm.response.to.have.header(\"X-Content-Type-Options\", \"nosniff\");\r",
+							"    pm.response.to.have.header(\"Connection\", \"keep-alive\");\r",
+							"    pm.response.to.have.header(\"Permissions-Policy\", \"interest-cohort=()\");\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Cart item model list array is present and has expected number of elements\", function () {\r",
+							"    const responseData = pm.response.json();\r",
+							"    pm.expect(responseData).to.be.an('object');\r",
+							"    pm.expect(responseData.cartItemModelList).to.exist.and.to.be.an('array');\r",
+							"    pm.expect(responseData.cartItemModelList).to.have.lengthOf(0);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Verify essential fields and their data types\", function () {\r",
+							"    const responseData = pm.response.json();\r",
+							"    pm.expect(responseData).to.be.an('object');\r",
+							"\r",
+							"    responseData.cartItemModelList.forEach(function(item) {\r",
+							"        pm.expect(item).to.have.property('color').that.is.a('string');\r",
+							"        pm.expect(item).to.have.property('lineitemId').that.is.a('string');\r",
+							"        pm.expect(item).to.have.property('cartId').that.is.a('string');\r",
+							"        pm.expect(item).to.have.property('imagePath').that.is.a('string');\r",
+							"        pm.expect(item).to.have.property('name').that.is.a('string');\r",
+							"        pm.expect(item).to.have.property('quantity').that.is.a('number');\r",
+							"        pm.expect(item).to.have.property('extServiceInstall').that.is.a('boolean');\r",
+							"        pm.expect(item).to.have.property('size').that.is.a('string');\r",
+							"        pm.expect(item).to.have.property('sku').that.is.a('string');\r",
+							"        pm.expect(item).to.have.property('purchasable').that.is.a('boolean');\r",
+							"        pm.expect(item).to.have.property('productLink').that.is.a('string');\r",
+							"        pm.expect(item).to.have.property('productType').that.is.a('string');\r",
+							"        pm.expect(item).to.have.property('maxQuantityLimit').that.is.a('number');\r",
+							"        pm.expect(item).to.have.property('consentRequiredForElectronicProducts').that.is.a('boolean');\r",
+							"        pm.expect(item).to.have.property('installationFlowEnabled').that.is.a('boolean');\r",
+							"        pm.expect(item).to.have.property('wcInstallerIdEligibleProduct').that.is.a('boolean');\r",
+							"        pm.expect(item).to.have.property('isVinEligibilityCheckRequired').that.is.a('boolean');\r",
+							"        pm.expect(item).to.have.property('optionDisplayName').that.is.a('string');\r",
+							"        pm.expect(item).to.have.property('timeboundCharging').that.is.a('boolean');\r",
+							"        pm.expect(item).to.have.property('sizeEditable').that.is.a('boolean');\r",
+							"    });\r",
+							"\r",
+							"    pm.expect(responseData.cartTotal).to.exist.and.to.be.an('object');\r",
+							"    pm.expect(responseData.cartTotal.amount).to.be.a('number');\r",
+							"    pm.expect(responseData.cartTotal.displayAmount).to.be.a('string');\r",
+							"    pm.expect(responseData.cartTotal.currency).to.be.a('string');\r",
+							"\r",
+							"    pm.expect(responseData.cartTotalWithoutTax).to.exist.and.to.be.an('object');\r",
+							"    pm.expect(responseData.cartTotalWithoutTax.amount).to.be.a('number');\r",
+							"    pm.expect(responseData.cartTotalWithoutTax.displayAmount).to.be.a('string');\r",
+							"    pm.expect(responseData.cartTotalWithoutTax.currency).to.be.a('string');\r",
+							"\r",
+							"    pm.expect(responseData.totalQuantity).to.be.a('number');\r",
+							"    pm.expect(responseData.cartId).to.be.a('string');\r",
+							"    pm.expect(responseData.orderId).to.be.a('string');\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "sec-ch-ua-platform",
+						"value": "\"Windows\""
+					},
+					{
+						"key": "User-Agent",
+						"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json, text/plain, */*"
+					},
+					{
+						"key": "sec-ch-ua",
+						"value": "\"Google Chrome\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\""
+					},
+					{
+						"key": "sec-ch-ua-mobile",
+						"value": "?0"
+					},
+					{
+						"key": "Sec-Fetch-Site",
+						"value": "same-origin"
+					},
+					{
+						"key": "Sec-Fetch-Mode",
+						"value": "cors"
+					},
+					{
+						"key": "Sec-Fetch-Dest",
+						"value": "empty"
+					},
+					{
+						"key": "host",
+						"value": "shop.tesla.com"
+					}
+				],
+				"url": {
+					"raw": "https://shop.tesla.com/carts/{{cartId}}/items/{{lineitemId}}/v1?followLocation=true",
+					"protocol": "https",
+					"host": [
+						"shop",
+						"tesla",
+						"com"
+					],
+					"path": [
+						"carts",
+						"{{cartId}}",
+						"items",
+						"{{lineitemId}}",
+						"v1"
+					],
+					"query": [
+						{
+							"key": "followLocation",
+							"value": "true"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "apikey",
+		"apikey": [
+			{
+				"key": "value",
+				"value": "",
+				"type": "string"
+			},
+			{
+				"key": "key",
+				"value": "",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}
