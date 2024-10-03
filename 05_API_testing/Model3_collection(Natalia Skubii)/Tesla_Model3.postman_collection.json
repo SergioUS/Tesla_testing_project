@@ -2,7 +2,7 @@
 	"info": {
 		"_postman_id": "c9958088-e85a-4c02-a599-09d480757929",
 		"name": "Tesla_Model3",
-		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "38033375"
 	},
 	"item": [
@@ -24,8 +24,8 @@
 									"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
 									"});\r",
 									"\r",
-									"pm.test(\"Response size is less than 5000ms\", function () {\r",
-									"    pm.expect(pm.response.responseTime).to.be.below(50000);\r",
+									"pm.test(\"Response size is less than 5000B\", function () {\r",
+									"    pm.expect(pm.response.responseSize).to.be.below(50000);\r",
 									"});\r",
 									"\r",
 									"\r",
@@ -157,7 +157,21 @@
 							"mode": "raw",
 							"raw": "{\"base_configuration\":[\"$APBS\",\"$MDL3\",\"$MT355\",\"$CPF0\",\"$SC04\",\"$IPB2\",\"$PN01\",\"$W38A\"],\"effective_date\":\"2024-09-25T19:23:00.000Z\",\"name\":\"Marketing US 2024.Sep.25 15607.1371.14151.94344\",\"product\":\"m3\",\"updated_date\":\"2024-09-25T19:21:46.000Z\",\"trim_options\":[\"$MT351\",\"$MT355\",\"$MT354\",\"$MT353\"],\"referer\":\"https://www.tesla.com/model3/design#overview\"}"
 						},
-						"url": "https://www.tesla.com/configurator/api/v4/sesscheck",
+						"url": {
+							"raw": "https://www.tesla.com/configurator/api/v4/sesscheck",
+							"protocol": "https",
+							"host": [
+								"www",
+								"tesla",
+								"com"
+							],
+							"path": [
+								"configurator",
+								"api",
+								"v4",
+								"sesscheck"
+							]
+						},
 						"description": "This endpoint is used to perform an HTTP POST request to validate the session. The request should include a payload with base configuration, effective date, name, product, updated date, trim options, and referer. The response will have a status code of 200 and a content type of application/json. The response body will contain a JSON schema with keys for csrf_key and csrf_token."
 					},
 					"response": []
@@ -190,8 +204,8 @@
 									"});\r",
 									"\r",
 									"\r",
-									"pm.test(\"Response size is less than 5000ms\", function () {\r",
-									"    pm.expect(pm.response.responseTime).to.be.below(5000);\r",
+									"pm.test(\"Response size is less than 5000B\", function () {\r",
+									"    pm.expect(pm.response.responseSize).to.be.below(5000);\r",
 									"});\r",
 									"\r",
 									"\r",
@@ -293,7 +307,21 @@
 							"mode": "raw",
 							"raw": "{\"base_configuration\":[\"$APBS\",\"$MDL3\",\"$MT355\",\"$CPF0\",\"$SC04\",\"$IPB2\",\"$PN01\",\"$W38A\"],\"effective_date\":\"2024-09-25T19:23:00.000Z\",\"name\":\"Marketing US 2024.Sep.25 15607.1371.14151.94344\",\"product\":\"m3\",\"updated_date\":\"2024-09-25T19:21:46.000Z\",\"trim_options\":[\"$MT351\",\"$MT355\",\"$MT354\",\"$MT353\"],\"referer\":\"https://www.tesla.com/model3/design#overview\"}"
 						},
-						"url": "https://www.tesla.com/configurator/api/v4/log"
+						"url": {
+							"raw": "https://www.tesla.com/configurator/api/v4/log",
+							"protocol": "https",
+							"host": [
+								"www",
+								"tesla",
+								"com"
+							],
+							"path": [
+								"configurator",
+								"api",
+								"v4",
+								"log"
+							]
+						}
 					},
 					"response": []
 				},
@@ -314,8 +342,8 @@
 									"});\r",
 									"\r",
 									"\r",
-									"pm.test(\"Response size is less than 5000ms\", function () {\r",
-									"    pm.expect(pm.response.responseTime).to.be.below(5000);\r",
+									"pm.test(\"Response size is less than 5000B\", function () {\r",
+									"    pm.expect(pm.response.responseSize).to.be.below(5000);\r",
 									"});\r",
 									"\r",
 									"\r",
@@ -419,7 +447,21 @@
 							"mode": "raw",
 							"raw": "{\"country\":\"US\",\"model\":\"m3\",\"locale\":\"en_US\",\"showRecommendedAccessories\":true,\"contextType\":\"B2C\",\"isChargingConnectorIncluded\":false,\"mobileVersion\":0,\"contextApp\":\"public\"}"
 						},
-						"url": "https://www.tesla.com/configurator/api/v4/get-accessories-list"
+						"url": {
+							"raw": "https://www.tesla.com/configurator/api/v4/get-accessories-list",
+							"protocol": "https",
+							"host": [
+								"www",
+								"tesla",
+								"com"
+							],
+							"path": [
+								"configurator",
+								"api",
+								"v4",
+								"get-accessories-list"
+							]
+						}
 					},
 					"response": []
 				},
@@ -438,8 +480,8 @@
 									"    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
 									"});\r",
 									"\r",
-									"pm.test(\"Response size is less than 5000ms\", function () {\r",
-									"    pm.expect(pm.response.responseTime).to.be.below(5000);\r",
+									"pm.test(\"Response size is less than 900000B\", function () {\r",
+									"    pm.expect(pm.response.responseSize).to.be.below(900000);\r",
 									"});\r",
 									"\r",
 									"\r",
@@ -520,7 +562,19 @@
 								}
 							}
 						},
-						"url": "https://www.tesla.com/model3/design"
+						"url": {
+							"raw": "https://www.tesla.com/model3/design",
+							"protocol": "https",
+							"host": [
+								"www",
+								"tesla",
+								"com"
+							],
+							"path": [
+								"model3",
+								"design"
+							]
+						}
 					},
 					"response": []
 				}
