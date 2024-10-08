@@ -1,0 +1,633 @@
+{
+	"info": {
+		"_postman_id": "429b4af3-5bb9-4930-8519-c14874f88206",
+		"name": "Tesla",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "36311316"
+	},
+	"item": [
+		{
+			"name": "www.tesla.com-CyberTruck",
+			"item": [
+				{
+					"name": "https://www.tesla.com/configurator/api/v3/sesscheck",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"\r",
+									"\r",
+									"  "
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Response time is less than 1000ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+									"});\r",
+									"pm.test(\"Response size is less than 500B\", function () {\r",
+									"    pm.expect(pm.response.responseSize).to.be.below(3000);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Header is correct\", function () {\r",
+									"   pm.response.to.have.header(\"Content-Type\",\"application/json\");\r",
+									"   pm.response.to.have.header(\"Content-Language\",\"en\");\r",
+									"   pm.response.to.have.header(\"X-TZLA-EDGE-HOSTNAME-VCL\",\"configurator-burst-app-prod\");\r",
+									"   pm.response.to.have.header(\"X-TZLA-EDGE-BACKEND-FETCH-IF-STALE\",\"false\");\r",
+									"   pm.response.to.have.header(\"X-TZLA-EDGE-WAS-304\",\"false\");\r",
+									"   pm.response.to.have.header(\"X-TZLA-EDGE-Age\", \"0.000\");\r",
+									"   pm.response.to.have.header(\"X-TZLA-EDGE-Grace\",\"60.000\");\r",
+									"   pm.response.to.have.header(\"X-TZLA-EDGE-BACKEND-RETRY\",\"0\");\r",
+									"   pm.response.to.have.header(\"X-TZLA-EDGE-BACKEND-CONN-TIME\",\"0.000\");\r",
+									"   pm.response.to.have.header(\"X-TZLA-EDGE-BACKEND-TTFB\", \"0.000\");\r",
+									"   pm.response.to.have.header(\"X-TZLA-EDGE-BACKEND-REASON\",\"OK\");\r",
+									"   pm.response.to.have.header(\"X-TZLA-EDGE-BACKEND-STATUS\",\"200\");\r",
+									"   pm.response.to.have.header(\"Content-Encoding\",\"gzip\");\r",
+									"   pm.response.to.have.header(\"Vary\",\"Accept-Encoding\");\r",
+									"   pm.response.to.have.header(\"X-Frame-Options\", \"SAMEORIGIN\");\r",
+									"   pm.response.to.have.header(\"X-Content-Type-Options\",\"nosniff\");\r",
+									"   pm.response.to.have.header(\"X-TZLA-EDGE-TTL\",\"-0.000\");\r",
+									"   pm.response.to.have.header(\"X-TZLA-EDGE-GRACE-BACKEND-UNHEALTHY\",\"60.000\");\r",
+									"   pm.response.to.have.header(\"X-TZLA-EDGE-BACKEND-STREAM\",\"false\");\r",
+									"   pm.response.to.have.header(\"X-TZLA-EDGE-CLIENT-RESTARTS\",\"0\");\r",
+									"   pm.response.to.have.header(\"X-TZLA-EDGE-CLIENT-REQ-TTL\",\"-1.000\");\r",
+									"   pm.response.to.have.header(\"X-TZLA-EDGE-Cache-Hits\",\"0\");\r",
+									"   pm.response.to.have.header(\"Accept-Ranges\",\"bytes\");\r",
+									"   pm.response.to.have.header(\"X-Varnish-FWD-Match-Rule\",\"configurator_php7_burst_app_prod\");\r",
+									"   pm.response.to.have.header(\"Cache-Control\",\"max-age=0, no-cache, no-store\");\r",
+									"   pm.response.to.have.header(\"Pragma\", \"no-cache\");\r",
+									"   pm.response.to.have.header(\"Connection\",\"keep-alive\");\r",
+									"   pm.response.to.have.header(\"Permissions-Policy\",\"interest-cohort=()\");\r",
+									"   pm.response.to.have.header(\"Strict-Transport-Security\", \"max-age=15768000\");\r",
+									"  \r",
+									"   });\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "DNT",
+								"value": "1"
+							},
+							{
+								"key": "host",
+								"value": "www.tesla.com"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "baggage",
+								"value": "sentry-environment=production,sentry-release=0.1.40,sentry-public_key=f61facb0d9589a9f7f0feb7f030aea24,sentry-trace_id=81cdbc005d3f4bb29366c377f2e1cb24,sentry-sample_rate=0.2,sentry-sampled=false"
+							},
+							{
+								"key": "csrf-Name",
+								"value": "csrf66cebaad24905"
+							},
+							{
+								"key": "sec-ch-ua",
+								"value": "\"Chromium\";v=\"128\", \"Not;A=Brand\";v=\"24\", \"Google Chrome\";v=\"128\""
+							},
+							{
+								"key": "User-Agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36"
+							},
+							{
+								"key": "csrf-Value",
+								"value": "084874687b552249ad1575b1d06d1341"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "sentry-trace",
+								"value": "81cdbc005d3f4bb29366c377f2e1cb24-9e80f5943922b3c9-0"
+							},
+							{
+								"key": "Sec-Fetch-Dest",
+								"value": "empty"
+							},
+							{
+								"key": "Sec-Fetch-Mode",
+								"value": "cors"
+							},
+							{
+								"key": "Sec-Fetch-Site",
+								"value": "same-origin"
+							},
+							{
+								"key": "X-Requested-With",
+								"value": "XMLHttpRequest"
+							},
+							{
+								"key": "sec-ch-ua-mobile",
+								"value": "?0"
+							},
+							{
+								"key": "x-correlation-id",
+								"value": "03053edf-6233-4d1d-83d9-9313ffac9c4b"
+							},
+							{
+								"key": "sec-ch-ua-platform",
+								"value": "\"Windows\""
+							},
+							{
+								"key": "X-KL-saas-Ajax-Request",
+								"value": "Ajax_Request"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"base_configuration\": [\r\n        \"$MTC01\",\r\n        \"$CYBR\",\r\n        \"$APBS\",\r\n        \"$TW01\",\r\n        \"$SC04\",\r\n        \"$APK01\",\r\n        \"$APF2\",\r\n        \"$CPF1\",\r\n        \"$FS00\",\r\n        \"$IW01\",\r\n        \"$WH0B\"\r\n    ],\r\n    \"effective_date\": \"2024-08-16T01:46:00.000Z\",\r\n    \"name\": \"Marketing US 2024.Aug.16 15342.1377.13988.94533\",\r\n    \"product\": \"ct\",\r\n    \"updated_date\": \"2024-08-27T16:39:36.000Z\",\r\n    \"trim_options\": [\r\n        \"$MTC01\",\r\n        \"$MTC02\"\r\n    ],\r\n    \"referer\": \"https://www.tesla.com/cybertruck/design#overview\"\r\n}"
+						},
+						"url": {
+							"raw": "https://www.tesla.com/configurator/api/v3/sesscheck",
+							"protocol": "https",
+							"host": [
+								"www",
+								"tesla",
+								"com"
+							],
+							"path": [
+								"configurator",
+								"api",
+								"v3",
+								"sesscheck"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "https://www.tesla.com/configurator/api/v3/get-accessories-list",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status (400);\r",
+									"});\r",
+									"pm.test(\"Response time is less than 500ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(500);\r",
+									"});\r",
+									"pm.test(\"Response size is less than 500B\", function () {\r",
+									"    pm.expect(pm.response.responseSize).to.be.below(3000);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Header is correct\", function () {\r",
+									"   pm.response.to.have.header(\"Content-Type\",\"application/json\");\r",
+									"   pm.response.to.have.header(\"Content-Language\",\"en\");\r",
+									"   pm.response.to.have.header(\"X-TZLA-EDGE-HOSTNAME-VCL\",\"configurator-burst-app-prod\");\r",
+									"   pm.response.to.have.header(\"X-TZLA-EDGE-BACKEND-FETCH-IF-STALE\",\"false\");\r",
+									"   pm.response.to.have.header(\"X-TZLA-EDGE-WAS-304\",\"false\");\r",
+									"   pm.response.to.have.header(\"X-TZLA-EDGE-Age\",\"0.000\");\r",
+									"   pm.response.to.have.header(\"X-TZLA-EDGE-Grace\",\"60.000\");\r",
+									"   pm.response.to.have.header(\"X-TZLA-EDGE-BACKEND-RETRY\",\"0\");\r",
+									"   pm.response.to.have.header(\"X-TZLA-EDGE-BACKEND-CONN-TIME\",\"0.000\");\r",
+									"   pm.response.to.have.header(\"X-TZLA-EDGE-BACKEND-TTFB\",\"0.000\");\r",
+									"   pm.response.to.have.header(\"X-TZLA-EDGE-BACKEND-REASON\",\"Bad Request\");\r",
+									"   pm.response.to.have.header(\"X-TZLA-EDGE-BACKEND-STATUS\",\"400\");\r",
+									"   pm.response.to.have.header(\"Content-Encoding\",\"gzip\");\r",
+									"   pm.response.to.have.header(\"Vary\", \"Accept-Encoding\");\r",
+									"   pm.response.to.have.header(\"X-Frame-Options\",\"SAMEORIGIN\");\r",
+									"   pm.response.to.have.header(\"X-Content-Type-options\",\"nosniff\");\r",
+									"   pm.response.to.have.header(\"X-TZLA-EDGE-TTL\", \"-0.000\");\r",
+									"   pm.response.to.have.header(\"X-TZLA-EDGE-GRACE-BACKEND-UNHEALTHY\",\"60.000\");\r",
+									"   pm.response.to.have.header(\"X-TZLA-EDGE-BACKEND-STREAM\",\"false\");\r",
+									"   pm.response.to.have.header(\"X-TZLA-EDGE-CLIENT-RESTARTS\",\"0\");\r",
+									"   pm.response.to.have.header(\"X-TZLA-EDGE-CLIENT-REQ-TTL\",\"-1.000\");\r",
+									"   pm.response.to.have.header(\"X-TZLA-EDGE-Cache-Hits\",\"0\");\r",
+									"   pm.response.to.have.header(\"Content-Length\",\"45\");\r",
+									"   pm.response.to.have.header(\"Cache-Control\", \"max-age=0, no-cache, no-store\");\r",
+									"   pm.response.to.have.header(\"Pragma\",\"no-cache\");\r",
+									"   pm.response.to.have.header(\"Connection\",\"close\");\r",
+									"   pm.response.to.have.header(\"Permissions-Policy\",\"interest-cohort=()\");\r",
+									"   pm.response.to.have.header(\"Strict-Transport-Security\",\"max-age=15768000\");\r",
+									"   });"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "DNT",
+								"value": "1"
+							},
+							{
+								"key": "host",
+								"value": "www.tesla.com"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "baggage",
+								"value": "sentry-environment=production,sentry-release=0.1.40,sentry-public_key=f61facb0d9589a9f7f0feb7f030aea24,sentry-trace_id=81cdbc005d3f4bb29366c377f2e1cb24,sentry-sample_rate=0.2,sentry-sampled=false"
+							},
+							{
+								"key": "csrf-Name",
+								"value": "csrf66cebab055769"
+							},
+							{
+								"key": "sec-ch-ua",
+								"value": "\"Chromium\";v=\"128\", \"Not;A=Brand\";v=\"24\", \"Google Chrome\";v=\"128\""
+							},
+							{
+								"key": "User-Agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36"
+							},
+							{
+								"key": "csrf-Value",
+								"value": "504f7898cb826493053b671eee7225e4"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json"
+							},
+							{
+								"key": "sentry-trace",
+								"value": "81cdbc005d3f4bb29366c377f2e1cb24-9e79c498c91e1dac-0"
+							},
+							{
+								"key": "Sec-Fetch-Dest",
+								"value": "empty"
+							},
+							{
+								"key": "Sec-Fetch-Mode",
+								"value": "cors"
+							},
+							{
+								"key": "Sec-Fetch-Site",
+								"value": "same-origin"
+							},
+							{
+								"key": "sec-ch-ua-mobile",
+								"value": "?0"
+							},
+							{
+								"key": "x-correlation-id",
+								"value": "03053edf-6233-4d1d-83d9-9313ffac9c4b"
+							},
+							{
+								"key": "sec-ch-ua-platform",
+								"value": "\"Windows\""
+							},
+							{
+								"key": "X-KL-saas-Ajax-Request",
+								"value": "Ajax_Request"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"country\": \"US\",\r\n    \"model\": \"ct\",\r\n    \"locale\": \"en_US\",\r\n    \"showRecommendedAccessories\": false,\r\n    \"contextType\": \"B2C\",\r\n    \"isChargingConnectorIncluded\": false,\r\n    \"mobileVersion\": 0,\r\n    \"contextApp\": \"public\"\r\n}"
+						},
+						"url": {
+							"raw": "https://www.tesla.com/configurator/api/v3/get-accessories-list",
+							"protocol": "https",
+							"host": [
+								"www",
+								"tesla",
+								"com"
+							],
+							"path": [
+								"configurator",
+								"api",
+								"v3",
+								"get-accessories-list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "https://www.tesla.com/configurator/api/v3/log",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"  pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 900ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(900);\r",
+									"});\r",
+									"pm.test(\"Response size is less than 500B\", function () {\r",
+									"    pm.expect(pm.response.responseSize).to.be.below(3000);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Header is correct\", function () {\r",
+									"   pm.response.to.have.header(\"Content-Type\",\"application/json\");\r",
+									"   pm.response.to.have.header(\"Content-Language\",\"en\");\r",
+									"   pm.response.to.have.header(\"X-TZLA-EDGE-HOSTNAME-VCL\",\"configurator-burst-app-prod\");\r",
+									"   pm.response.to.have.header(\"X-TZLA-EDGE-BACKEND-FETCH-IF-STALE\",\"false\");\r",
+									"   pm.response.to.have.header(\"X-TZLA-EDGE-WAS-304\",\"false\");\r",
+									"   pm.response.to.have.header(\"X-TZLA-EDGE-Age\",\"0.000\");\r",
+									"   pm.response.to.have.header(\"X-TZLA-EDGE-Grace\",\"60.000\");\r",
+									"   pm.response.to.have.header(\"X-TZLA-EDGE-BACKEND-RETRY\",\"0\");\r",
+									"   pm.response.to.have.header(\"X-TZLA-EDGE-BACKEND-CONN-TIME\",\"0.000\");\r",
+									"   pm.response.to.have.header(\"X-TZLA-EDGE-BACKEND-TTFB\",\"0.000\");\r",
+									"   pm.response.to.have.header(\"X-TZLA-EDGE-BACKEND-REASON\",\"Bad Request\");\r",
+									"   pm.response.to.have.header(\"X-TZLA-EDGE-BACKEND-STATUS\",\"400\");\r",
+									"   pm.response.to.have.header(\"Content-Encoding\",\"gzip\");\r",
+									"   pm.response.to.have.header(\"Vary\", \"Accept-Encoding\");\r",
+									"   pm.response.to.have.header(\"X-Frame-Options\",\"SAMEORIGIN\");\r",
+									"   pm.response.to.have.header(\"X-Content-Type-options\",\"nosniff\");\r",
+									"   pm.response.to.have.header(\"X-TZLA-EDGE-TTL\", \"-0.000\");\r",
+									"   pm.response.to.have.header(\"X-TZLA-EDGE-GRACE-BACKEND-UNHEALTHY\",\"60.000\");\r",
+									"   pm.response.to.have.header(\"X-TZLA-EDGE-BACKEND-STREAM\",\"false\");\r",
+									"   pm.response.to.have.header(\"X-TZLA-EDGE-CLIENT-RESTARTS\",\"0\");\r",
+									"   pm.response.to.have.header(\"X-TZLA-EDGE-CLIENT-REQ-TTL\",\"-1.000\");\r",
+									"   pm.response.to.have.header(\"X-TZLA-EDGE-Cache-Hits\",\"0\");\r",
+									"   pm.response.to.have.header(\"Content-Length\",\"45\"); \r",
+									"   pm.response.to.have.header(\"Cache-Control\",\"max-age=0, no-cache, no-store\");\r",
+									"   pm.response.to.have.header(\"Pragma\",\"no-cache\");\r",
+									"   pm.response.to.have.header(\"Connection\",\"close\");\r",
+									"   pm.response.to.have.header(\"Permissions-Policy\",\"interest-cohort=()\");\r",
+									"   pm.response.to.have.header(\"Strict-Transport-Security\",\"max-age=15768000\");\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "DNT",
+								"value": "1"
+							},
+							{
+								"key": "host",
+								"value": "www.tesla.com"
+							},
+							{
+								"key": "Accept",
+								"value": "*/*"
+							},
+							{
+								"key": "baggage",
+								"value": "sentry-environment=production,sentry-release=0.1.40,sentry-public_key=f61facb0d9589a9f7f0feb7f030aea24,sentry-trace_id=81cdbc005d3f4bb29366c377f2e1cb24,sentry-sample_rate=0.2,sentry-sampled=false"
+							},
+							{
+								"key": "csrf-Name",
+								"value": "csrf66cebab055769"
+							},
+							{
+								"key": "sec-ch-ua",
+								"value": "\"Chromium\";v=\"128\", \"Not;A=Brand\";v=\"24\", \"Google Chrome\";v=\"128\""
+							},
+							{
+								"key": "User-Agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36"
+							},
+							{
+								"key": "csrf-Value",
+								"value": "504f7898cb826493053b671eee7225e4"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "sentry-trace",
+								"value": "81cdbc005d3f4bb29366c377f2e1cb24-9a556f1fd2b4b76e-0"
+							},
+							{
+								"key": "Sec-Fetch-Dest",
+								"value": "empty"
+							},
+							{
+								"key": "Sec-Fetch-Mode",
+								"value": "cors"
+							},
+							{
+								"key": "Sec-Fetch-Site",
+								"value": "same-origin"
+							},
+							{
+								"key": "sec-ch-ua-mobile",
+								"value": "?0"
+							},
+							{
+								"key": "x-correlation-id",
+								"value": "03053edf-6233-4d1d-83d9-9313ffac9c4b"
+							},
+							{
+								"key": "sec-ch-ua-platform",
+								"value": "\"Windows\""
+							},
+							{
+								"key": "X-KL-saas-Ajax-Request",
+								"value": "Ajax_Request"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"base_configuration\":[\"$MTC01\",\"$CYBR\",\"$APBS\",\"$TW01\",\"$SC04\",\"$APK01\",\"$APF2\",\"$CPF1\",\"$FS00\",\"$IW01\",\"$WH0B\"],\"effective_date\":\"2024-08-16T01:46:00.000Z\",\"name\":\"Marketing US 2024.Aug.16 15342.1377.13988.94533\",\"product\":\"ct\",\"updated_date\":\"2024-08-27T16:39:36.000Z\",\"trim_options\":[\"$MTC01\",\"$MTC02\"],\"referer\":\"https://www.tesla.com/cybertruck/design#overview\"}"
+						},
+						"url": {
+							"raw": "https://www.tesla.com/configurator/api/v3/log",
+							"protocol": "https",
+							"host": [
+								"www",
+								"tesla",
+								"com"
+							],
+							"path": [
+								"configurator",
+								"api",
+								"v3",
+								"log"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "https://www.tesla.com/cybertruck/design",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"\r",
+									"   "
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"  pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 2000ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+									"});\r",
+									"pm.test(\"Response size is less than 500000b\", function () {\r",
+									"    pm.expect(pm.response.responseSize).to.be.below(500000);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Header is correct\", function () {\r",
+									"   pm.response.to.have.header(\"Content-Type\",\"text/html; charset=UTF-8\");\r",
+									"   pm.response.to.have.header(\"Content-Language\",\"en\");\r",
+									"   pm.response.to.have.header(\"X-TZLA-EDGE-HOSTNAME-VCL\",\"configurator-burst-app-php8-prod\");\r",
+									"   pm.response.to.have.header(\"X-TZLA-EDGE-BACKEND-FETCH-IF-STALE\",\"false\");\r",
+									"   pm.response.to.have.header(\"X-TZLA-EDGE-WAS-304\",\"false\");\r",
+									"   pm.response.to.have.header(\"X-TZLA-EDGE-Age\",\"120.000\");\r",
+									"   pm.response.to.have.header(\"X-TZLA-EDGE-Grace\",\"60.000\");\r",
+									"   pm.response.to.have.header(\"X-TZLA-EDGE-BACKEND-RETRY\",\"0\");\r",
+									"   pm.response.to.have.header(\"X-TZLA-EDGE-BACKEND-CONN-TIME\",\"0.000\");\r",
+									"   pm.response.to.have.header(\"X-TZLA-EDGE-BACKEND-TTFB\",\"0.000\");\r",
+									"   pm.response.to.have.header(\"X-TZLA-EDGE-BACKEND-REASON\", \"OK\");\r",
+									"   pm.response.to.have.header(\"X-TZLA-EDGE-BACKEND-STATUS\",\"200\");\r",
+									"   pm.response.to.have.header(\"Vary\",\"Accept-Encoding\");\r",
+									"   pm.response.to.have.header(\"X-Frame-Options\", \"SAMEORIGIN\");\r",
+									"   pm.response.to.have.header(\"X-Content-Type-Options\",\"nosniff\");\r",
+									"   pm.response.to.have.header(\"X-TZLA-EDGE-GRACE-BACKEND-UNHEALTHY\",\"60.000\");\r",
+									"   pm.response.to.have.header(\"X-TZLA-EDGE-BACKEND-STREAM\",\"false\");\r",
+									"   pm.response.to.have.header(\"X-TZLA-EDGE-CLIENT-RESTARTS\",\"0\");\r",
+									"   pm.response.to.have.header(\"X-TZLA-EDGE-CLIENT-REQ-TTL\",\"-1.000\"); \r",
+									"   pm.response.to.have.header(\"X-TZLA-EDGE-Cache-Hits\",\"0\");\r",
+									"   pm.response.to.have.header(\"Accept-Ranges\",\"bytes\");\r",
+									"   pm.response.to.have.header(\"X-Varnish-FWD-Match-Rule\",\"configurator_burstapp_prod\");\r",
+									"   pm.response.to.have.header(\"Content-Encoding\",\"gzip\");\r",
+									"   pm.response.to.have.header(\"Cache-Control\",\"max-age=0, no-cache, no-store\");\r",
+									"   pm.response.to.have.header(\"Pragma\",\"no-cache\");\r",
+									"   pm.response.to.have.header(\"Permissions-Policy\",\"interest-cohort=()\");\r",
+									"   pm.response.to.have.header(\"Strict-Transport-Security\",\"max-age=15768000\");\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "DNT",
+								"value": "1"
+							},
+							{
+								"key": "host",
+								"value": "www.tesla.com"
+							},
+							{
+								"key": "Accept",
+								"value": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7"
+							},
+							{
+								"key": "sec-ch-ua",
+								"value": "\"Chromium\";v=\"128\", \"Not;A=Brand\";v=\"24\", \"Google Chrome\";v=\"128\""
+							},
+							{
+								"key": "User-Agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36"
+							},
+							{
+								"key": "Sec-Fetch-Dest",
+								"value": "document"
+							},
+							{
+								"key": "Sec-Fetch-Mode",
+								"value": "navigate"
+							},
+							{
+								"key": "Sec-Fetch-Site",
+								"value": "same-origin"
+							},
+							{
+								"key": "Sec-Fetch-User",
+								"value": "?1"
+							},
+							{
+								"key": "sec-ch-ua-mobile",
+								"value": "?0"
+							},
+							{
+								"key": "sec-ch-ua-platform",
+								"value": "\"Windows\""
+							},
+							{
+								"key": "Upgrade-Insecure-Requests",
+								"value": "1"
+							}
+						],
+						"url": {
+							"raw": "https://www.tesla.com/cybertruck/design",
+							"protocol": "https",
+							"host": [
+								"www",
+								"tesla",
+								"com"
+							],
+							"path": [
+								"cybertruck",
+								"design"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

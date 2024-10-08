@@ -55,9 +55,7 @@ def moving_to_new_window(driver):
             driver.switch_to.window(first_window)
             driver.switch_to.window(new_window)
 
-#Scroll down the page
-def moving_to_new_window1(driver):
-    driver.execute_script("window.scrollTo(0, document.body.scrollHeight/2);")
+#
 
 
 #Men's Cybertruck Cityscape Tee link
@@ -112,3 +110,69 @@ quantity_input1 = "//input[@id='4']"
 add_to_cart1 = "(//input[@value='Add to Cart'])[2]"
 
 page_cart1 = "(//div[@class='tds-modal-header'])[1]"
+
+#Learn link Model3
+learn = "(//a[contains(.,'Learn')])[3]"
+
+#Learn More button
+learn_more = "(//a[contains(.,'Learn More')])[2]"
+
+#Experience Model 3 button
+experience = "//a[@title='Experience Model 3'][contains(.,'Experience Model 3')]"
+
+#Schedule button
+schedule = "//button[contains(.,'Schedule')]"
+
+#First name input
+first_name = "//input[@name='firstName']"
+
+# Last name input
+last_name = "//input[@name='lastName']"
+
+#Email address input
+email_address = "//input[@name='email']"
+
+#Phone number input
+phone = "//input[@name='phone']"
+
+# Submit button
+submit = "//button[contains(.,'Submit')]"
+
+#Error message "Requared input field" in line First name
+error_message1 = "//div[contains(text(),'Required input field')]"
+
+#Error message "Please enter a phone number" in the line "Phone number"
+error_message2 = "//div[contains(text(),'Please enter a phone number')]"
+
+#Order link
+order = "(//a[contains(.,'Order')])[2]"
+
+#Lease button
+lease = "//button[@label='Lease']"
+
+#Order now button in Lease menu
+order_lease = "//button[contains(.,'Order Now')]"
+
+#Order with card buton
+order_card = "//button[contains(.,'Order with Card')]"
+
+#Input First name in Account Details
+first_name_account = "//input[@id='FIRST_NAME']"
+
+#Input Last Name in Account Details
+last_name_account = "//input[@id='LAST_NAME']"
+
+#Input Email address in Account Details
+email_account = "//input[@id='EMAIL']"
+
+#Input Confirm email address in Account Details
+confirm_account = "//input[@id='EMAIL_CONFIRM']"
+
+#Error message in Account Details
+error_message3 = "//div[@class='tds-form-feedback-text']"
+
+#Error message
+error_message4 = "//div[contains(text(),'Required input field')]"
+
+
+

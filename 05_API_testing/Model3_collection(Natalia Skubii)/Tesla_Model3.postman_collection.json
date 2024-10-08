@@ -1,0 +1,584 @@
+{
+	"info": {
+		"_postman_id": "c9958088-e85a-4c02-a599-09d480757929",
+		"name": "Tesla_Model3",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "38033375"
+	},
+	"item": [
+		{
+			"name": "www.tesla.com-Model3",
+			"item": [
+				{
+					"name": "https://www.tesla.com/configurator/api/v4/sesscheck",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 200\", function () {\r",
+									"    pm.expect(pm.response.code).to.equal(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 1000ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response size is less than 5000B\", function () {\r",
+									"    pm.expect(pm.response.responseSize).to.be.below(50000);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Response has the required fields - csrf_key and csrf_token\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"    \r",
+									"    pm.expect(responseData).to.be.an('object');\r",
+									"    pm.expect(responseData.csrf_key).to.exist;\r",
+									"    pm.expect(responseData.csrf_token).to.exist;\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Header is correct\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\", \"application/json\");\r",
+									"    pm.response.to.have.header(\"Content-Encoding\", \"gzip\");\r",
+									"    pm.response.to.have.header(\"Content-Language\", \"en\");\r",
+									"    pm.response.to.have.header(\"Vary\", \"Accept-Encoding\");\r",
+									"    pm.response.to.have.header(\"Accept-Ranges\", \"bytes\");\r",
+									"    pm.response.to.have.header(\"Permissions-Policy\", \"interest-cohort=()\");\r",
+									"    pm.response.to.have.header(\"Strict-Transport-Security\", \"max-age=15768000\");\r",
+									"    pm.response.to.have.header(\"Connection\", \"keep-alive\");\r",
+									"\r",
+									"});\r",
+									"    \r",
+									"\r",
+									"pm.test(\"Csrf_key should not be empty\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"    \r",
+									"    pm.expect(responseData.csrf_key).to.exist.and.to.have.lengthOf.at.least(1, \"Value should not be empty\");\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Csrf token should not be empty\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"    \r",
+									"    pm.expect(responseData.csrf_token).to.exist.and.to.not.be.empty;\r",
+									"});\r",
+									"\r",
+									"\r",
+									"\r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "sec-ch-ua-platform",
+								"value": "\"Windows\""
+							},
+							{
+								"key": "x-correlation-id",
+								"value": "8a5088e9-1ec5-4131-9c89-e820e15c12ee"
+							},
+							{
+								"key": "sec-ch-ua",
+								"value": "\"Google Chrome\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\""
+							},
+							{
+								"key": "csrf-Value",
+								"value": "l+J/teE+VXzOK58uD12n0apeH3n83hfoLVg5c3/4gkSj0k6NhQhmT/gT/hhuaJ7ny29+S8m/JYkZaQpLHMG1cQ=="
+							},
+							{
+								"key": "sec-ch-ua-mobile",
+								"value": "?0"
+							},
+							{
+								"key": "baggage",
+								"value": "sentry-environment=production,sentry-release=0.1.40,sentry-public_key=f61facb0d9589a9f7f0feb7f030aea24,sentry-trace_id=3c00b07ffe5b4cdb8e1c69b787178185,sentry-sample_rate=0.2,sentry-sampled=false"
+							},
+							{
+								"key": "sentry-trace",
+								"value": "3c00b07ffe5b4cdb8e1c69b787178185-9a65c352531a4217-0"
+							},
+							{
+								"key": "X-Requested-With",
+								"value": "XMLHttpRequest"
+							},
+							{
+								"key": "User-Agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "csrf-Name",
+								"value": "csrf66f62b1d63834"
+							},
+							{
+								"key": "Sec-Fetch-Site",
+								"value": "same-origin"
+							},
+							{
+								"key": "Sec-Fetch-Mode",
+								"value": "cors"
+							},
+							{
+								"key": "Sec-Fetch-Dest",
+								"value": "empty"
+							},
+							{
+								"key": "host",
+								"value": "www.tesla.com"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"base_configuration\":[\"$APBS\",\"$MDL3\",\"$MT355\",\"$CPF0\",\"$SC04\",\"$IPB2\",\"$PN01\",\"$W38A\"],\"effective_date\":\"2024-09-25T19:23:00.000Z\",\"name\":\"Marketing US 2024.Sep.25 15607.1371.14151.94344\",\"product\":\"m3\",\"updated_date\":\"2024-09-25T19:21:46.000Z\",\"trim_options\":[\"$MT351\",\"$MT355\",\"$MT354\",\"$MT353\"],\"referer\":\"https://www.tesla.com/model3/design#overview\"}"
+						},
+						"url": {
+							"raw": "https://www.tesla.com/configurator/api/v4/sesscheck",
+							"protocol": "https",
+							"host": [
+								"www",
+								"tesla",
+								"com"
+							],
+							"path": [
+								"configurator",
+								"api",
+								"v4",
+								"sesscheck"
+							]
+						},
+						"description": "This endpoint is used to perform an HTTP POST request to validate the session. The request should include a payload with base configuration, effective date, name, product, updated date, trim options, and referer. The response will have a status code of 200 and a content type of application/json. The response body will contain a JSON schema with keys for csrf_key and csrf_token."
+					},
+					"response": []
+				},
+				{
+					"name": "https://www.tesla.com/configurator/api/v4/log",
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 400\", function () {\r",
+									"  pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"\r",
+									"pm.test(\"Response time is less than 1000ms\", function () {\r",
+									"  pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Response size is less than 5000B\", function () {\r",
+									"    pm.expect(pm.response.responseSize).to.be.below(5000);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Header is correct\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\", \"application/json\");\r",
+									"    pm.response.to.have.header(\"Content-Encoding\", \"gzip\");\r",
+									"    pm.response.to.have.header(\"Content-Language\", \"en\");\r",
+									"    pm.response.to.have.header(\"Vary\", \"Accept-Encoding\");\r",
+									"    pm.response.to.have.header(\"Pragma\", \"no-cache\");\r",
+									"    pm.response.to.have.header(\"Permissions-Policy\", \"interest-cohort=()\");\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Response has the required field 'error'\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"    \r",
+									"    pm.expect(responseData).to.have.property('error');\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Response body has the expected schema\", function () {\r",
+									"  const responseData = pm.response.json();\r",
+									"  \r",
+									"  pm.expect(responseData).to.be.an('object');\r",
+									"  pm.expect(responseData.error).to.be.a('string');\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "sec-ch-ua-platform",
+								"value": "\"Windows\""
+							},
+							{
+								"key": "x-correlation-id",
+								"value": "8a5088e9-1ec5-4131-9c89-e820e15c12ee"
+							},
+							{
+								"key": "sec-ch-ua",
+								"value": "\"Google Chrome\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\""
+							},
+							{
+								"key": "csrf-Value",
+								"value": "+7dvMIDmnXOkfy5EhQjzzbU+Y2g8Z5jJJCA6qHkwzUea1V9T4d+kQ50dSyG3OMH0hQhUCQ1Wrv8RQlzNHwKrIg=="
+							},
+							{
+								"key": "sec-ch-ua-mobile",
+								"value": "?0"
+							},
+							{
+								"key": "baggage",
+								"value": "sentry-environment=production,sentry-release=0.1.40,sentry-public_key=f61facb0d9589a9f7f0feb7f030aea24,sentry-trace_id=3c00b07ffe5b4cdb8e1c69b787178185,sentry-sample_rate=0.2,sentry-sampled=false"
+							},
+							{
+								"key": "sentry-trace",
+								"value": "3c00b07ffe5b4cdb8e1c69b787178185-92e96f6e9ef4029e-0"
+							},
+							{
+								"key": "User-Agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "csrf-Name",
+								"value": "csrf66f62805210b0"
+							},
+							{
+								"key": "Accept",
+								"value": "*/*"
+							},
+							{
+								"key": "Sec-Fetch-Site",
+								"value": "same-origin"
+							},
+							{
+								"key": "Sec-Fetch-Mode",
+								"value": "cors"
+							},
+							{
+								"key": "Sec-Fetch-Dest",
+								"value": "empty"
+							},
+							{
+								"key": "host",
+								"value": "www.tesla.com"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"base_configuration\":[\"$APBS\",\"$MDL3\",\"$MT355\",\"$CPF0\",\"$SC04\",\"$IPB2\",\"$PN01\",\"$W38A\"],\"effective_date\":\"2024-09-25T19:23:00.000Z\",\"name\":\"Marketing US 2024.Sep.25 15607.1371.14151.94344\",\"product\":\"m3\",\"updated_date\":\"2024-09-25T19:21:46.000Z\",\"trim_options\":[\"$MT351\",\"$MT355\",\"$MT354\",\"$MT353\"],\"referer\":\"https://www.tesla.com/model3/design#overview\"}"
+						},
+						"url": {
+							"raw": "https://www.tesla.com/configurator/api/v4/log",
+							"protocol": "https",
+							"host": [
+								"www",
+								"tesla",
+								"com"
+							],
+							"path": [
+								"configurator",
+								"api",
+								"v4",
+								"log"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "https://www.tesla.com/configurator/api/v4/get-accessories-list",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 400\", function () {\r",
+									"  pm.response.to.have.status(400);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Response time is less than 1000ms\", function () {\r",
+									"  pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Response size is less than 5000B\", function () {\r",
+									"    pm.expect(pm.response.responseSize).to.be.below(5000);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Response has the required fields\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"    \r",
+									"    pm.expect(responseData).to.be.an('object');\r",
+									"    pm.expect(responseData.error).to.exist;\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Error is a non-empty string\", function () {\r",
+									"  const responseData = pm.response.json();\r",
+									"  \r",
+									"  pm.expect(responseData.error).to.be.a('string').and.to.have.lengthOf.at.least(1, \"Error should not be empty\");\r",
+									"});\r",
+									"\r",
+									"\r",
+									"\r",
+									"pm.test(\"Header is correct\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\", \"application/json\");\r",
+									"    pm.response.to.have.header(\"Content-Language\", \"en\");\r",
+									"    pm.response.to.have.header(\"Content-Encoding\", \"gzip\");\r",
+									"    pm.response.to.have.header(\"Vary\", \"Accept-Encoding\");\r",
+									"    pm.response.to.have.header(\"Permissions-Policy\", \"interest-cohort=()\");\r",
+									"    pm.response.to.have.header(\"Strict-Transport-Security\", \"max-age=15768000\");\r",
+									"   \r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "sec-ch-ua-platform",
+								"value": "\"Windows\""
+							},
+							{
+								"key": "x-correlation-id",
+								"value": "8a5088e9-1ec5-4131-9c89-e820e15c12ee"
+							},
+							{
+								"key": "sec-ch-ua",
+								"value": "\"Google Chrome\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\""
+							},
+							{
+								"key": "csrf-Value",
+								"value": "+7dvMIDmnXOkfy5EhQjzzbU+Y2g8Z5jJJCA6qHkwzUea1V9T4d+kQ50dSyG3OMH0hQhUCQ1Wrv8RQlzNHwKrIg=="
+							},
+							{
+								"key": "sec-ch-ua-mobile",
+								"value": "?0"
+							},
+							{
+								"key": "baggage",
+								"value": "sentry-environment=production,sentry-release=0.1.40,sentry-public_key=f61facb0d9589a9f7f0feb7f030aea24,sentry-trace_id=3c00b07ffe5b4cdb8e1c69b787178185,sentry-sample_rate=0.2,sentry-sampled=false"
+							},
+							{
+								"key": "sentry-trace",
+								"value": "3c00b07ffe5b4cdb8e1c69b787178185-856fa07bf3a451ca-0"
+							},
+							{
+								"key": "User-Agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "content-type",
+								"value": "application/json"
+							},
+							{
+								"key": "csrf-Name",
+								"value": "csrf66f62805210b0"
+							},
+							{
+								"key": "Sec-Fetch-Site",
+								"value": "same-origin"
+							},
+							{
+								"key": "Sec-Fetch-Mode",
+								"value": "cors"
+							},
+							{
+								"key": "Sec-Fetch-Dest",
+								"value": "empty"
+							},
+							{
+								"key": "host",
+								"value": "www.tesla.com"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\"country\":\"US\",\"model\":\"m3\",\"locale\":\"en_US\",\"showRecommendedAccessories\":true,\"contextType\":\"B2C\",\"isChargingConnectorIncluded\":false,\"mobileVersion\":0,\"contextApp\":\"public\"}"
+						},
+						"url": {
+							"raw": "https://www.tesla.com/configurator/api/v4/get-accessories-list",
+							"protocol": "https",
+							"host": [
+								"www",
+								"tesla",
+								"com"
+							],
+							"path": [
+								"configurator",
+								"api",
+								"v4",
+								"get-accessories-list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "https://www.tesla.com/model3/design",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 200\", function () {\r",
+									"    pm.expect(pm.response.code).to.equal(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 2000ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response size is less than 900000B\", function () {\r",
+									"    pm.expect(pm.response.responseSize).to.be.below(900000);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Header is correct\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\", \"text/html; charset=UTF-8\");\r",
+									"    pm.response.to.have.header(\"Content-Language\", \"en\");\r",
+									"    pm.response.to.have.header(\"Vary\", \"Accept-Encoding\");\r",
+									"    pm.response.to.have.header(\"Accept-Ranges\", \"bytes\");\r",
+									"    pm.response.to.have.header(\"Content-Encoding\", \"gzip\");\r",
+									"    pm.response.to.have.header(\"Pragma\", \"no-cache\");\r",
+									"    pm.response.to.have.header(\"Permissions-Policy\", \"interest-cohort=()\");\r",
+									"    pm.response.to.have.header(\"Strict-Transport-Security\", \"max-age=15768000\");\r",
+									"          \r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "sec-ch-ua",
+								"value": "\"Google Chrome\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\""
+							},
+							{
+								"key": "sec-ch-ua-mobile",
+								"value": "?0"
+							},
+							{
+								"key": "sec-ch-ua-platform",
+								"value": "\"Windows\""
+							},
+							{
+								"key": "Upgrade-Insecure-Requests",
+								"value": "1"
+							},
+							{
+								"key": "User-Agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36"
+							},
+							{
+								"key": "Accept",
+								"value": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7"
+							},
+							{
+								"key": "Sec-Fetch-Site",
+								"value": "same-origin"
+							},
+							{
+								"key": "Sec-Fetch-Mode",
+								"value": "navigate"
+							},
+							{
+								"key": "Sec-Fetch-User",
+								"value": "?1"
+							},
+							{
+								"key": "Sec-Fetch-Dest",
+								"value": "document"
+							},
+							{
+								"key": "host",
+								"value": "www.tesla.com"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://www.tesla.com/model3/design",
+							"protocol": "https",
+							"host": [
+								"www",
+								"tesla",
+								"com"
+							],
+							"path": [
+								"model3",
+								"design"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

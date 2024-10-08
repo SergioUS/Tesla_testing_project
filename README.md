@@ -2,7 +2,7 @@
 
 ![model-s-driving](https://github.com/user-attachments/assets/92c3fe5b-508a-4eb2-a43c-670c9107cfd0)
 
-### **We are exiting to intriduce our _Tesla Testing Project!_**
+### **We are exciting to introduce our _Tesla Testing Project!_**
 
 As a Team of professionals in QA-Automation we are testing **_[Tesla](https://www.tesla.com/)_** website from different angles such as Performance and Security testing, API, FE testing, Selenium WebDriver Automation testing, create QA documentation. 
 
@@ -34,33 +34,42 @@ Join us in our journey as we strive to maintain _the highest standards for this 
 </details>
 
 
-## 🚀 Our Team
+## 🚀 Our Team in LinkedIn
 
-
+<code><img width="1%" src="https://github.com/user-attachments/assets/d8634330-234a-4e0e-b163-b8859a1b66bf"></code>
 _[Dmitry Antipenko](https://www.linkedin.com/in/dmitry--antipenko)_
 
+<code><img width="1%" src="https://github.com/user-attachments/assets/d8634330-234a-4e0e-b163-b8859a1b66bf"></code>
 _[Ilhom Artykov](https://www.linkedin.com/in/ilhom-artykov/)_
 
+<code><img width="1%" src="https://github.com/user-attachments/assets/d8634330-234a-4e0e-b163-b8859a1b66bf"></code>
 _[Anastasia Butusova](https://www.linkedin.com/in/bu2soffa/)_
 
+<code><img width="1%" src="https://github.com/user-attachments/assets/d8634330-234a-4e0e-b163-b8859a1b66bf"></code>
 _[Julia Delmar](https://www.linkedin.com/in/julia-delmar/)_
 
+<code><img width="1%" src="https://github.com/user-attachments/assets/d8634330-234a-4e0e-b163-b8859a1b66bf"></code>
 _[Vasyl Lysyy](https://www.linkedin.com/in/vasyl-lysyy/)_
 
+<code><img width="1%" src="https://github.com/user-attachments/assets/d8634330-234a-4e0e-b163-b8859a1b66bf"></code>
 _[Karina Novikova](https://www.linkedin.com/in/karina-novikova-01157b31b/)_
 
+<code><img width="1%" src="https://github.com/user-attachments/assets/d8634330-234a-4e0e-b163-b8859a1b66bf"></code>
 _[Ivan Ponomarev](https://linkedin.com/in/ivan-ponomarev-qa)_
 
+<code><img width="1%" src="https://github.com/user-attachments/assets/d8634330-234a-4e0e-b163-b8859a1b66bf"></code>
 _[Vinera Rakhmatullina](https://www.linkedin.com/in/vinera-r/)_
 
+<code><img width="1%" src="https://github.com/user-attachments/assets/d8634330-234a-4e0e-b163-b8859a1b66bf"></code>
 _[Almaz Rakhmatullin](https://www.linkedin.com/in/almaz-r/)_
 
+<code><img width="1%" src="https://github.com/user-attachments/assets/d8634330-234a-4e0e-b163-b8859a1b66bf"></code>
 _[Natalia Skubii](https://www.linkedin.com/in/natalia-skubii)_
 
+<code><img width="1%" src="https://github.com/user-attachments/assets/d8634330-234a-4e0e-b163-b8859a1b66bf"></code>
 _[Elena Zagainova](https://www.linkedin.com/in/elena-zagainova/)_
 
+<code><img width="1%" src="https://github.com/user-attachments/assets/d8634330-234a-4e0e-b163-b8859a1b66bf"></code>
 _[Ludmila Zmeu](https://www.linkedin.com/in/ludmila-zmeu/)_
 
-_**[💙 If you like the project, subscribe <code><img width="2%" src="https://github.com/user-attachments/assets/d8634330-234a-4e0e-b163-b8859a1b66bf"></code>
- our profiles 💙](https://www.linkedin.com/)**_
 

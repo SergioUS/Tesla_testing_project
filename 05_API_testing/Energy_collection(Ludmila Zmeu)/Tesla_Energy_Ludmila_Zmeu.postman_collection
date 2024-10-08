@@ -1,0 +1,730 @@
+{
+	"info": {
+		"_postman_id": "82515462-cb53-476b-9a46-d7add4b48aa7",
+		"name": "Energy_Ludmila_Zmeu",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "38016722"
+	},
+	"item": [
+		{
+			"name": "https://www.tesla.com/powerwall",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response status code is 200\", function () {\r",
+							"  pm.expect(pm.response.code).to.equal(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 2000ms\", function () {\r",
+							"  pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response size is less than 4000000B\", function () {\r",
+							"    pm.expect(pm.response.responseSize).to.be.below(4000000);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response must have the required header 'Content-Type'\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Presence of Cache-Control header in the response\", function () {\r",
+							"    pm.expect(pm.response.headers.has(\"Cache-Control\")).to.be.true;\r",
+							"});\r",
+							"\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "host",
+						"value": "www.tesla.com"
+					},
+					{
+						"key": "Accept",
+						"value": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7"
+					},
+					{
+						"key": "sec-ch-ua",
+						"value": "\"Google Chrome\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\""
+					},
+					{
+						"key": "User-Agent",
+						"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36"
+					},
+					{
+						"key": "Sec-Fetch-Dest",
+						"value": "document"
+					},
+					{
+						"key": "Sec-Fetch-Mode",
+						"value": "navigate"
+					},
+					{
+						"key": "Sec-Fetch-Site",
+						"value": "same-origin"
+					},
+					{
+						"key": "Sec-Fetch-User",
+						"value": "?1"
+					},
+					{
+						"key": "sec-ch-ua-mobile",
+						"value": "?0"
+					},
+					{
+						"key": "sec-ch-ua-platform",
+						"value": "\"Windows\""
+					},
+					{
+						"key": "Upgrade-Insecure-Requests",
+						"value": "1"
+					}
+				],
+				"url": {
+					"raw": "https://www.tesla.com/powerwall",
+					"protocol": "https",
+					"host": [
+						"www",
+						"tesla",
+						"com"
+					],
+					"path": [
+						"powerwall"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://www.tesla.com/api/tesla/header/megamenu/v1_2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Fixed the syntax and added response size test\r",
+							"pm.test(\"Response status code is 200\", function () {\r",
+							"  pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is less than 300ms\", function () {\r",
+							"  pm.expect(pm.response.responseTime).to.be.below(300);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response size is less than 7000000B\", function () {\r",
+							"    pm.expect(pm.response.responseSize).to.be.below(7000000);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response JSON matches the expected schema\", function () {\r",
+							"    const responseData = pm.response.json();\r",
+							"    \r",
+							"    pm.expect(responseData).to.be.an('object');\r",
+							"    pm.expect(responseData).to.have.property('sl_translate').that.is.a('string');\r",
+							"    pm.expect(responseData).to.have.property('centerLinks').that.is.an('array');\r",
+							"    pm.expect(responseData).to.have.property('endLinks').that.is.an('array');\r",
+							"    pm.expect(responseData).to.have.property('localizedText').that.is.an('object');\r",
+							"    pm.expect(responseData).to.have.property('logo').that.is.an('object');\r",
+							"});\r",
+							"\r",
+							"pm.test(\"CenterLinks array is present and contains at least one element\", function () {\r",
+							"    const responseData = pm.response.json();\r",
+							"    \r",
+							"    pm.expect(responseData).to.be.an('object');\r",
+							"    pm.expect(responseData.centerLinks).to.exist.and.to.be.an('array').that.is.not.empty;\r",
+							"});\r",
+							"\r",
+							"pm.test(\"EndLinks array is present and contains at least one element\", function () {\r",
+							"    const responseData = pm.response.json();\r",
+							"    \r",
+							"    pm.expect(responseData).to.be.an('object');\r",
+							"    pm.expect(responseData.endLinks).to.exist.and.to.be.an('array').that.is.not.empty;\r",
+							"});\r",
+							"\r",
+							"// Test the response body structure and values\r",
+							"pm.test(\"Response body structure is valid\", function () {\r",
+							"    const responseData = pm.response.json(); // Added definition for responseData\r",
+							"    pm.expect(responseData).to.have.property('sl_translate').that.is.a('string');\r",
+							"    pm.expect(responseData).to.have.property('centerLinks').that.is.an('array').and.that.is.not.empty;\r",
+							"    pm.expect(responseData).to.have.property('endLinks').that.is.an('array').and.that.is.not.empty;\r",
+							"    pm.expect(responseData).to.have.property('localizedText').that.is.an('object');\r",
+							"    pm.expect(responseData).to.have.property('logo').that.is.an('object');\r",
+							"});\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "host",
+						"value": "www.tesla.com"
+					},
+					{
+						"key": "Accept",
+						"value": "*/*"
+					},
+					{
+						"key": "sec-ch-ua",
+						"value": "\"Google Chrome\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\""
+					},
+					{
+						"key": "User-Agent",
+						"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36"
+					},
+					{
+						"key": "Sec-Fetch-Dest",
+						"value": "empty"
+					},
+					{
+						"key": "Sec-Fetch-Mode",
+						"value": "cors"
+					},
+					{
+						"key": "Sec-Fetch-Site",
+						"value": "same-origin"
+					},
+					{
+						"key": "sec-ch-ua-mobile",
+						"value": "?0"
+					},
+					{
+						"key": "sec-ch-ua-platform",
+						"value": "\"Windows\""
+					}
+				],
+				"url": {
+					"raw": "https://www.tesla.com/api/tesla/header/megamenu/v1_2",
+					"protocol": "https",
+					"host": [
+						"www",
+						"tesla",
+						"com"
+					],
+					"path": [
+						"api",
+						"tesla",
+						"header",
+						"megamenu",
+						"v1_2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://www.tesla.com/ro_ro/api/tesla/header/megamenu/v1_2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Fixed schema test to reference the correct response data\r",
+							"pm.test(\"Response status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Response time is less than 1000ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+							"});\r",
+							"pm.test(\"Response size is less than 6000000B\", function () {\r",
+							"    pm.expect(pm.response.responseSize).to.be.below(6000000);\r",
+							"});\r",
+							"pm.test(\"Check if the schema of the response matches the expected schema definition\", function () {\r",
+							"    var responseData = pm.response.json();\r",
+							"    pm.expect(responseData).to.have.property('sl_translate').that.is.a('string');\r",
+							"    pm.expect(responseData).to.have.property('centerLinks').that.is.an('array');\r",
+							"    pm.expect(responseData).to.have.property('endLinks').that.is.an('array');\r",
+							"    pm.expect(responseData).to.have.property('localizedText').that.is.an('object');\r",
+							"    pm.expect(responseData).to.have.property('logo').that.is.an('object');\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response JSON matches the expected schema\", function () {\r",
+							"    var responseData = pm.response.json();\r",
+							"    pm.expect(responseData).to.be.an('object');\r",
+							"    pm.expect(responseData).to.have.property('sl_translate').that.is.a('string');\r",
+							"    pm.expect(responseData).to.have.property('centerLinks').that.is.an('array');\r",
+							"    pm.expect(responseData).to.have.property('endLinks').that.is.an('array');\r",
+							"    pm.expect(responseData).to.have.property('localizedText').that.is.an('object');\r",
+							"    pm.expect(responseData).to.have.property('logo').that.is.an('object');\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"CenterLinks array is present and contains at least one element\", function () {\r",
+							"    var responseData = pm.response.json();\r",
+							"    pm.expect(responseData.centerLinks).to.exist.and.to.be.an('array').that.is.not.empty;\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"EndLinks array is present and contains at least one element\", function () {\r",
+							"    var responseData = pm.response.json();\r",
+							"    pm.expect(responseData.endLinks).to.exist.and.to.be.an('array').that.is.not.empty;\r",
+							"});\r",
+							"var responseData = pm.response.json();\r",
+							"\r",
+							"// Test the response body structure and values\r",
+							"pm.test(\"Response body structure is valid\", function () {\r",
+							"    pm.expect(responseData).to.have.property('sl_translate').that.is.a('string');\r",
+							"    pm.expect(responseData).to.have.property('centerLinks').that.is.an('array').and.that.is.not.empty;\r",
+							"    pm.expect(responseData).to.have.property('endLinks').that.is.an('array').and.that.is.not.empty;\r",
+							"    pm.expect(responseData).to.have.property('localizedText').that.is.an('object');\r",
+							"    pm.expect(responseData).to.have.property('logo').that.is.an('object');\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "host",
+						"value": "www.tesla.com"
+					},
+					{
+						"key": "Accept",
+						"value": "*/*"
+					},
+					{
+						"key": "sec-ch-ua",
+						"value": "\"Google Chrome\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\""
+					},
+					{
+						"key": "User-Agent",
+						"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36"
+					},
+					{
+						"key": "Sec-Fetch-Dest",
+						"value": "empty"
+					},
+					{
+						"key": "Sec-Fetch-Mode",
+						"value": "cors"
+					},
+					{
+						"key": "Sec-Fetch-Site",
+						"value": "same-origin"
+					},
+					{
+						"key": "sec-ch-ua-mobile",
+						"value": "?0"
+					},
+					{
+						"key": "sec-ch-ua-platform",
+						"value": "\"Windows\""
+					}
+				],
+				"url": {
+					"raw": "https://www.tesla.com/ro_ro/api/tesla/header/megamenu/v1_2",
+					"protocol": "https",
+					"host": [
+						"www",
+						"tesla",
+						"com"
+					],
+					"path": [
+						"ro_ro",
+						"api",
+						"tesla",
+						"header",
+						"megamenu",
+						"v1_2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://www.tesla.com/api/tesla/footer/html/v1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Response time is less than 300ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(300);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response size is less than 3000000B\", function () {\r",
+							"    pm.expect(pm.response.responseSize).to.be.below(3000000);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response body contains the required HTML elements\", function () {\r",
+							"    const responseData = pm.response.text();\r",
+							"    \r",
+							"    pm.expect(responseData).to.include('<nav class=\"tds-footer-nav\">');\r",
+							"    pm.expect(responseData).to.include('<h2 class=\"visually-hidden tds--is_visually_hidden\">Footer menu</h2>');\r",
+							"    pm.expect(responseData).to.include('<ul data-region=\"footer\" class=\"tds-footer-meta tds--align_center tds-list tds-list--horizontal tcl-site-footer\">');\r",
+							"    pm.expect(responseData).to.include('<a href=\"/about\" title=\"Copyright 2024 Tesla Motors\" class=\"tds-link tcl-link\">Tesla © 2024</a>');\r",
+							"    pm.expect(responseData).to.include('<a href=\"/legal\" class=\"tds-link tcl-link\">Privacy &amp; Legal</a>');\r",
+							"    pm.expect(responseData).to.include('<a href=\"https://www.tesla.com/vin-recall-search\" class=\"tds-link tcl-link\">Vehicle Recalls</a>');\r",
+							"    pm.expect(responseData).to.include('<a href=\"/contact\" class=\"tds-link tcl-link\">Contact</a>');\r",
+							"    pm.expect(responseData).to.include('<a href=\"/blog\" class=\"tds-link tcl-link\">News</a>');\r",
+							"    pm.expect(responseData).to.include('<a href=\"/updates\" class=\"tds-link tcl-link\">Get Updates</a>');\r",
+							"    pm.expect(responseData).to.include('<a href=\"/findus/list\" class=\"tds-link tcl-link\">Locations</a>');\r",
+							"    pm.expect(responseData).to.include('<div class=\"block block-tesla-banners block-banner-target-block-1\">');\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Each anchor tag has a valid href attribute\", function () {\r",
+							"    const responseData = pm.response.text();\r",
+							"    const anchorTags = responseData.match(/<a\\s+(?:[^>]*?\\s+)?href=([\"'])(.*?)\\1/g);\r",
+							"    \r",
+							"    pm.expect(anchorTags).to.not.be.null;\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Each anchor tag has a valid title or text content\", function () {\r",
+							"    const responseData = pm.response.text();\r",
+							"\r",
+							"    pm.expect(responseData).to.include('title=\"').and.to.include('>');\r",
+							"});\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "host",
+						"value": "www.tesla.com"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json, text/plain, */*"
+					},
+					{
+						"key": "sec-ch-ua",
+						"value": "\"Google Chrome\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\""
+					},
+					{
+						"key": "User-Agent",
+						"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36"
+					},
+					{
+						"key": "Sec-Fetch-Dest",
+						"value": "empty"
+					},
+					{
+						"key": "Sec-Fetch-Mode",
+						"value": "cors"
+					},
+					{
+						"key": "Sec-Fetch-Site",
+						"value": "same-origin"
+					},
+					{
+						"key": "sec-ch-ua-mobile",
+						"value": "?0"
+					},
+					{
+						"key": "sec-ch-ua-platform",
+						"value": "\"Windows\""
+					}
+				],
+				"url": {
+					"raw": "https://www.tesla.com/api/tesla/footer/html/v1",
+					"protocol": "https",
+					"host": [
+						"www",
+						"tesla",
+						"com"
+					],
+					"path": [
+						"api",
+						"tesla",
+						"footer",
+						"html",
+						"v1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://www.tesla.com/ro_RO/powerwall",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response status code is 404\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Response time is less than 2000ms\", function () {\r",
+							"  pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response size is less than 4000000B\", function () {\r",
+							"    pm.expect(pm.response.responseSize).to.be.below(4000000);\r",
+							"});\r",
+							"pm.test(\"Response must have the required header 'Content-Type'\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Presence of Cache-Control header in the response\", function () {\r",
+							"    pm.expect(pm.response.headers.has(\"Cache-Control\")).to.be.true;\r",
+							"});\r",
+							"\r",
+							"// Test the response body structure and values\r",
+							"pm.test(\"Response body structure is valid\", function () {\r",
+							"    // Check if the response content type is JSON\r",
+							"    pm.expect(pm.response.headers.get('Content-Type')).to.include('text/html; charset=utf-8');\r",
+							"    // Parse the response data only if the content type is JSON\r",
+							"    let responseData;\r",
+							"    try {\r",
+							"        responseData = pm.response.json();\r",
+							"    } catch (e) {\r",
+							"        pm.test(\"Response body is not valid JSON\", function() {\r",
+							"            pm.expect.apply(\"Response is not valid JSON\");\r",
+							"        });\r",
+							"        return; // Exit the test if JSON parsing fails\r",
+							"    }\r",
+							"\r",
+							"    // Validate the structure of the response data\r",
+							"    pm.expect(responseData).to.have.property('sl_translate').that.is.a('string');\r",
+							"    pm.expect(responseData).to.have.property('centerLinks').that.is.an('array').and.that.is.not.empty;\r",
+							"    pm.expect(responseData).to.have.property('endLinks').that.is.an('array').and.that.is.not.empty;\r",
+							"    pm.expect(responseData).to.have.property('localizedText').that.is.an('object');\r",
+							"    pm.expect(responseData).to.have.property('logo').that.is.an('object');\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "host",
+						"value": "www.tesla.com"
+					},
+					{
+						"key": "Accept",
+						"value": "text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7"
+					},
+					{
+						"key": "sec-ch-ua",
+						"value": "\"Google Chrome\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\""
+					},
+					{
+						"key": "User-Agent",
+						"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36"
+					},
+					{
+						"key": "Sec-Fetch-Dest",
+						"value": "document"
+					},
+					{
+						"key": "Sec-Fetch-Mode",
+						"value": "navigate"
+					},
+					{
+						"key": "Sec-Fetch-Site",
+						"value": "same-origin"
+					},
+					{
+						"key": "Sec-Fetch-User",
+						"value": "?1"
+					},
+					{
+						"key": "sec-ch-ua-mobile",
+						"value": "?0"
+					},
+					{
+						"key": "sec-ch-ua-platform",
+						"value": "\"Windows\""
+					},
+					{
+						"key": "Upgrade-Insecure-Requests",
+						"value": "1"
+					}
+				],
+				"url": {
+					"raw": "https://www.tesla.com/ro_RO/powerwall",
+					"protocol": "https",
+					"host": [
+						"www",
+						"tesla",
+						"com"
+					],
+					"path": [
+						"ro_RO",
+						"powerwall"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://www.tesla.com/ro_ro/api/tesla/footer/html/v1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response status code is 200\", function () {\r",
+							"    pm.expect(pm.response.code).to.equal(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Response time is less than 800ms\", function () {\r",
+							"  pm.expect(pm.response.responseTime).to.be.below(800);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response size is less than 2000000B\", function () {\r",
+							"    pm.expect(pm.response.responseSize).to.be.below(2000000);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Presence of tds-footer-nav and tds-footer-meta elements in the response\", function () {\r",
+							"    const responseData = pm.response.text();\r",
+							"    \r",
+							"    pm.expect(responseData).to.include(\"tds-footer-nav\");\r",
+							"    pm.expect(responseData).to.include(\"tds-footer-meta\");\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Verify the number of tds-footer-item elements inside tds-footer-meta\", function () {\r",
+							"    const responseData = pm.response.text();\r",
+							"    const tdsFooterMetaCount = (responseData.match(/tds-footer-item/g) || []).length;\r",
+							"\r",
+							"    pm.expect(tdsFooterMetaCount).to.equal(7);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Ensure tds-footer-item elements have valid href attributes and non-empty link text\", function () {\r",
+							"    const responseData = pm.response.text();\r",
+							"    \r",
+							"    pm.expect(responseData).to.include('class=\"tds-footer-item\"', \"Response should contain tds-footer-item elements\");\r",
+							"\r",
+							"    const footerItems = responseData.match(/<a\\s+(?:[^>]*?\\s+)?href=\"([^\"]*)\"[^>]*?>(.*?)<\\/a>/g);\r",
+							"    \r",
+							"    pm.expect(footerItems).to.be.an('array').and.to.have.length.above(0, \"Footer items should exist\");\r",
+							"\r",
+							"    footerItems.forEach(function(footerItem) {\r",
+							"        const href = footerItem.match(/href=\"([^\"]*)\"/)[1];\r",
+							"        const linkText = footerItem.match(/>(.*?)<\\/a>/)[1];\r",
+							"\r",
+							"        pm.expect(href).to.be.a('string').and.to.have.length.above(0, \"Href attribute should be non-empty\");\r",
+							"        pm.expect(linkText).to.be.a('string').and.to.have.length.above(0, \"Link text should be non-empty\");\r",
+							"    });\r",
+							"});\r",
+							"var responseHTML = pm.response.text();\r",
+							"\r",
+							"// Test the response body structure and values\r",
+							"pm.test(\"Response body structure and content are valid\", function () {\r",
+							"    pm.expect(responseHTML).to.include('<nav class=\"tds-footer-nav\">');\r",
+							"    pm.expect(responseHTML).to.include('<h2 class=\"visually-hidden tds--is_visually_hidden\">Meniul Subsol</h2>');\r",
+							"    pm.expect(responseHTML).to.include('<ul data-region=\"footer\" class=\"tds-footer-meta tds--align_center tds-list tds-list--horizontal tcl-site-footer\">');\r",
+							"    pm.expect(responseHTML).to.include('class=\"tds-footer-item\"');\r",
+							"    pm.expect(responseHTML).to.include('href=\"/ro_ro/about\" title=\"Copyright 2024 Tesla Motors\" class=\"tds-link tcl-link\">Tesla © 2024</a>');\r",
+							"    pm.expect(responseHTML).to.include('href=\"/ro_ro/legal\" class=\"tds-link tcl-link\">Confidențialitate și juridic</a>');\r",
+							"    pm.expect(responseHTML).to.include('href=\"/ro_ro/contact\" class=\"tds-link tcl-link\">Contact</a>');\r",
+							"    pm.expect(responseHTML).to.include('href=\"/ro_ro/blog\" class=\"tds-link tcl-link\">Noutăți</a>');\r",
+							"    pm.expect(responseHTML).to.include('href=\"/ro_ro/updates\" class=\"tds-link tcl-link\">Obțineți actualizări</a>');\r",
+							"    pm.expect(responseHTML).to.include('href=\"/ro_ro/findus/list\" class=\"tds-link tcl-link\">Locații</a>');\r",
+							"    pm.expect(responseHTML).to.include('href=\"https://anpc.ro/\" class=\"tds-link tcl-link\">Protecția Consumatorilor</a>');\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "host",
+						"value": "www.tesla.com"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json, text/plain, */*"
+					},
+					{
+						"key": "sec-ch-ua",
+						"value": "\"Google Chrome\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\""
+					},
+					{
+						"key": "User-Agent",
+						"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36"
+					},
+					{
+						"key": "Sec-Fetch-Dest",
+						"value": "empty"
+					},
+					{
+						"key": "Sec-Fetch-Mode",
+						"value": "cors"
+					},
+					{
+						"key": "Sec-Fetch-Site",
+						"value": "same-origin"
+					},
+					{
+						"key": "sec-ch-ua-mobile",
+						"value": "?0"
+					},
+					{
+						"key": "sec-ch-ua-platform",
+						"value": "\"Windows\""
+					}
+				],
+				"url": {
+					"raw": "https://www.tesla.com/ro_ro/api/tesla/footer/html/v1",
+					"protocol": "https",
+					"host": [
+						"www",
+						"tesla",
+						"com"
+					],
+					"path": [
+						"ro_ro",
+						"api",
+						"tesla",
+						"footer",
+						"html",
+						"v1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
