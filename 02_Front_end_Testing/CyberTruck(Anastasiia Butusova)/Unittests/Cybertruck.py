@@ -11,13 +11,10 @@ from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.service import Service as ChromeService
 from webdriver_manager.chrome import ChromeDriverManager
-
-
-
-def setUp(self):
-    service = ChromeService(executable_path=ChromeDriverManager().install())
-    self.driver = webdriver.Chrome(service=service)
-    self.driver.maximize_window()
+from webdriver_manager.firefox import GeckoDriverManager
+from selenium.webdriver.firefox.service import Service
+from selenium.webdriver.edge.service import Service as EdgeService
+from webdriver_manager.microsoft import EdgeChromiumDriverManager
 
 def delay():
     time.sleep(random.randint(1, 5))
@@ -25,6 +22,8 @@ def delay():
 class TeslaCybertruckChrome(unittest.TestCase):
 
     def setUp(self):
+        service = ChromeService(executable_path=ChromeDriverManager().install())
+        self.driver = webdriver.Chrome(service=service)
         self.driver=webdriver.Chrome()
         self.driver.maximize_window()
 
@@ -308,7 +307,7 @@ class TeslaCybertruckFirefox(unittest.TestCase):
 
     def setUp(self):
         options = webdriver.FirefoxOptions()
-        self.driver = webdriver.Firefox(options=options)
+        self.driver = webdriver.Firefox(service=Service(GeckoDriverManager().install()), options=options)
         self.driver.maximize_window()
 
     def test_case_006(self):
@@ -598,9 +597,10 @@ class TeslaCybertruckFirefox(unittest.TestCase):
 
 class TeslaCybertruckEdge(unittest.TestCase):
 
+
     def setUp(self):
-        options = webdriver.EdgeOptions()
-        self.driver = webdriver.Edge(options=options)
+        service = EdgeService(EdgeChromiumDriverManager().install())
+        self.driver = webdriver.Edge(service=service)
         self.driver.maximize_window()
 
     def test_case_006(self):
