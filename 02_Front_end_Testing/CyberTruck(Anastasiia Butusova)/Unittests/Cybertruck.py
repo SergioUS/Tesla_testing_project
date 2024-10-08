@@ -4,14 +4,20 @@ import random
 import unittest
 import time
 from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common import NoSuchElementException
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.service import Service as ChromeService
+from webdriver_manager.chrome import ChromeDriverManager
 
 
+
+def setUp(self):
+    service = ChromeService(executable_path=ChromeDriverManager().install())
+    self.driver = webdriver.Chrome(service=service)
+    self.driver.maximize_window()
 
 def delay():
     time.sleep(random.randint(1, 5))
@@ -21,6 +27,8 @@ class TeslaCybertruckChrome(unittest.TestCase):
     def setUp(self):
         self.driver=webdriver.Chrome()
         self.driver.maximize_window()
+
+# In TC 006 I need to check visibility and clickability of Tesla Cybertruck page.
 
     def test_case_006(self):
         driver = self.driver
@@ -34,6 +42,8 @@ class TeslaCybertruckChrome(unittest.TestCase):
         element = driver.find_element(By.XPATH, "(//img[@alt='Cybertruck'])[1]")
         element.click()
         print("Test passed: Cybertrack page is working as expected")
+
+# In TC 007 I need to check if Features and Accessories buttons work correctly.
 
     def test_case_007(self):
         driver = self.driver
@@ -60,6 +70,8 @@ class TeslaCybertruckChrome(unittest.TestCase):
         time.sleep(3)
         print("Test passed: Slider buttons are working as expected.")
 
+# In TC 008 I need to check opening of CYBERTRUCK OFF-ROAD GUIDE page.
+
     def test_case_008(self):
         driver = self.driver
         print("Test case 008:CYBERTRUCK OFF-ROAD GUIDE opens properly")
@@ -84,6 +96,8 @@ class TeslaCybertruckChrome(unittest.TestCase):
         else:
             print("Test failed: CYBERTRUCK OFF-ROAD GUIDE was not opened")
 
+#In TC 009 I need to check cklickability of ORDER NOW button.
+
     def test_case_009(self):
         driver = self.driver
         print("Test case 009:ORDER NOW button is clickable")
@@ -100,6 +114,8 @@ class TeslaCybertruckChrome(unittest.TestCase):
         time.sleep(5)
         print("Test passed: ORDER NOW button is clickable as expected")
 
+# In TC 010 I need to check clickability of DEMO DRIVE button.
+
     def test_case_010(self):
         driver = self.driver
         print("Test case 010:DEMO DRIVE button is clickable")
@@ -115,6 +131,8 @@ class TeslaCybertruckChrome(unittest.TestCase):
         driver.find_element(By.XPATH,"//a[@href='/drive?selectedModel=Cybertruck']").click()
         time.sleep(5)
         print("Test passed: DEMO DRIVE button is clickable as expected")
+
+# In TC 006-6 I need to check if I can book Demo Drive of Cybertruck without entering First Name.
 
     def test_case_006_6(self):
         driver = self.driver
@@ -145,6 +163,8 @@ class TeslaCybertruckChrome(unittest.TestCase):
                 print("Test Failed:Demo Drive was booked")
         except NoSuchElementException:
                 print("Test Passed:Required input field")
+
+# In TC 007-7 I need to check if I can book Demo Drive of Cybertruck entering numbers in the First Namen field.
 
     def test_case_007_7(self):
         driver = self.driver
@@ -178,6 +198,8 @@ class TeslaCybertruckChrome(unittest.TestCase):
         except NoSuchElementException:
                 print("Test Passed:Required input field")
 
+# In TC 008-8 I need to check if I can book Demo Drive of Cybertruck entering gaps in the First Namen field.
+
     def test_case_008_8(self):
         driver = self.driver
         print("Test case 008-8:User has entered gaps in the line 'First Name' of Demo Drive Cybertruck")
@@ -209,6 +231,8 @@ class TeslaCybertruckChrome(unittest.TestCase):
                 print("Test Failed:Demo Drive was booked")
         except NoSuchElementException:
                 print("Test Passed:Required input field")
+
+# In TC 009-9 I need to check if I can book Demo Drive of Cybertruck entering special symbols in the First Namen field.
 
     def test_case_009_9(self):
         driver = self.driver
@@ -242,6 +266,7 @@ class TeslaCybertruckChrome(unittest.TestCase):
         except NoSuchElementException:
                 print("Test Passed:Required input field")
 
+# In TC 006-6 I need to check if I can book Demo Drive of Cybertruck without entering Email.
 
     def test_case_010_10(self):
         driver = self.driver
