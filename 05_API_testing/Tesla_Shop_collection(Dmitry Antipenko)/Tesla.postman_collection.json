@@ -1,0 +1,1081 @@
+{
+	"info": {
+		"_postman_id": "44a43b8e-1783-4806-ad06-638c195b6b36",
+		"name": "Tesla",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "37578615"
+	},
+	"item": [
+		{
+			"name": "shop.tesla.com-Shop",
+			"item": [
+				{
+					"name": "https://shop.tesla.com/carts.json",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let jsonData = pm.response.json();\r",
+									"pm.environment.set(\"cartId\", jsonData.cartId);\r",
+									"pm.environment.set(\"lineitemId\", jsonData.cartItemModelList[0].lineitemId);\r",
+									"\r",
+									"pm.test(\"Response status code is 200\", function () {\r",
+									"  pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 4000ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(4000);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response size is less than 4000B\", function () {\r",
+									"    pm.expect(pm.response.responseSize).to.be.below(4000);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Header is correct\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\", \"application/json;charset=UTF-8\");\r",
+									"    pm.response.to.have.header(\"Vary\", \"accept-encoding\");\r",
+									"    pm.response.to.have.header(\"Content-Encoding\", \"gzip\");\r",
+									"    pm.response.to.have.header(\"Content-Language\", \"en-US\");\r",
+									"    pm.response.to.have.header(\"Cache-Control\", \"no-cache, no-store\");\r",
+									"    pm.response.to.have.header(\"X-TZLA-EDGE-HOSTNAME-VCL\", \"shop\");\r",
+									"    pm.response.to.have.header(\"X-TZLA-EDGE-BACKEND-FETCH-IF-STALE\", \"false\");\r",
+									"    pm.response.to.have.header(\"X-Frame-Options\", \"SAMEORIGIN\");\r",
+									"    pm.response.to.have.header(\"X-Content-Type-Options\", \"nosniff\");\r",
+									"    pm.response.to.have.header(\"Connection\", \"keep-alive\");\r",
+									"    pm.response.to.have.header(\"Permissions-Policy\", \"interest-cohort=()\");\r",
+									"    \r",
+									"});\r",
+									"\r",
+									"pm.test(\"Validate the format of cartTotal\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"    \r",
+									"    pm.expect(responseData.cartTotal).to.be.an('object');\r",
+									"    pm.expect(responseData.cartTotal.amount).to.be.a('number');\r",
+									"    pm.expect(responseData.cartTotal.displayAmount).to.be.a('string');\r",
+									"    pm.expect(responseData.cartTotal.currency).to.be.a('string');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"invoiceModel, orderTotal, orderTax and orderShippingCost have the correct format\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"    \r",
+									"    pm.expect(responseData).to.be.an('object');\r",
+									"    pm.expect(responseData.invoiceModel).to.be.null;\r",
+									"    pm.expect(responseData.orderTotal).to.be.null;\r",
+									"    pm.expect(responseData.orderTax).to.be.null;\r",
+									"    pm.expect(responseData.orderShippingCost).to.be.null;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Body has correct totalQuantity\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.totalQuantity).to.eql(2);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "DNT",
+								"value": "1"
+							},
+							{
+								"key": "host",
+								"value": "shop.tesla.com"
+							},
+							{
+								"key": "Accept",
+								"value": "*/*"
+							},
+							{
+								"key": "sec-gpc",
+								"value": "1"
+							},
+							{
+								"key": "sec-ch-ua",
+								"value": "\"Google Chrome\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\""
+							},
+							{
+								"key": "User-Agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Sec-Fetch-Dest",
+								"value": "empty"
+							},
+							{
+								"key": "Sec-Fetch-Mode",
+								"value": "cors"
+							},
+							{
+								"key": "Sec-Fetch-Site",
+								"value": "same-origin"
+							},
+							{
+								"key": "X-Requested-With",
+								"value": "XMLHttpRequest"
+							},
+							{
+								"key": "sec-ch-ua-mobile",
+								"value": "?0"
+							},
+							{
+								"key": "sec-ch-ua-platform",
+								"value": "\"Windows\""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"followLocation\": true,\r\n    \"skuCode\": \"1990496-00-A\", \r\n    \"quantity\": 2\r\n}"
+						},
+						"url": {
+							"raw": "https://shop.tesla.com/carts.json",
+							"protocol": "https",
+							"host": [
+								"shop",
+								"tesla",
+								"com"
+							],
+							"path": [
+								"carts.json"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "https://shop.tesla.com/carts/tprkk6gwo4k4qs63eoz2pdkbfpoa4jx7iz352dbyt75yka4as6eipwhopgw6e6a3cg6wufd7jryckgczk3rdkryywwlu7abz352ilpq=/shippingfees/v1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 200\", function () {\r",
+									"  pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 4000ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(4000);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response size is less than 4000B\", function () {\r",
+									"    pm.expect(pm.response.responseSize).to.be.below(4000);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Header is correct\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\", \"application/json;charset=UTF-8\");\r",
+									"    pm.response.to.have.header(\"Vary\", \"accept-encoding\");\r",
+									"    pm.response.to.have.header(\"Content-Encoding\", \"gzip\");\r",
+									"    pm.response.to.have.header(\"Content-Language\", \"en-US\");\r",
+									"    pm.response.to.have.header(\"Cache-Control\", \"no-cache, no-store\");\r",
+									"    pm.response.to.have.header(\"X-TZLA-EDGE-HOSTNAME-VCL\", \"shop\");\r",
+									"    pm.response.to.have.header(\"X-TZLA-EDGE-BACKEND-FETCH-IF-STALE\", \"false\");\r",
+									"    pm.response.to.have.header(\"X-Frame-Options\", \"SAMEORIGIN\");\r",
+									"    pm.response.to.have.header(\"X-Content-Type-Options\", \"nosniff\");\r",
+									"    pm.response.to.have.header(\"Connection\", \"keep-alive\");\r",
+									"    pm.response.to.have.header(\"Permissions-Policy\", \"interest-cohort=()\");\r",
+									"    \r",
+									"});\r",
+									"\r",
+									"pm.test(\"amount, currency and displayAmount is correct\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.shippingCost.amount).to.eql(0.00);\r",
+									"    pm.expect(jsonData.shippingCost.displayAmount).to.eql(\"$0.00\");\r",
+									"    pm.expect(jsonData.shippingCost.currency).to.eql(\"USD\");\r",
+									"});\r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "DNT",
+								"value": "1"
+							},
+							{
+								"key": "host",
+								"value": "shop.tesla.com"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json, text/plain, */*"
+							},
+							{
+								"key": "sec-gpc",
+								"value": "1"
+							},
+							{
+								"key": "sec-ch-ua",
+								"value": "\"Chromium\";v=\"128\", \"Not;A=Brand\";v=\"24\", \"Google Chrome\";v=\"128\""
+							},
+							{
+								"key": "User-Agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36"
+							},
+							{
+								"key": "Sec-Fetch-Dest",
+								"value": "empty"
+							},
+							{
+								"key": "Sec-Fetch-Mode",
+								"value": "cors"
+							},
+							{
+								"key": "Sec-Fetch-Site",
+								"value": "same-origin"
+							},
+							{
+								"key": "sec-ch-ua-mobile",
+								"value": "?0"
+							},
+							{
+								"key": "sec-ch-ua-platform",
+								"value": "\"Windows\""
+							},
+							{
+								"key": "X-KL-saas-Ajax-Request",
+								"value": "Ajax_Request"
+							}
+						],
+						"url": {
+							"raw": "https://shop.tesla.com/carts/{{cartId}}/shippingfees/v1",
+							"protocol": "https",
+							"host": [
+								"shop",
+								"tesla",
+								"com"
+							],
+							"path": [
+								"carts",
+								"{{cartId}}",
+								"shippingfees",
+								"v1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "https://shop.tesla.com/carts/f5szlxejgaipdbihhcyj3f72ng4wjve6cjn6ywh276bgbsmjwiou5bylc4dxehdwvai7rwbfdpeaznak6ovhc2prexqbpe6cseerj2q=/items/p36vyxx4p7k73vyvim5xcb4lmcwaxrznuzym34gebyiotpiu6zqmcpfmv3bz3rysdayjzg7ztbiorntmugu3t44hya2dozpd4nojzoa=/v1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 200\", function () {\r",
+									"  pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 6000ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(6000);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response size is less than 4000B\", function () {\r",
+									"    pm.expect(pm.response.responseSize).to.be.below(4000);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Header is correct\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\", \"application/json;charset=UTF-8\");\r",
+									"    pm.response.to.have.header(\"Vary\", \"accept-encoding\");\r",
+									"    pm.response.to.have.header(\"Content-Encoding\", \"gzip\");\r",
+									"    pm.response.to.have.header(\"Content-Language\", \"en-US\");\r",
+									"    pm.response.to.have.header(\"Cache-Control\", \"no-cache, no-store\");\r",
+									"    pm.response.to.have.header(\"X-TZLA-EDGE-HOSTNAME-VCL\", \"shop\");\r",
+									"    pm.response.to.have.header(\"X-TZLA-EDGE-BACKEND-FETCH-IF-STALE\", \"false\");\r",
+									"    pm.response.to.have.header(\"X-Frame-Options\", \"SAMEORIGIN\");\r",
+									"    pm.response.to.have.header(\"X-Content-Type-Options\", \"nosniff\");\r",
+									"    pm.response.to.have.header(\"Connection\", \"keep-alive\");\r",
+									"    pm.response.to.have.header(\"Permissions-Policy\", \"interest-cohort=()\");\r",
+									"    \r",
+									"});\r",
+									"\r",
+									"pm.test(\"Validate the format of cartTotal\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"    \r",
+									"    pm.expect(responseData.cartTotal).to.be.an('object');\r",
+									"    pm.expect(responseData.cartTotal.amount).to.be.a('number');\r",
+									"    pm.expect(responseData.cartTotal.displayAmount).to.be.a('string');\r",
+									"    pm.expect(responseData.cartTotal.currency).to.be.a('string');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Order total, tax, and shipping cost have the correct format\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"    \r",
+									"    pm.expect(responseData).to.be.an('object');\r",
+									"    pm.expect(responseData.orderTotal).to.be.null;\r",
+									"    pm.expect(responseData.orderTax).to.be.null;\r",
+									"    pm.expect(responseData.orderShippingCost).to.be.null;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Promotions details should be present in the response\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"\r",
+									"    pm.expect(responseData).to.have.property('promotionsDetails');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Body has correct totalQuantity\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.totalQuantity).to.eql(4);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "DNT",
+								"value": "1"
+							},
+							{
+								"key": "host",
+								"value": "shop.tesla.com"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json, text/plain, */*"
+							},
+							{
+								"key": "sec-gpc",
+								"value": "1"
+							},
+							{
+								"key": "sec-ch-ua",
+								"value": "\"Chromium\";v=\"128\", \"Not;A=Brand\";v=\"24\", \"Google Chrome\";v=\"128\""
+							},
+							{
+								"key": "User-Agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json;charset=UTF-8"
+							},
+							{
+								"key": "Sec-Fetch-Dest",
+								"value": "empty"
+							},
+							{
+								"key": "Sec-Fetch-Mode",
+								"value": "cors"
+							},
+							{
+								"key": "Sec-Fetch-Site",
+								"value": "same-origin"
+							},
+							{
+								"key": "sec-ch-ua-mobile",
+								"value": "?0"
+							},
+							{
+								"key": "sec-ch-ua-platform",
+								"value": "\"Windows\""
+							},
+							{
+								"key": "X-KL-saas-Ajax-Request",
+								"value": "Ajax_Request"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"followLocation\": true,\r\n    \"includeCartOrder\": false,\r\n    \"partNumber\": \"1990496-00-A\",\r\n    \"quantity\": 4\r\n}"
+						},
+						"url": {
+							"raw": "https://shop.tesla.com/carts/{{cartId}}/items/{{lineitemId}}/v1",
+							"protocol": "https",
+							"host": [
+								"shop",
+								"tesla",
+								"com"
+							],
+							"path": [
+								"carts",
+								"{{cartId}}",
+								"items",
+								"{{lineitemId}}",
+								"v1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "https://shop.tesla.com/carts/f5szlxejgaipdbihhcyj3f72ng4wjve6cjn6ywh276bgbsmjwiou5bylc4dxehdwvai7rwbfdpeaznak6ovhc2prexqbpe6cseerj2q=/items/p36vyxx4p7k73vyvim5xcb4lmcwaxrznuzym34gebyiotpiu6zqmcpfmv3bz3rysdayjzg7ztbiorntmugu3t44hya2dozpd4nojzoa=/v1?followL",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response time is less than 4000ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(4000);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response size is less than 4000B\", function () {\r",
+									"    pm.expect(pm.response.responseSize).to.be.below(4000);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Header is correct\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\", \"application/json;charset=UTF-8\");\r",
+									"    pm.response.to.have.header(\"Vary\", \"accept-encoding\");\r",
+									"    pm.response.to.have.header(\"Content-Encoding\", \"gzip\");\r",
+									"    pm.response.to.have.header(\"Content-Language\", \"en-US\");\r",
+									"    pm.response.to.have.header(\"Cache-Control\", \"no-cache, no-store\");\r",
+									"    pm.response.to.have.header(\"X-TZLA-EDGE-HOSTNAME-VCL\", \"shop\");\r",
+									"    pm.response.to.have.header(\"X-TZLA-EDGE-BACKEND-FETCH-IF-STALE\", \"false\");\r",
+									"    pm.response.to.have.header(\"X-Frame-Options\", \"SAMEORIGIN\");\r",
+									"    pm.response.to.have.header(\"X-Content-Type-Options\", \"nosniff\");\r",
+									"    pm.response.to.have.header(\"Connection\", \"keep-alive\");\r",
+									"    pm.response.to.have.header(\"Permissions-Policy\", \"interest-cohort=()\");\r",
+									"    \r",
+									"});\r",
+									"\r",
+									"pm.test(\"invoiceModel, orderTotal, orderTax and orderShippingCost have the correct format\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"    \r",
+									"    pm.expect(responseData).to.be.an('object');\r",
+									"    pm.expect(responseData.invoiceModel).to.be.null;\r",
+									"    pm.expect(responseData.orderTotal).to.be.null;\r",
+									"    pm.expect(responseData.orderTax).to.be.null;\r",
+									"    pm.expect(responseData.orderShippingCost).to.be.null;\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "DNT",
+								"value": "1"
+							},
+							{
+								"key": "host",
+								"value": "shop.tesla.com"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json, text/plain, */*"
+							},
+							{
+								"key": "sec-gpc",
+								"value": "1"
+							},
+							{
+								"key": "sec-ch-ua",
+								"value": "\"Chromium\";v=\"128\", \"Not;A=Brand\";v=\"24\", \"Google Chrome\";v=\"128\""
+							},
+							{
+								"key": "User-Agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36"
+							},
+							{
+								"key": "Sec-Fetch-Dest",
+								"value": "empty"
+							},
+							{
+								"key": "Sec-Fetch-Mode",
+								"value": "cors"
+							},
+							{
+								"key": "Sec-Fetch-Site",
+								"value": "same-origin"
+							},
+							{
+								"key": "sec-ch-ua-mobile",
+								"value": "?0"
+							},
+							{
+								"key": "sec-ch-ua-platform",
+								"value": "\"Windows\""
+							},
+							{
+								"key": "X-KL-saas-Ajax-Request",
+								"value": "Ajax_Request"
+							}
+						],
+						"url": {
+							"raw": "https://shop.tesla.com/carts/{{cartId}}/items/{{lineitemId}}/v1?followLocation=true",
+							"protocol": "https",
+							"host": [
+								"shop",
+								"tesla",
+								"com"
+							],
+							"path": [
+								"carts",
+								"{{cartId}}",
+								"items",
+								"{{lineitemId}}",
+								"v1"
+							],
+							"query": [
+								{
+									"key": "followLocation",
+									"value": "true"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "https://shop.tesla.com/carts.json",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"let jsonData = pm.response.json();\r",
+									"pm.environment.set(\"cartId\", jsonData.cartId);\r",
+									"pm.environment.set(\"lineitemId\", jsonData.cartItemModelList[0].lineitemId);\r",
+									"\r",
+									"pm.test(\"Response status code is 200\", function () {\r",
+									"  pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 4000ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(4000);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response size is less than 4000B\", function () {\r",
+									"    pm.expect(pm.response.responseSize).to.be.below(4000);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Header is correct\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\", \"application/json;charset=UTF-8\");\r",
+									"    pm.response.to.have.header(\"Vary\", \"accept-encoding\");\r",
+									"    pm.response.to.have.header(\"Content-Encoding\", \"gzip\");\r",
+									"    pm.response.to.have.header(\"Content-Language\", \"en-US\");\r",
+									"    pm.response.to.have.header(\"Cache-Control\", \"no-cache, no-store\");\r",
+									"    pm.response.to.have.header(\"X-TZLA-EDGE-HOSTNAME-VCL\", \"shop\");\r",
+									"    pm.response.to.have.header(\"X-TZLA-EDGE-BACKEND-FETCH-IF-STALE\", \"false\");\r",
+									"    pm.response.to.have.header(\"X-Frame-Options\", \"SAMEORIGIN\");\r",
+									"    pm.response.to.have.header(\"X-Content-Type-Options\", \"nosniff\");\r",
+									"    pm.response.to.have.header(\"Connection\", \"keep-alive\");\r",
+									"    pm.response.to.have.header(\"Permissions-Policy\", \"interest-cohort=()\");\r",
+									"    \r",
+									"});\r",
+									"\r",
+									"pm.test(\"Validate the format of cartTotal\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"    \r",
+									"    pm.expect(responseData.cartTotal).to.be.an('object');\r",
+									"    pm.expect(responseData.cartTotal.amount).to.be.a('number');\r",
+									"    pm.expect(responseData.cartTotal.displayAmount).to.be.a('string');\r",
+									"    pm.expect(responseData.cartTotal.currency).to.be.a('string');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"invoiceModel, orderTotal, orderTax and orderShippingCost have the correct format\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"    \r",
+									"    pm.expect(responseData).to.be.an('object');\r",
+									"    pm.expect(responseData.invoiceModel).to.be.null;\r",
+									"    pm.expect(responseData.orderTotal).to.be.null;\r",
+									"    pm.expect(responseData.orderTax).to.be.null;\r",
+									"    pm.expect(responseData.orderShippingCost).to.be.null;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Body has correct totalQuantity\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.totalQuantity).to.eql(1);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "DNT",
+								"value": "1"
+							},
+							{
+								"key": "host",
+								"value": "shop.tesla.com"
+							},
+							{
+								"key": "Accept",
+								"value": "*/*"
+							},
+							{
+								"key": "sec-gpc",
+								"value": "1"
+							},
+							{
+								"key": "sec-ch-ua",
+								"value": "\"Google Chrome\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\""
+							},
+							{
+								"key": "User-Agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Sec-Fetch-Dest",
+								"value": "empty"
+							},
+							{
+								"key": "Sec-Fetch-Mode",
+								"value": "cors"
+							},
+							{
+								"key": "Sec-Fetch-Site",
+								"value": "same-origin"
+							},
+							{
+								"key": "X-Requested-With",
+								"value": "XMLHttpRequest"
+							},
+							{
+								"key": "sec-ch-ua-mobile",
+								"value": "?0"
+							},
+							{
+								"key": "sec-ch-ua-platform",
+								"value": "\"Windows\""
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"followLocation\": true,\r\n    \"skuCode\": \"1131087-01-J\", \r\n    \"quantity\": 1\r\n}"
+						},
+						"url": {
+							"raw": "https://shop.tesla.com/carts.json",
+							"protocol": "https",
+							"host": [
+								"shop",
+								"tesla",
+								"com"
+							],
+							"path": [
+								"carts.json"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "https://shop.tesla.com/carts/tprkk6gwo4k4qs63eoz2pdkbfpoa4jx7iz352dbyt75yka4as6eipwhopgw6e6a3cg6wufd7jryckgczk3rdkryywwlu7abz352ilpq=/shippingfees/v1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 200\", function () {\r",
+									"  pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 4000ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(4000);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response size is less than 4000B\", function () {\r",
+									"    pm.expect(pm.response.responseSize).to.be.below(4000);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Header is correct\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\", \"application/json;charset=UTF-8\");\r",
+									"    pm.response.to.have.header(\"Vary\", \"accept-encoding\");\r",
+									"    pm.response.to.have.header(\"Content-Encoding\", \"gzip\");\r",
+									"    pm.response.to.have.header(\"Content-Language\", \"en-US\");\r",
+									"    pm.response.to.have.header(\"Cache-Control\", \"no-cache, no-store\");\r",
+									"    pm.response.to.have.header(\"X-TZLA-EDGE-HOSTNAME-VCL\", \"shop\");\r",
+									"    pm.response.to.have.header(\"X-TZLA-EDGE-BACKEND-FETCH-IF-STALE\", \"false\");\r",
+									"    pm.response.to.have.header(\"X-Frame-Options\", \"SAMEORIGIN\");\r",
+									"    pm.response.to.have.header(\"X-Content-Type-Options\", \"nosniff\");\r",
+									"    pm.response.to.have.header(\"Connection\", \"keep-alive\");\r",
+									"    pm.response.to.have.header(\"Permissions-Policy\", \"interest-cohort=()\");\r",
+									"    \r",
+									"});\r",
+									"\r",
+									"pm.test(\"amount, currency and displayAmount is correct\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.shippingCost.amount).to.eql(0.00);\r",
+									"    pm.expect(jsonData.shippingCost.displayAmount).to.eql(\"$0.00\");\r",
+									"    pm.expect(jsonData.shippingCost.currency).to.eql(\"USD\");\r",
+									"});\r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "DNT",
+								"value": "1"
+							},
+							{
+								"key": "host",
+								"value": "shop.tesla.com"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json, text/plain, */*"
+							},
+							{
+								"key": "sec-gpc",
+								"value": "1"
+							},
+							{
+								"key": "sec-ch-ua",
+								"value": "\"Chromium\";v=\"128\", \"Not;A=Brand\";v=\"24\", \"Google Chrome\";v=\"128\""
+							},
+							{
+								"key": "User-Agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36"
+							},
+							{
+								"key": "Sec-Fetch-Dest",
+								"value": "empty"
+							},
+							{
+								"key": "Sec-Fetch-Mode",
+								"value": "cors"
+							},
+							{
+								"key": "Sec-Fetch-Site",
+								"value": "same-origin"
+							},
+							{
+								"key": "sec-ch-ua-mobile",
+								"value": "?0"
+							},
+							{
+								"key": "sec-ch-ua-platform",
+								"value": "\"Windows\""
+							},
+							{
+								"key": "X-KL-saas-Ajax-Request",
+								"value": "Ajax_Request"
+							}
+						],
+						"url": {
+							"raw": "https://shop.tesla.com/carts/{{cartId}}/shippingfees/v1",
+							"protocol": "https",
+							"host": [
+								"shop",
+								"tesla",
+								"com"
+							],
+							"path": [
+								"carts",
+								"{{cartId}}",
+								"shippingfees",
+								"v1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "https://shop.tesla.com/carts/f5szlxejgaipdbihhcyj3f72ng4wjve6cjn6ywh276bgbsmjwiou5bylc4dxehdwvai7rwbfdpeaznak6ovhc2prexqbpe6cseerj2q=/items/p36vyxx4p7k73vyvim5xcb4lmcwaxrznuzym34gebyiotpiu6zqmcpfmv3bz3rysdayjzg7ztbiorntmugu3t44hya2dozpd4nojzoa=/v1 Copy",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response status code is 200\", function () {\r",
+									"  pm.response.to.have.status(200);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response time is less than 6000ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(6000);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response size is less than 4000B\", function () {\r",
+									"    pm.expect(pm.response.responseSize).to.be.below(4000);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Header is correct\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\", \"application/json;charset=UTF-8\");\r",
+									"    pm.response.to.have.header(\"Vary\", \"accept-encoding\");\r",
+									"    pm.response.to.have.header(\"Content-Encoding\", \"gzip\");\r",
+									"    pm.response.to.have.header(\"Content-Language\", \"en-US\");\r",
+									"    pm.response.to.have.header(\"Cache-Control\", \"no-cache, no-store\");\r",
+									"    pm.response.to.have.header(\"X-TZLA-EDGE-HOSTNAME-VCL\", \"shop\");\r",
+									"    pm.response.to.have.header(\"X-TZLA-EDGE-BACKEND-FETCH-IF-STALE\", \"false\");\r",
+									"    pm.response.to.have.header(\"X-Frame-Options\", \"SAMEORIGIN\");\r",
+									"    pm.response.to.have.header(\"X-Content-Type-Options\", \"nosniff\");\r",
+									"    pm.response.to.have.header(\"Connection\", \"keep-alive\");\r",
+									"    pm.response.to.have.header(\"Permissions-Policy\", \"interest-cohort=()\");\r",
+									"    \r",
+									"});\r",
+									"\r",
+									"pm.test(\"Validate the format of cartTotal\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"    \r",
+									"    pm.expect(responseData.cartTotal).to.be.an('object');\r",
+									"    pm.expect(responseData.cartTotal.amount).to.be.a('number');\r",
+									"    pm.expect(responseData.cartTotal.displayAmount).to.be.a('string');\r",
+									"    pm.expect(responseData.cartTotal.currency).to.be.a('string');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Order total, tax, and shipping cost have the correct format\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"    \r",
+									"    pm.expect(responseData).to.be.an('object');\r",
+									"    pm.expect(responseData.orderTotal).to.be.null;\r",
+									"    pm.expect(responseData.orderTax).to.be.null;\r",
+									"    pm.expect(responseData.orderShippingCost).to.be.null;\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Promotions details should be present in the response\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"\r",
+									"    pm.expect(responseData).to.have.property('promotionsDetails');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Body has correct totalQuantity\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.totalQuantity).to.eql(2);\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "DNT",
+								"value": "1"
+							},
+							{
+								"key": "host",
+								"value": "shop.tesla.com"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json, text/plain, */*"
+							},
+							{
+								"key": "sec-gpc",
+								"value": "1"
+							},
+							{
+								"key": "sec-ch-ua",
+								"value": "\"Chromium\";v=\"128\", \"Not;A=Brand\";v=\"24\", \"Google Chrome\";v=\"128\""
+							},
+							{
+								"key": "User-Agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json;charset=UTF-8"
+							},
+							{
+								"key": "Sec-Fetch-Dest",
+								"value": "empty"
+							},
+							{
+								"key": "Sec-Fetch-Mode",
+								"value": "cors"
+							},
+							{
+								"key": "Sec-Fetch-Site",
+								"value": "same-origin"
+							},
+							{
+								"key": "sec-ch-ua-mobile",
+								"value": "?0"
+							},
+							{
+								"key": "sec-ch-ua-platform",
+								"value": "\"Windows\""
+							},
+							{
+								"key": "X-KL-saas-Ajax-Request",
+								"value": "Ajax_Request"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"followLocation\": true,\r\n    \"includeCartOrder\": false,\r\n    \"partNumber\": \"1131087-01-J\",\r\n    \"quantity\": 2\r\n}"
+						},
+						"url": {
+							"raw": "https://shop.tesla.com/carts/{{cartId}}/items/{{lineitemId}}/v1",
+							"protocol": "https",
+							"host": [
+								"shop",
+								"tesla",
+								"com"
+							],
+							"path": [
+								"carts",
+								"{{cartId}}",
+								"items",
+								"{{lineitemId}}",
+								"v1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "https://shop.tesla.com/carts/f5szlxejgaipdbihhcyj3f72ng4wjve6cjn6ywh276bgbsmjwiou5bylc4dxehdwvai7rwbfdpeaznak6ovhc2prexqbpe6cseerj2q=/items/p36vyxx4p7k73vyvim5xcb4lmcwaxrznuzym34gebyiotpiu6zqmcpfmv3bz3rysdayjzg7ztbiorntmugu3t44hya2dozpd4nojzoa=/v1?followL",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Response time is less than 4000ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.below(4000);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Response size is less than 4000B\", function () {\r",
+									"    pm.expect(pm.response.responseSize).to.be.below(4000);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Header is correct\", function () {\r",
+									"    pm.response.to.have.header(\"Content-Type\", \"application/json;charset=UTF-8\");\r",
+									"    pm.response.to.have.header(\"Vary\", \"accept-encoding\");\r",
+									"    pm.response.to.have.header(\"Content-Encoding\", \"gzip\");\r",
+									"    pm.response.to.have.header(\"Content-Language\", \"en-US\");\r",
+									"    pm.response.to.have.header(\"Cache-Control\", \"no-cache, no-store\");\r",
+									"    pm.response.to.have.header(\"X-TZLA-EDGE-HOSTNAME-VCL\", \"shop\");\r",
+									"    pm.response.to.have.header(\"X-TZLA-EDGE-BACKEND-FETCH-IF-STALE\", \"false\");\r",
+									"    pm.response.to.have.header(\"X-Frame-Options\", \"SAMEORIGIN\");\r",
+									"    pm.response.to.have.header(\"X-Content-Type-Options\", \"nosniff\");\r",
+									"    pm.response.to.have.header(\"Connection\", \"keep-alive\");\r",
+									"    pm.response.to.have.header(\"Permissions-Policy\", \"interest-cohort=()\");\r",
+									"    \r",
+									"});\r",
+									"\r",
+									"pm.test(\"invoiceModel, orderTotal, orderTax and orderShippingCost have the correct format\", function () {\r",
+									"    const responseData = pm.response.json();\r",
+									"    \r",
+									"    pm.expect(responseData).to.be.an('object');\r",
+									"    pm.expect(responseData.invoiceModel).to.be.null;\r",
+									"    pm.expect(responseData.orderTotal).to.be.null;\r",
+									"    pm.expect(responseData.orderTax).to.be.null;\r",
+									"    pm.expect(responseData.orderShippingCost).to.be.null;\r",
+									"});"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "DNT",
+								"value": "1"
+							},
+							{
+								"key": "host",
+								"value": "shop.tesla.com"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json, text/plain, */*"
+							},
+							{
+								"key": "sec-gpc",
+								"value": "1"
+							},
+							{
+								"key": "sec-ch-ua",
+								"value": "\"Chromium\";v=\"128\", \"Not;A=Brand\";v=\"24\", \"Google Chrome\";v=\"128\""
+							},
+							{
+								"key": "User-Agent",
+								"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36"
+							},
+							{
+								"key": "Sec-Fetch-Dest",
+								"value": "empty"
+							},
+							{
+								"key": "Sec-Fetch-Mode",
+								"value": "cors"
+							},
+							{
+								"key": "Sec-Fetch-Site",
+								"value": "same-origin"
+							},
+							{
+								"key": "sec-ch-ua-mobile",
+								"value": "?0"
+							},
+							{
+								"key": "sec-ch-ua-platform",
+								"value": "\"Windows\""
+							},
+							{
+								"key": "X-KL-saas-Ajax-Request",
+								"value": "Ajax_Request"
+							}
+						],
+						"url": {
+							"raw": "https://shop.tesla.com/carts/{{cartId}}/items/{{lineitemId}}/v1?followLocation=true",
+							"protocol": "https",
+							"host": [
+								"shop",
+								"tesla",
+								"com"
+							],
+							"path": [
+								"carts",
+								"{{cartId}}",
+								"items",
+								"{{lineitemId}}",
+								"v1"
+							],
+							"query": [
+								{
+									"key": "followLocation",
+									"value": "true"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
