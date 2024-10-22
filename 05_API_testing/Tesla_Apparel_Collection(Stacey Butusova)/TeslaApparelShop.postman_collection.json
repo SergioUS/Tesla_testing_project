@@ -1,0 +1,534 @@
+{
+	"info": {
+		"_postman_id": "21f8f9e9-5135-4c17-9177-e03d3ef1c91e",
+		"name": "Tesla Shop",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "37264756"
+	},
+	"item": [
+		{
+			"name": "Put Men's 3D Wordmark Long Sleeve Tee in cart",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let jsonData = pm.response.json();",
+							"pm.collectionVariables.set(\"cartId\", jsonData.cartId);",
+							"pm.collectionVariables.set(\"lineitemId\", jsonData.cartItemModelList[0].lineitemId);",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 4000ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(4000);",
+							"});",
+							"",
+							"pm.test(\"Response Size is less than 4000B\", function () {",
+							"    pm.expect(pm.response.responseSize).to.be.below(4000);",
+							"});",
+							"",
+							"pm.test(\"Headers are present\", function () {",
+							"    pm.response.to.have.header(\"Connection\", \"keep-alive\");",
+							"    pm.response.to.have.header(\"Accept-Ranges\", \"bytes\");",
+							"    pm.response.to.have.header(\"Content-Type\", \"application/json;charset=UTF-8\");",
+							"});",
+							"",
+							"pm.test(\"Body matches string\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"Men's 3D Wordmark Long Sleeve Tee\");",
+							"});",
+							"",
+							"",
+							"pm.test(\"Response has the required fields\", function () {",
+							"    const responseData = pm.response.json();",
+							"    ",
+							"    pm.expect(responseData).to.be.an('object');",
+							"    pm.expect(responseData).to.include.all.keys(",
+							"        'cartItemModelList', ",
+							"        'cartTotal', ",
+							"        'totalQuantity', ",
+							"        'cartId', ",
+							"        'orderId', ",
+							"        'shippingRequired', ",
+							"        'serviceCenterRequired', ",
+							"        'promotionsDetails', ",
+							"        'messages'",
+							"    );",
+							"});",
+							"",
+							"",
+							"pm.test(\"CartItemModelList is an array with at least one element\", function () {",
+							"    const responseData = pm.response.json();",
+							"    ",
+							"    pm.expect(responseData.cartItemModelList).to.be.an('array').that.is.not.empty;",
+							"});",
+							"",
+							"",
+							"pm.test(\"Verify the presence of specific properties in cartItemModel\", function () {",
+							"    const responseData = pm.response.json();",
+							"    ",
+							"    pm.expect(responseData.cartItemModelList).to.be.an('array');",
+							"    ",
+							"    responseData.cartItemModelList.forEach(function(item) {",
+							"        pm.expect(item).to.include.all.keys('name', 'color', 'quantity', 'purchasePrice', 'listPrice', 'serviceInstall');",
+							"    });",
+							"});",
+							"",
+							"",
+							"pm.test(\"Quantity is a non-negative integer for each cart item\", function () {",
+							"  const responseData = pm.response.json();",
+							"  ",
+							"  pm.expect(responseData.cartItemModelList).to.be.an('array');",
+							"  responseData.cartItemModelList.forEach(function(cartItem) {",
+							"    pm.expect(cartItem.quantity).to.be.a('number');",
+							"    pm.expect(cartItem.quantity).to.be.at.least(0);",
+							"  });",
+							"});",
+							"",
+							"",
+							"pm.test(\"ServiceInstall and extServiceInstall are boolean values for each cart item\", function () {",
+							"    const responseData = pm.response.json();",
+							"    ",
+							"    pm.expect(responseData.cartItemModelList).to.be.an('array');",
+							"    responseData.cartItemModelList.forEach(function(item) {",
+							"        pm.expect(item.serviceInstall).to.be.a('boolean');",
+							"        pm.expect(item.extServiceInstall).to.be.a('boolean');",
+							"    });",
+							"});",
+							"",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "host",
+						"value": "shop.tesla.com"
+					},
+					{
+						"key": "Accept",
+						"value": "*/*"
+					},
+					{
+						"key": "sec-ch-ua",
+						"value": "\"Google Chrome\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\""
+					},
+					{
+						"key": "User-Agent",
+						"value": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Sec-Fetch-Dest",
+						"value": "empty"
+					},
+					{
+						"key": "Sec-Fetch-Mode",
+						"value": "cors"
+					},
+					{
+						"key": "Sec-Fetch-Site",
+						"value": "same-origin"
+					},
+					{
+						"key": "X-Requested-With",
+						"value": "XMLHttpRequest"
+					},
+					{
+						"key": "sec-ch-ua-mobile",
+						"value": "?0"
+					},
+					{
+						"key": "sec-ch-ua-platform",
+						"value": "\"macOS\""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"followLocation\": true,\n    \"skuCode\": \"8764808-00-A\",\n    \"quantity\": 1\n}"
+				},
+				"url": {
+					"raw": "https://shop.tesla.com/carts.json",
+					"protocol": "https",
+					"host": [
+						"shop",
+						"tesla",
+						"com"
+					],
+					"path": [
+						"carts.json"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get cart information",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 4000ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(4000);",
+							"});",
+							"",
+							"pm.test(\"Response Size is less than 4000B\", function () {",
+							"    pm.expect(pm.response.responseSize).to.be.below(4000);",
+							"});",
+							"",
+							"pm.test(\"Headers are present\", function () {",
+							"    pm.response.to.have.header(\"Connection\", \"keep-alive\");",
+							"    pm.response.to.have.header(\"Accept-Ranges\", \"bytes\");",
+							"    pm.response.to.have.header(\"Content-Type\", \"application/json;charset=UTF-8\");",
+							"});",
+							"",
+							"pm.test(\"Body matches string\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"Men's 3D Wordmark Long Sleeve Tee\");",
+							"});",
+							"",
+							"",
+							"",
+							"pm.test(\"Response status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"",
+							"pm.test(\"Response time is less than 4000ms\", function () {",
+							"  pm.expect(pm.response.responseTime).to.be.below(4000);",
+							"});",
+							"",
+							"",
+							"pm.test(\"Verify the schema of the response\", function () {",
+							"    const responseData = pm.response.json();",
+							"    ",
+							"    pm.expect(responseData).to.have.property('cartItemModelList').that.is.an('array');",
+							"    pm.expect(responseData).to.have.property('cartTotal').that.is.an('object');",
+							"    pm.expect(responseData).to.have.property('cartTotalWithoutTax').that.is.an('object');",
+							"    pm.expect(responseData).to.have.property('totalQuantity').that.is.a('number');",
+							"    pm.expect(responseData).to.have.property('cartId').that.is.a('string');",
+							"    pm.expect(responseData).to.have.property('orderId').that.is.a('string');",
+							"    pm.expect(responseData).to.have.property('shippingRequired').that.is.a('boolean');",
+							"    pm.expect(responseData).to.have.property('serviceCenterRequired').that.is.a('boolean');",
+							"    pm.expect(responseData).to.have.property('extServiceCenterRequired').that.is.a('boolean');",
+							"    pm.expect(responseData).to.have.property('dogeProductIncluded').that.is.a('boolean');",
+							"    pm.expect(responseData).to.have.property('updateCartNeeded').that.is.a('boolean');",
+							"});",
+							"",
+							"",
+							"",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://shop.tesla.com/carts.json",
+					"protocol": "https",
+					"host": [
+						"shop",
+						"tesla",
+						"com"
+					],
+					"path": [
+						"carts.json"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Change quantity",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 4000ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(4000);",
+							"});",
+							"",
+							"pm.test(\"Response Size is less than 4000B\", function () {",
+							"    pm.expect(pm.response.responseSize).to.be.below(4000);",
+							"});",
+							"",
+							"pm.test(\"Headers are present\", function () {",
+							"    pm.response.to.have.header(\"Connection\", \"keep-alive\");",
+							"    pm.response.to.have.header(\"Accept-Ranges\", \"bytes\");",
+							"    pm.response.to.have.header(\"Content-Type\", \"application/json;charset=UTF-8\");",
+							"});",
+							"",
+							"pm.test(\"Body matches string\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"Men's 3D Wordmark Long Sleeve Tee\");",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "host",
+						"value": "shop.tesla.com"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json, text/plain, */*"
+					},
+					{
+						"key": "sec-ch-ua",
+						"value": "\"Google Chrome\";v=\"129\", \"Not=A?Brand\";v=\"8\", \"Chromium\";v=\"129\""
+					},
+					{
+						"key": "User-Agent",
+						"value": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json;charset=UTF-8"
+					},
+					{
+						"key": "Sec-Fetch-Dest",
+						"value": "empty"
+					},
+					{
+						"key": "Sec-Fetch-Mode",
+						"value": "cors"
+					},
+					{
+						"key": "Sec-Fetch-Site",
+						"value": "same-origin"
+					},
+					{
+						"key": "sec-ch-ua-mobile",
+						"value": "?0"
+					},
+					{
+						"key": "sec-ch-ua-platform",
+						"value": "\"macOS\""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"followLocation\": true,\n    \"includeCartOrder\": false,\n    \"partNumber\": \"8764808-00-A\",\n    \"quantity\": 2\n}"
+				},
+				"url": {
+					"raw": "https://shop.tesla.com/carts/{{cartId}}/items/{{lineitemId}}/v1",
+					"protocol": "https",
+					"host": [
+						"shop",
+						"tesla",
+						"com"
+					],
+					"path": [
+						"carts",
+						"{{cartId}}",
+						"items",
+						"{{lineitemId}}",
+						"v1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete item",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 4000ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(4000);",
+							"});",
+							"",
+							"pm.test(\"Response Size is less than 4000B\", function () {",
+							"    pm.expect(pm.response.responseSize).to.be.below(4000);",
+							"});",
+							"",
+							"pm.test(\"Headers are present\", function () {",
+							"    pm.response.to.have.header(\"Connection\", \"keep-alive\");",
+							"    pm.response.to.have.header(\"Accept-Ranges\", \"bytes\");",
+							"    pm.response.to.have.header(\"Content-Type\", \"application/json;charset=UTF-8\");",
+							"});",
+							"",
+							"pm.test(\"Body keys are OK\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"amount\");",
+							"    pm.expect(pm.response.text()).to.include(\"currency\");",
+							"    pm.expect(pm.response.text()).to.include(\"displayAmount\");",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://shop.tesla.com/carts/{{cartId}}/items/{{lineitemId}}/v1?followLocation=true",
+					"protocol": "https",
+					"host": [
+						"shop",
+						"tesla",
+						"com"
+					],
+					"path": [
+						"carts",
+						"{{cartId}}",
+						"items",
+						"{{lineitemId}}",
+						"v1"
+					],
+					"query": [
+						{
+							"key": "followLocation",
+							"value": "true"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Check cart",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Response time is less than 4000ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(4000);",
+							"});",
+							"",
+							"pm.test(\"Response Size is less than 4000B\", function () {",
+							"    pm.expect(pm.response.responseSize).to.be.below(4000);",
+							"});",
+							"",
+							"pm.test(\"Headers are present\", function () {",
+							"    pm.response.to.have.header(\"Connection\", \"keep-alive\");",
+							"    pm.response.to.have.header(\"Accept-Ranges\", \"bytes\");",
+							"    pm.response.to.have.header(\"Content-Type\", \"application/json;charset=UTF-8\");",
+							"});",
+							"",
+							"",
+							"pm.test(\"Response status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"",
+							"pm.test(\"Response time is less than 4000ms\", function () {",
+							"  pm.expect(pm.response.responseTime).to.be.below(4000);",
+							"});",
+							"",
+							"",
+							"pm.test(\"Verify the schema of the response\", function () {",
+							"    const responseData = pm.response.json();",
+							"    ",
+							"    pm.expect(responseData).to.have.property('cartItemModelList').that.is.an('array');",
+							"    pm.expect(responseData).to.have.property('cartTotal').that.is.an('object');",
+							"    pm.expect(responseData).to.have.property('cartTotalWithoutTax').that.is.an('object');",
+							"    pm.expect(responseData).to.have.property('totalQuantity').that.is.a('number');",
+							"    pm.expect(responseData).to.have.property('cartId').that.is.a('string');",
+							"    pm.expect(responseData).to.have.property('orderId').that.is.a('string');",
+							"    pm.expect(responseData).to.have.property('shippingRequired').that.is.a('boolean');",
+							"    pm.expect(responseData).to.have.property('serviceCenterRequired').that.is.a('boolean');",
+							"    pm.expect(responseData).to.have.property('extServiceCenterRequired').that.is.a('boolean');",
+							"    pm.expect(responseData).to.have.property('dogeProductIncluded').that.is.a('boolean');",
+							"    pm.expect(responseData).to.have.property('updateCartNeeded').that.is.a('boolean');",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://shop.tesla.com/carts.json",
+					"protocol": "https",
+					"host": [
+						"shop",
+						"tesla",
+						"com"
+					],
+					"path": [
+						"carts.json"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "cartId",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "lineitemId",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
