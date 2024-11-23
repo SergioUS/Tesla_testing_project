@@ -49,10 +49,16 @@ _[Anastasia Butusova](https://www.linkedin.com/in/bu2soffa/)_
 _[Julia Delmar](https://www.linkedin.com/in/julia-delmar/)_
 
 <code><img width="1%" src="https://github.com/user-attachments/assets/d8634330-234a-4e0e-b163-b8859a1b66bf"></code>
+_[Nazira Ibragimova](https://www.linkedin.com/in/naziraibragimova/)_
+
+<code><img width="1%" src="https://github.com/user-attachments/assets/d8634330-234a-4e0e-b163-b8859a1b66bf"></code>
 _[Vasyl Lysyy](https://www.linkedin.com/in/vasyl-lysyy/)_
 
 <code><img width="1%" src="https://github.com/user-attachments/assets/d8634330-234a-4e0e-b163-b8859a1b66bf"></code>
 _[Karina Novikova](https://www.linkedin.com/in/karina-novikova-01157b31b/)_
+
+<code><img width="1%" src="https://github.com/user-attachments/assets/d8634330-234a-4e0e-b163-b8859a1b66bf"></code>
+_[Roman Pocinoc ](https://linkedin.com/in/roman-pocinoc)_
 
 <code><img width="1%" src="https://github.com/user-attachments/assets/d8634330-234a-4e0e-b163-b8859a1b66bf"></code>
 _[Ivan Ponomarev](https://linkedin.com/in/ivan-ponomarev-qa)_
@@ -64,13 +70,13 @@ _[Vinera Rakhmatullina](https://www.linkedin.com/in/vinera-r/)_
 _[Almaz Rakhmatullin](https://www.linkedin.com/in/almaz-r/)_
 
 <code><img width="1%" src="https://github.com/user-attachments/assets/d8634330-234a-4e0e-b163-b8859a1b66bf"></code>
+_[Olga Savelyeva](https://www.linkedin.com/in/olga-savelyevaowen/)_
+
+<code><img width="1%" src="https://github.com/user-attachments/assets/d8634330-234a-4e0e-b163-b8859a1b66bf"></code>
 _[Natalia Skubii](https://www.linkedin.com/in/natalia-skubii)_
 
 <code><img width="1%" src="https://github.com/user-attachments/assets/d8634330-234a-4e0e-b163-b8859a1b66bf"></code>
 _[Elena Zagainova](https://www.linkedin.com/in/elena-zagainova/)_
-
-<code><img width="1%" src="https://github.com/user-attachments/assets/d8634330-234a-4e0e-b163-b8859a1b66bf"></code>
-_[Olga Savelyeva](https://www.linkedin.com/in/olga-savelyevaowen/)_
 
 <code><img width="1%" src="https://github.com/user-attachments/assets/d8634330-234a-4e0e-b163-b8859a1b66bf"></code>
 _[Ludmila Zmeu](https://www.linkedin.com/in/ludmila-zmeu/)_
