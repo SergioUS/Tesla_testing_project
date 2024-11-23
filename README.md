@@ -70,6 +70,9 @@ _[Natalia Skubii](https://www.linkedin.com/in/natalia-skubii)_
 _[Elena Zagainova](https://www.linkedin.com/in/elena-zagainova/)_
 
 <code><img width="1%" src="https://github.com/user-attachments/assets/d8634330-234a-4e0e-b163-b8859a1b66bf"></code>
+_[Olga Savelyeva](https://www.linkedin.com/in/olga-savelyevaowen/)_
+
+<code><img width="1%" src="https://github.com/user-attachments/assets/d8634330-234a-4e0e-b163-b8859a1b66bf"></code>
 _[Ludmila Zmeu](https://www.linkedin.com/in/ludmila-zmeu/)_
 
 
