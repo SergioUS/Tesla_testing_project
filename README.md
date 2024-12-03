@@ -46,6 +46,9 @@ _[Ilhom Artykov](https://www.linkedin.com/in/ilhom-artykov/)_
 _[Anastasia Butusova](https://www.linkedin.com/in/bu2soffa/)_
 
 <code><img width="1%" src="https://github.com/user-attachments/assets/d8634330-234a-4e0e-b163-b8859a1b66bf"></code>
+_[Aleksandr Buyanovski](https://www.linkedin.com/in/aleksandr-buyanovski/)_
+
+<code><img width="1%" src="https://github.com/user-attachments/assets/d8634330-234a-4e0e-b163-b8859a1b66bf"></code>
 _[Julia Delmar](https://www.linkedin.com/in/julia-delmar/)_
 
 <code><img width="1%" src="https://github.com/user-attachments/assets/d8634330-234a-4e0e-b163-b8859a1b66bf"></code>
