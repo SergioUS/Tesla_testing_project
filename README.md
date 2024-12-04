@@ -49,6 +49,9 @@ _[Anastasia Butusova](https://www.linkedin.com/in/bu2soffa/)_
 _[Julia Delmar](https://www.linkedin.com/in/julia-delmar/)_
 
 <code><img width="1%" src="https://github.com/user-attachments/assets/d8634330-234a-4e0e-b163-b8859a1b66bf"></code>
+_[Victor Kalininskiy](https://www.linkedin.com/in/victorkalinsk/)_
+
+<code><img width="1%" src="https://github.com/user-attachments/assets/d8634330-234a-4e0e-b163-b8859a1b66bf"></code>
 _[Vasyl Lysyy](https://www.linkedin.com/in/vasyl-lysyy/)_
 
 <code><img width="1%" src="https://github.com/user-attachments/assets/d8634330-234a-4e0e-b163-b8859a1b66bf"></code>
