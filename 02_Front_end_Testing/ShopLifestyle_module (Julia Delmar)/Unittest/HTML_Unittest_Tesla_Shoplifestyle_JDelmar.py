@@ -444,8 +444,10 @@ class FirefoxPositiveSearch(unittest.TestCase):
         time.sleep(1)
 
         # Verify correct URL
+        from urllib.parse import urlparse
         try:
-            assert "https://shop.tesla.com/" in driver.current_url
+            parsed_url = urlparse(driver.current_url)
+            assert parsed_url.hostname == "shop.tesla.com"
             print("URL is OK")
         except AssertionError:
             print("URL is wrong, current URL: ", driver.current_url)
