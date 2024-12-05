@@ -49,7 +49,9 @@ class ChromeSearch(unittest.TestCase):
         print("Check Tesla page URL")
 
         try:
-            assert "https://www.tesla.com/" in driver.current_url
+            from urllib.parse import urlparse
+            parsed_url = urlparse(driver.current_url)
+            assert parsed_url.hostname == "www.tesla.com"
             print("Test result: Page URL is OK: ", driver.current_url)
         except AssertionError:
             print("Test result: Page URL is different", driver.current_url)
