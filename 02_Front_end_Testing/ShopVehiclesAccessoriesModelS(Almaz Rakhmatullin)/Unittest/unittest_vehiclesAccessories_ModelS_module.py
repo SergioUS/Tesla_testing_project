@@ -799,7 +799,8 @@ class EdgeSearch(unittest.TestCase):
         print("Check Tesla page URL")
 
         try:
-            assert "https://www.tesla.com/" in driver.current_url
+            parsed_url = urllib.parse.urlparse(driver.current_url)
+            assert parsed_url.hostname == "www.tesla.com"
             print("Test result: Page URL is OK: ", driver.current_url)
         except AssertionError:
             print("Test result: Page URL is different", driver.current_url)
@@ -831,7 +832,8 @@ class EdgeSearch(unittest.TestCase):
             print("Failed to click on Vehicle Accessories")
 
         try:
-            assert "https://shop.tesla.com/category/vehicle-accessories/model-s" in driver.current_url
+            parsed_url = urllib.parse.urlparse(driver.current_url)
+            assert parsed_url.hostname == "shop.tesla.com" and parsed_url.path == "/category/vehicle-accessories/model-s"
             print("Test result: Page URL is OK: ", driver.current_url)
         except AssertionError:
             print("Test result: Page URL is different", driver.current_url)
