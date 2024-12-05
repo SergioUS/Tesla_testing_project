@@ -22,6 +22,7 @@ from helpers import (loc_shop, loc_modelS, loc_good1, loc_plus_quantity,
                      loc_vehicle_acc2, amount1, amount2, loc_alert2, amount3, loc_good1_cart, loc_alert1,
                      loc_out_of_stock_text, loc_quantity, loc_good2_price)
 import HtmlTestRunner
+from urllib.parse import urlparse
 
 class ChromeSearch(unittest.TestCase):
 
@@ -423,7 +424,8 @@ class FirefoxSearch(unittest.TestCase):
         print("Check Tesla page URL")
 
         try:
-            assert "https://www.tesla.com/" in driver.current_url
+            parsed_url = urlparse(driver.current_url)
+            assert parsed_url.hostname == "www.tesla.com"
             print("Test result: Page URL is OK: ", driver.current_url)
         except AssertionError:
             print("Test result: Page URL is different", driver.current_url)
