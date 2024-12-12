@@ -55,7 +55,16 @@ _[Aleksandr Buyanovski](https://www.linkedin.com/in/aleksandr-buyanovski/)_
 _[Julia Delmar](https://www.linkedin.com/in/julia-delmar/)_
 
 <code><img width="1%" src="https://github.com/user-attachments/assets/d8634330-234a-4e0e-b163-b8859a1b66bf"></code>
+_[Nazira Ibragimova](https://www.linkedin.com/in/naziraibragimova/)_
+
+<code><img width="1%" src="https://github.com/user-attachments/assets/d8634330-234a-4e0e-b163-b8859a1b66bf"></code>
+_[Victor Kalininskiy](https://www.linkedin.com/in/victorkalinsk/)_
+
+<code><img width="1%" src="https://github.com/user-attachments/assets/d8634330-234a-4e0e-b163-b8859a1b66bf"></code>
 _[Daniil Kostiuk](www.linkedin.com/in/daniil-k-077820309)_
+
+<code><img width="1%" src="https://github.com/user-attachments/assets/d8634330-234a-4e0e-b163-b8859a1b66bf"></code>
+_[Alexander Kulik](https://www.linkedin.com/in/kulik-alexander/)_
 
 <code><img width="1%" src="https://github.com/user-attachments/assets/d8634330-234a-4e0e-b163-b8859a1b66bf"></code>
 _[Vasyl Lysyy](https://www.linkedin.com/in/vasyl-lysyy/)_
@@ -87,11 +96,8 @@ _[Elena Zagainova](https://www.linkedin.com/in/elena-zagainova/)_
 <code><img width="1%" src="https://github.com/user-attachments/assets/d8634330-234a-4e0e-b163-b8859a1b66bf"></code>
 _[Ludmila Zmeu](https://www.linkedin.com/in/ludmila-zmeu/)_
 
-<code><img width="1%" src="https://github.com/user-attachments/assets/d8634330-234a-4e0e-b163-b8859a1b66bf"></code>
-_[Victor Kalininskiy](https://www.linkedin.com/in/victorkalinsk/)_
 
-<code><img width="1%" src="https://github.com/user-attachments/assets/d8634330-234a-4e0e-b163-b8859a1b66bf"></code>
-_[Nazira Ibragimova](https://www.linkedin.com/in/naziraibragimova/)_
 
-<code><img width="1%" src="https://github.com/user-attachments/assets/d8634330-234a-4e0e-b163-b8859a1b66bf"></code>
-_[Alexander Kulik](https://www.linkedin.com/in/kulik-alexander/)_
+
+
+
