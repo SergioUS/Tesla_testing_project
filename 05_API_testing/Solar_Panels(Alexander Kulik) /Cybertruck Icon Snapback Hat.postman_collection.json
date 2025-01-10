@@ -1,0 +1,333 @@
+{
+	"info": {
+		"_postman_id": "8006e54a-bbeb-4cb1-93b5-083faf9f9f27",
+		"name": "Cybertruck Icon Snapback Hat",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24859871",
+		"_collection_link": "https://speeding-firefly-607650.postman.co/workspace/Tesla-project~eace9ee2-b48f-48ff-8a68-18a2efd8330a/collection/24859871-8006e54a-bbeb-4cb1-93b5-083faf9f9f27?action=share&source=collection_link&creator=24859871"
+	},
+	"item": [
+		{
+			"name": "https://shop.tesla.com/carts.json",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Defined jsonData before using it",
+							"let jsonData = pm.response.json();",
+							"pm.environment.set(\"cartId\", jsonData.cartId);",
+							"pm.environment.set(\"lineitemId\", jsonData.cartItemModelList[0].lineitemId);",
+							"",
+							"pm.test(\"Content-Type is present\", function () {",
+							"    pm.response.to.have.header(\"Content-Type\");",
+							"});",
+							"",
+							"pm.test(\"Expires\", function () {",
+							"    pm.response.to.have.header(\"Content-Type\");",
+							"});",
+							"",
+							"pm.test(\"Content-Type is present\", function () {",
+							"    pm.response.to.have.header(\"Content-Type\");",
+							"});",
+							"pm.test(\"Verify the cartItemModelList is present in the response body\", function () {",
+							"    pm.response.to.have.jsonBody(\"cartItemModelList\");",
+							"});",
+							"pm.test(\"Verify the cartTotal is present in the response body\", function () {",
+							"    pm.response.to.have.jsonBody(\"cartTotal\");",
+							"});",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Response time is less than 4000ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(4000);",
+							"});",
+							"pm.test(\"Response size is less than 4000B\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(4000);",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "sec-ch-ua-platform",
+						"value": "\"Windows\""
+					},
+					{
+						"key": "X-Requested-With",
+						"value": "XMLHttpRequest"
+					},
+					{
+						"key": "User-Agent",
+						"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36"
+					},
+					{
+						"key": "Accept",
+						"value": "*/*"
+					},
+					{
+						"key": "sec-ch-ua",
+						"value": "\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "sec-ch-ua-mobile",
+						"value": "?0"
+					},
+					{
+						"key": "Sec-Fetch-Site",
+						"value": "same-origin"
+					},
+					{
+						"key": "Sec-Fetch-Mode",
+						"value": "cors"
+					},
+					{
+						"key": "Sec-Fetch-Dest",
+						"value": "empty"
+					},
+					{
+						"key": "host",
+						"value": "shop.tesla.com"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"followLocation\": true,\r\n    \"skuCode\": \"2122167-00-A\",\r\n    \"quantity\": 1\r\n}"
+				},
+				"url": {
+					"raw": "https://shop.tesla.com/carts.json",
+					"protocol": "https",
+					"host": [
+						"shop",
+						"tesla",
+						"com"
+					],
+					"path": [
+						"carts.json"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New Request",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Body matches string\", function () {",
+							"    pm.expect(pm.response.text()).to.include(\"0.00\");",
+							"});",
+							"pm.test(\"Content-Type is present\", function () {",
+							"    pm.response.to.have.header(\"Content-Type\");",
+							"});",
+							"pm.test(\"Response time is less than 3000ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(3000);",
+							"});",
+							"pm.test(\"Response size is less than 3000B\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(3000);",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://shop.tesla.com/carts/{{cartId}}/shippingfees/v1",
+					"protocol": "https",
+					"host": [
+						"shop",
+						"tesla",
+						"com"
+					],
+					"path": [
+						"carts",
+						"{{cartId}}",
+						"shippingfees",
+						"v1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New Request",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response time is less than 5000ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(5000);",
+							"});",
+							"",
+							"pm.test(\"Response size is less than 4000B\", function () {",
+							"    pm.expect(pm.response.responseSize).to.be.below(4000);",
+							"});",
+							"",
+							"",
+							"pm.test(\"Verify Content-Type header is present\", function () {",
+							"    pm.expect(pm.response.headers.get(\"Content-Type\")).to.exist;",
+							"});",
+							"",
+							"pm.test(\"Verify X-XSS-Protection header is present\", function () {",
+							"    pm.expect(pm.response.headers.get(\"X-XSS-Protection\")).to.exist;",
+							"});",
+							"// ",
+							"",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"pm.test(\"Verify cartTotal amount is 80\", function () {",
+							"    pm.expect(pm.response.json().cartTotal.amount).to.equal(80);",
+							"});",
+							"pm.test(\"Verify quantity in the response body is 2\", function () {",
+							"    pm.expect(pm.response.json().cartItemModelList[0].quantity).to.equal(2);",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"followLocation\": true,\r\n    \"skuCode\": \"2122167-00-A\",\r\n    \"quantity\": 2\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://shop.tesla.com/carts/{{cartId}}/items/{{lineitemId}}/v1",
+					"protocol": "https",
+					"host": [
+						"shop",
+						"tesla",
+						"com"
+					],
+					"path": [
+						"carts",
+						"{{cartId}}",
+						"items",
+						"{{lineitemId}}",
+						"v1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New Request",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let jsonData = pm.response.json();",
+							"pm.environment.set(\"cartId\", jsonData.cartId);",
+							"pm.test(\"Status code is 200 or 204\", function () {",
+							"    pm.response.to.have.status(200) || pm.response.to.have.status(204);",
+							"});",
+							"pm.test(\"Response time is less than 3000ms\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(3000);",
+							"});",
+							"pm.test(\"Response body contains success property\", function () {",
+							"    pm.expect(jsonData).to.not.have.property(\"success\");",
+							"});",
+							"pm.test(\"Response size is less than 3000B\", function () {",
+							"    pm.expect(pm.response.responseTime).to.be.below(3000);",
+							"});",
+							"",
+							"",
+							"pm.test(\"Verify response body contains cartId\", function () {",
+							"    pm.expect(jsonData).to.have.property(\"cartId\");",
+							"});",
+							"pm.test(\"Verify response body contains orderId\", function () {",
+							"    pm.expect(jsonData).to.have.property(\"orderId\");",
+							"});",
+							"",
+							"pm.test(\"Verify cartTotal amount is 0\", function () {",
+							"    pm.expect(jsonData.cartTotal.amount).to.equal(0);",
+							"});",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://shop.tesla.com/carts/{{cartId}}/items/{{lineitemId}}/v1?followLocation=true",
+					"protocol": "https",
+					"host": [
+						"shop",
+						"tesla",
+						"com"
+					],
+					"path": [
+						"carts",
+						"{{cartId}}",
+						"items",
+						"{{lineitemId}}",
+						"v1"
+					],
+					"query": [
+						{
+							"key": "followLocation",
+							"value": "true"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
