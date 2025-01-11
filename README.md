@@ -96,7 +96,8 @@ _[Elena Zagainova](https://www.linkedin.com/in/elena-zagainova/)_
 <code><img width="1%" src="https://github.com/user-attachments/assets/d8634330-234a-4e0e-b163-b8859a1b66bf"></code>
 _[Ludmila Zmeu](https://www.linkedin.com/in/ludmila-zmeu/)_
 
-
+<code><img width="1%" src="https://github.com/user-attachments/assets/d8634330-234a-4e0e-b163-b8859a1b66bf"></code>
+_[Lana Chovgan](https://www.linkedin.com/in/lana-chovgan/)_
 
 
 
