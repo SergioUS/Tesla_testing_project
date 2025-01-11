@@ -1,0 +1,795 @@
+{
+	"info": {
+		"_postman_id": "8d04a3a4-3fad-481d-9efd-f863081bd88a",
+		"name": "CyberStein",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "39347021"
+	},
+	"item": [
+		{
+			"name": "Added product to shopping cart",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let jsonData = pm.response.json();\r",
+							"pm.environment.set(\"cartId\", jsonData.cartId);\r",
+							"pm.environment.set(\"lineitemId\", jsonData.cartItemModelList[0].lineitemId);\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"if(responseCode.code === 200) {\r",
+							"    tests[\"Backend is available, response code is 200\"] = true;\r",
+							"} else if (responseCode.code === 401) {\r",
+							"    tests[\"Not authorised, Check access token or Log in\"] = false;\r",
+							"} else if (responseCode.code === 403) {\r",
+							"    tests[\"Forbiden\"] = false;\r",
+							"} else if (responseCode.code === 404) {\r",
+							"    tests[\"Not Found. Check if you made correct request\"] = false;\r",
+							"} else if (responseCode.code === 422) {\r",
+							"    tests[\"The instance is not valid\"] = false;\r",
+							"} else {\r",
+							"    tests[\"Something went wrong. Check response body\"] = false;\r",
+							"}\r",
+							"switch (responseCode.code) {\r",
+							"    case 200:\r",
+							"        tests[\"200 ok. The request has succeeded\"] = true;\r",
+							"        break;\r",
+							"    case 404:\r",
+							"        tests[\"404 Not found\"] = false;\r",
+							"        break;\r",
+							"    case 400:\r",
+							"        tests[\"400 Bad Request\"] = false;\r",
+							"        break;\r",
+							"    case 401:\r",
+							"        tests[\"401 BUnauthorized\"] = false;\r",
+							"        break;\r",
+							"    case 500:\r",
+							"        tests[\"500 Internal Server Error\"] = false;\r",
+							"        break;\r",
+							"    case 503:\r",
+							"        tests[\"503 Server unavailable\"] = false;\r",
+							"        break;\r",
+							"    case 502:\r",
+							"        tests[\"502 bad gateway\"] = false;\r",
+							"        break;\r",
+							"    case 599:\r",
+							"        tests[\"599 Network connect timeout error\"] = false;\r",
+							"        break;\r",
+							"    case 408:\r",
+							"        tests[\"408 Request is timeout\"] = false;\r",
+							"        break;\r",
+							"    default:\r",
+							"        tests[\"Sorry, we are out of\" + responseCode.code] = false;\r",
+							"};\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Response time is less than 3000ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(3000);\r",
+							"});\r",
+							"pm.test(\"Response size is less than 4000B\", function () {\r",
+							"    pm.expect(pm.response.responseSize).to.be.below(4000);\r",
+							"});\r",
+							"pm.test(\"Verify the cartItemModelList in the response body\", function () {\r",
+							"    pm.expect(jsonData.cartItemModelList).to.be.an('array').that.is.not.empty;\r",
+							"    pm.expect(jsonData.cartItemModelList[0]).to.have.property('lineitemId');\r",
+							"    pm.expect(jsonData.cartItemModelList[0]).to.have.property('cartId');\r",
+							"    pm.expect(jsonData.cartItemModelList[0]).to.have.property('imagePath');\r",
+							"    pm.expect(jsonData.cartItemModelList[0]).to.have.property('name');\r",
+							"    pm.expect(jsonData.cartItemModelList[0]).to.have.property('quantity');\r",
+							"    pm.expect(jsonData.cartItemModelList[0]).to.have.property('purchasePrice');\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Verify the quantity in the response body\", function () {\r",
+							"    pm.expect(jsonData.cartItemModelList[0].quantity).to.equal(1);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Verify the cart item purchase price amount in the response body\", function () {\r",
+							"    pm.expect(jsonData.cartItemModelList[0].purchasePrice.amount).to.equal(40);\r",
+							"});\r",
+							"pm.test(\"Content-Type is present\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"    pm.response.to.have.header(\"Vary\");\r",
+							"    pm.response.to.have.header(\"Content-Language\");\r",
+							"});\r",
+							"pm.test(\"Verify Cache-Control header is present\", function () {\r",
+							"    pm.response.to.have.header(\"Cache-Control\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Verify Expires header is present\", function () {\r",
+							"    pm.response.to.have.header(\"Expires\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Verify X-XSS-Protection header is present\", function () {\r",
+							"    pm.response.to.have.header(\"X-XSS-Protection\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Verify Strict-Transport-Security header is present\", function () {\r",
+							"    pm.response.to.have.header(\"Strict-Transport-Security\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "sec-ch-ua-platform",
+						"value": "\"Windows\""
+					},
+					{
+						"key": "X-Requested-With",
+						"value": "XMLHttpRequest"
+					},
+					{
+						"key": "User-Agent",
+						"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36"
+					},
+					{
+						"key": "Accept",
+						"value": "*/*"
+					},
+					{
+						"key": "sec-ch-ua",
+						"value": "\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "sec-ch-ua-mobile",
+						"value": "?0"
+					},
+					{
+						"key": "Sec-Fetch-Site",
+						"value": "same-origin"
+					},
+					{
+						"key": "Sec-Fetch-Mode",
+						"value": "cors"
+					},
+					{
+						"key": "Sec-Fetch-Dest",
+						"value": "empty"
+					},
+					{
+						"key": "host",
+						"value": "shop.tesla.com"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"followLocation\": true,\r\n    \"skuCode\": \"1949545-00-A\",\r\n    \"quantity\": 1\r\n}"
+				},
+				"url": {
+					"raw": "https://shop.tesla.com/carts.json",
+					"protocol": "https",
+					"host": [
+						"shop",
+						"tesla",
+						"com"
+					],
+					"path": [
+						"carts.json"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Shipping fees",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"if(responseCode.code === 200) {\r",
+							"    tests[\"Backend is available, response code is 200\"] = true;\r",
+							"} else if (responseCode.code === 401) {\r",
+							"    tests[\"Not authorised, Check access token or Log in\"] = false;\r",
+							"} else if (responseCode.code === 403) {\r",
+							"    tests[\"Forbiden\"] = false;\r",
+							"} else if (responseCode.code === 404) {\r",
+							"    tests[\"Not Found. Check if you made correct request\"] = false;\r",
+							"} else if (responseCode.code === 422) {\r",
+							"    tests[\"The instance is not valid\"] = false;\r",
+							"} else {\r",
+							"    tests[\"Something went wrong. Check response body\"] = false;\r",
+							"}\r",
+							"pm.test(\"Response time is less than 3000ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(3000);\r",
+							"});\r",
+							"pm.test(\"Response size is less than 4000B\", function () {\r",
+							"    pm.expect(pm.response.responseSize).to.be.below(4000);\r",
+							"});\r",
+							"pm.test(\"Content-Type is present\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"    pm.response.to.have.header(\"Vary\");\r",
+							"    pm.response.to.have.header(\"Content-Language\");\r",
+							"});\r",
+							"pm.test(\"Response Header is present and correct\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Encoding\", \"gzip\");\r",
+							"    pm.response.to.have.header(\"Accept-Ranges\", \"bytes\");\r",
+							"    pm.response.to.have.header(\"X-Content-Type-Options\", \"nosniff\");\r",
+							"});\r",
+							"pm.test(\"Verify Cache-Control header is present\", function () {\r",
+							"    pm.response.to.have.header(\"Cache-Control\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Verify Expires header is present\", function () {\r",
+							"    pm.response.to.have.header(\"Expires\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Verify X-XSS-Protection header is present\", function () {\r",
+							"    pm.response.to.have.header(\"X-XSS-Protection\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Verify Strict-Transport-Security header is present\", function () {\r",
+							"    pm.response.to.have.header(\"Strict-Transport-Security\");\r",
+							"});\r",
+							"pm.test(\"Content-Type header is present\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Cache-Control header is present\", function () {\r",
+							"    pm.response.to.have.header(\"Cache-Control\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Expires header is present\", function () {\r",
+							"    pm.response.to.have.header(\"Expires\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"X-XSS-Protection header is present\", function () {\r",
+							"    pm.response.to.have.header(\"X-XSS-Protection\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Strict-Transport-Security header is present\", function () {\r",
+							"    pm.response.to.have.header(\"Strict-Transport-Security\");\r",
+							"});\r",
+							"pm.test(\"Verify the structure of the response body\", function () {\r",
+							"    pm.response.to.have.jsonBody('shippingCost');\r",
+							"    pm.response.to.have.jsonBody('shippingCost.amount');\r",
+							"    pm.response.to.have.jsonBody('shippingCost.displayAmount');\r",
+							"    pm.response.to.have.jsonBody('shippingCost.currency');\r",
+							"});\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "sec-ch-ua-platform",
+						"value": "\"Windows\""
+					},
+					{
+						"key": "User-Agent",
+						"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json, text/plain, */*"
+					},
+					{
+						"key": "sec-ch-ua",
+						"value": "\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\""
+					},
+					{
+						"key": "sec-ch-ua-mobile",
+						"value": "?0"
+					},
+					{
+						"key": "Sec-Fetch-Site",
+						"value": "same-origin"
+					},
+					{
+						"key": "Sec-Fetch-Mode",
+						"value": "cors"
+					},
+					{
+						"key": "Sec-Fetch-Dest",
+						"value": "empty"
+					},
+					{
+						"key": "host",
+						"value": "shop.tesla.com"
+					}
+				],
+				"url": {
+					"raw": "https://shop.tesla.com/carts/{{cartId}}/shippingfees/v1",
+					"protocol": "https",
+					"host": [
+						"shop",
+						"tesla",
+						"com"
+					],
+					"path": [
+						"carts",
+						"{{cartId}}",
+						"shippingfees",
+						"v1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Quantity changed",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"if(responseCode.code === 200) {\r",
+							"    tests[\"Backend is available, response code is 200\"] = true;\r",
+							"} else if (responseCode.code === 401) {\r",
+							"    tests[\"Not authorised, Check access token or Log in\"] = false;\r",
+							"} else if (responseCode.code === 403) {\r",
+							"    tests[\"Forbiden\"] = false;\r",
+							"} else if (responseCode.code === 404) {\r",
+							"    tests[\"Not Found. Check if you made correct request\"] = false;\r",
+							"} else if (responseCode.code === 422) {\r",
+							"    tests[\"The instance is not valid\"] = false;\r",
+							"} else {\r",
+							"    tests[\"Something went wrong. Check response body\"] = false;\r",
+							"}\r",
+							"switch (responseCode.code) {\r",
+							"    case 200:\r",
+							"        tests[\"200 ok. The request has succeeded\"] = true;\r",
+							"        break;\r",
+							"    case 404:\r",
+							"        tests[\"404 Not found\"] = false;\r",
+							"        break;\r",
+							"    case 400:\r",
+							"        tests[\"400 Bad Request\"] = false;\r",
+							"        break;\r",
+							"    case 401:\r",
+							"        tests[\"401 BUnauthorized\"] = false;\r",
+							"        break;\r",
+							"    case 500:\r",
+							"        tests[\"500 Internal Server Error\"] = false;\r",
+							"        break;\r",
+							"    case 503:\r",
+							"        tests[\"503 Server unavailable\"] = false;\r",
+							"        break;\r",
+							"    case 502:\r",
+							"        tests[\"502 bad gateway\"] = false;\r",
+							"        break;\r",
+							"    case 599:\r",
+							"        tests[\"599 Network connect timeout error\"] = false;\r",
+							"        break;\r",
+							"    case 408:\r",
+							"        tests[\"408 Request is timeout\"] = false;\r",
+							"        break;\r",
+							"    default:\r",
+							"        tests[\"Sorry, we are out of\" + responseCode.code] = false;\r",
+							"};\r",
+							"pm.test(\"Response time is less than 2000ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+							"});\r",
+							"pm.test(\"Response size is less than 3000B\", function () {\r",
+							"    pm.expect(pm.response.responseSize).to.be.below(3000);\r",
+							"});\r",
+							"pm.test(\"Verify the structure of the response body\", function () {\r",
+							"    pm.response.to.have.jsonBody('cartItemModelList');\r",
+							"    pm.response.to.have.jsonBody('cartTotal');\r",
+							"    pm.response.to.have.jsonBody('totalQuantity');\r",
+							"    pm.response.to.have.jsonBody('cartId');\r",
+							"    pm.response.to.have.jsonBody('orderId');\r",
+							"    pm.response.to.have.jsonBody('shippingRequired');\r",
+							"});\r",
+							"pm.test(\"Total quantity is as expected\", function () {\r",
+							"    pm.expect(pm.response.json().totalQuantity).to.eql(2);\r",
+							"});\r",
+							"pm.test(\"Amount is as expected\", function () {\r",
+							"    pm.expect(pm.response.json().cartTotal.amount).to.eql(80);\r",
+							"});\r",
+							"pm.test(\"Currency is as expected\", function () {\r",
+							"    pm.expect(pm.response.json().cartTotal.currency).to.eql(\"USD\");\r",
+							"});\r",
+							"pm.test(\"Content-Type header is present\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Cache-Control header is present\", function () {\r",
+							"    pm.response.to.have.header(\"Cache-Control\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Expires header is present\", function () {\r",
+							"    pm.response.to.have.header(\"Expires\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"X-XSS-Protection header is present\", function () {\r",
+							"    pm.response.to.have.header(\"X-XSS-Protection\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Strict-Transport-Security header is present\", function () {\r",
+							"    pm.response.to.have.header(\"Strict-Transport-Security\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Vary header is present\", function () {\r",
+							"    pm.response.to.have.header(\"Vary\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Content-Language header is present\", function () {\r",
+							"    pm.response.to.have.header(\"Content-Language\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"X-TZLA-EDGE-HOSTNAME-VCL header is present\", function () {\r",
+							"    pm.response.to.have.header(\"X-TZLA-EDGE-HOSTNAME-VCL\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"X-TZLA-EDGE-BACKEND-FETCH-IF-STALE header is present\", function () {\r",
+							"    pm.response.to.have.header(\"X-TZLA-EDGE-BACKEND-FETCH-IF-STALE\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"X-TZLA-EDGE-WAS-304 header is present\", function () {\r",
+							"    pm.response.to.have.header(\"X-TZLA-EDGE-WAS-304\");\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "sec-ch-ua-platform",
+						"value": "\"Windows\""
+					},
+					{
+						"key": "User-Agent",
+						"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json, text/plain, */*"
+					},
+					{
+						"key": "sec-ch-ua",
+						"value": "\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json;charset=UTF-8"
+					},
+					{
+						"key": "sec-ch-ua-mobile",
+						"value": "?0"
+					},
+					{
+						"key": "Sec-Fetch-Site",
+						"value": "same-origin"
+					},
+					{
+						"key": "Sec-Fetch-Mode",
+						"value": "cors"
+					},
+					{
+						"key": "Sec-Fetch-Dest",
+						"value": "empty"
+					},
+					{
+						"key": "host",
+						"value": "shop.tesla.com"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"followLocation\":true,\"includeCartOrder\":false,\"partNumber\":\"1949545-00-A\",\"quantity\":2}"
+				},
+				"url": {
+					"raw": "https://shop.tesla.com/carts/{{cartId}}/items/{{lineitemId}}/v1",
+					"protocol": "https",
+					"host": [
+						"shop",
+						"tesla",
+						"com"
+					],
+					"path": [
+						"carts",
+						"{{cartId}}",
+						"items",
+						"{{lineitemId}}",
+						"v1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Product deleted",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"if(responseCode.code === 200) {\r",
+							"    tests[\"Backend is available, response code is 200\"] = true;\r",
+							"} else if (responseCode.code === 401) {\r",
+							"    tests[\"Not authorised, Check access token or Log in\"] = false;\r",
+							"} else if (responseCode.code === 403) {\r",
+							"    tests[\"Forbiden\"] = false;\r",
+							"} else if (responseCode.code === 404) {\r",
+							"    tests[\"Not Found. Check if you made correct request\"] = false;\r",
+							"} else if (responseCode.code === 422) {\r",
+							"    tests[\"The instance is not valid\"] = false;\r",
+							"} else {\r",
+							"    tests[\"Something went wrong. Check response body\"] = false;\r",
+							"}\r",
+							"switch (responseCode.code) {\r",
+							"    case 200:\r",
+							"        tests[\"200 ok. The request has succeeded\"] = true;\r",
+							"        break;\r",
+							"    case 404:\r",
+							"        tests[\"404 Not found\"] = false;\r",
+							"        break;\r",
+							"    case 400:\r",
+							"        tests[\"400 Bad Request\"] = false;\r",
+							"        break;\r",
+							"    case 401:\r",
+							"        tests[\"401 BUnauthorized\"] = false;\r",
+							"        break;\r",
+							"    case 500:\r",
+							"        tests[\"500 Internal Server Error\"] = false;\r",
+							"        break;\r",
+							"    case 503:\r",
+							"        tests[\"503 Server unavailable\"] = false;\r",
+							"        break;\r",
+							"    case 502:\r",
+							"        tests[\"502 bad gateway\"] = false;\r",
+							"        break;\r",
+							"    case 599:\r",
+							"        tests[\"599 Network connect timeout error\"] = false;\r",
+							"        break;\r",
+							"    case 408:\r",
+							"        tests[\"408 Request is timeout\"] = false;\r",
+							"        break;\r",
+							"    default:\r",
+							"        tests[\"Sorry, we are out of\" + responseCode.code] = false;\r",
+							"};\r",
+							"pm.test(\"Response time is less than 3000ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(3000);\r",
+							"});\r",
+							"pm.test(\"Response size is less than 4000B\", function () {\r",
+							"    pm.expect(pm.response.responseSize).to.be.below(4000);\r",
+							"});\r",
+							"// Test to check if the response body contains the expected fields\r",
+							"pm.test(\"Verify the response body fields\", function () {\r",
+							"    pm.expect(pm.response.json()).to.have.keys(\r",
+							"        \"cartItemModelList\",\r",
+							"        \"cartTotal\",\r",
+							"        \"cartTotalWithoutTax\",\r",
+							"        \"totalQuantity\",\r",
+							"        \"cartId\",\r",
+							"        \"orderId\",\r",
+							"        \"invoiceModel\",\r",
+							"        \"orderTotal\",\r",
+							"        \"orderTax\",\r",
+							"        \"orderShippingCost\",\r",
+							"        \"shippingRequired\",\r",
+							"        \"serviceCenterRequired\",\r",
+							"        \"extServiceCenterRequired\",\r",
+							"        \"promotionsDetails\",\r",
+							"        \"selectedShippingOption\",\r",
+							"        \"availableShippingOption\",\r",
+							"        \"messages\",\r",
+							"        \"subTotal\",\r",
+							"        \"subTotalWithoutDiscount\",\r",
+							"        \"totalOrderDiscount\",\r",
+							"        \"dogeProductIncluded\",\r",
+							"        \"updateCartNeeded\"\r",
+							"    );\r",
+							"});\r",
+							"// Test to check if the response body contains the expected amount and currency\r",
+							"pm.test(\"Verify the amount and currency in the response body\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.cartTotal.amount).to.equal(0);\r",
+							"    pm.expect(jsonData.cartTotal.currency).to.equal(\"USD\");\r",
+							"    pm.expect(jsonData.cartTotalWithoutTax.amount).to.equal(0);\r",
+							"    pm.expect(jsonData.cartTotalWithoutTax.currency).to.equal(\"USD\");\r",
+							"});\r",
+							"// Test to check if the response headers contain the expected header fields\r",
+							"pm.test(\"Verify the response headers\", function () {\r",
+							"    pm.expect(pm.response.headers.has(\"Content-Type\")).to.be.true;\r",
+							"    pm.expect(pm.response.headers.has(\"Cache-Control\")).to.be.true;\r",
+							"    pm.expect(pm.response.headers.has(\"Expires\")).to.be.true;\r",
+							"    pm.expect(pm.response.headers.has(\"X-XSS-Protection\")).to.be.true;\r",
+							"    pm.expect(pm.response.headers.has(\"Strict-Transport-Security\")).to.be.true;\r",
+							"    pm.expect(pm.response.headers.has(\"Vary\")).to.be.true;\r",
+							"    pm.expect(pm.response.headers.has(\"Content-Language\")).to.be.true;\r",
+							"    pm.expect(pm.response.headers.has(\"X-TZLA-EDGE-HOSTNAME-VCL\")).to.be.true;\r",
+							"    pm.expect(pm.response.headers.has(\"X-TZLA-EDGE-BACKEND-FETCH-IF-STALE\")).to.be.true;\r",
+							"    pm.expect(pm.response.headers.has(\"X-TZLA-EDGE-WAS-304\")).to.be.true;\r",
+							"    pm.expect(pm.response.headers.has(\"X-TZLA-EDGE-Age\")).to.be.true;\r",
+							"    pm.expect(pm.response.headers.has(\"X-TZLA-EDGE-Grace\")).to.be.true;\r",
+							"    pm.expect(pm.response.headers.has(\"X-TZLA-EDGE-BACKEND-RETRY\")).to.be.true;\r",
+							"    pm.expect(pm.response.headers.has(\"X-TZLA-EDGE-BACKEND-CONN-TIME\")).to.be.true;\r",
+							"    pm.expect(pm.response.headers.has(\"X-TZLA-EDGE-BACKEND-TTFB\")).to.be.true;\r",
+							"    pm.expect(pm.response.headers.has(\"X-TZLA-EDGE-BACKEND-REASON\")).to.be.true;\r",
+							"    pm.expect(pm.response.headers.has(\"X-TZLA-EDGE-BACKEND-STATUS\")).to.be.true;\r",
+							"    pm.expect(pm.response.headers.has(\"X-Varnish\")).to.be.true;\r",
+							"    pm.expect(pm.response.headers.has(\"X-Frame-Options\")).to.be.true;\r",
+							"    pm.expect(pm.response.headers.has(\"X-Content-Type-Options\")).to.be.true;\r",
+							"    pm.expect(pm.response.headers.has(\"X-TZLA-EDGE-Cache-Hit\")).to.be.true;\r",
+							"    pm.expect(pm.response.headers.has(\"X-TZLA-EDGE-TTL\")).to.be.true;\r",
+							"    pm.expect(pm.response.headers.has(\"X-TZLA-EDGE-GRACE-BACKEND-UNHEALTHY\")).to.be.true;\r",
+							"    pm.expect(pm.response.headers.has(\"X-TZLA-EDGE-BACKEND-STREAM\")).to.be.true;\r",
+							"    pm.expect(pm.response.headers.has(\"X-TZLA-EDGE-CLIENT-RESTARTS\")).to.be.true;\r",
+							"    pm.expect(pm.response.headers.has(\"X-TZLA-EDGE-CLIENT-REQ-TTL\")).to.be.true;\r",
+							"    pm.expect(pm.response.headers.has(\"X-TZLA-EDGE-Server\")).to.be.true;\r",
+							"    pm.expect(pm.response.headers.has(\"X-TZLA-EDGE-Cache-Hits\")).to.be.true;\r",
+							"    pm.expect(pm.response.headers.has(\"Accept-Ranges\")).to.be.true;\r",
+							"    pm.expect(pm.response.headers.has(\"Content-Encoding\")).to.be.true;\r",
+							"    pm.expect(pm.response.headers.has(\"Date\")).to.be.true;\r",
+							"    pm.expect(pm.response.headers.has(\"Content-Length\")).to.be.true;\r",
+							"    pm.expect(pm.response.headers.has(\"Connection\")).to.be.true;\r",
+							"    pm.expect(pm.response.headers.has(\"Set-Cookie\")).to.be.true;\r",
+							"    pm.expect(pm.response.headers.has(\"Permissions-Policy\")).to.be.true;\r",
+							"});\r",
+							"// Test to check if the response headers contain the expected header fields\r",
+							"pm.test(\"Verify the response headers\", function () {\r",
+							"    var expectedHeaders = [\r",
+							"        \"Content-Type\",\r",
+							"        \"Cache-Control\",\r",
+							"        \"Expires\",\r",
+							"        \"X-XSS-Protection\",\r",
+							"        \"Strict-Transport-Security\",\r",
+							"        \"Vary\",\r",
+							"        \"Content-Language\",\r",
+							"        \"X-TZLA-EDGE-HOSTNAME-VCL\",\r",
+							"        \"X-TZLA-EDGE-BACKEND-FETCH-IF-STALE\",\r",
+							"        \"X-TZLA-EDGE-WAS-304\",\r",
+							"        \"X-TZLA-EDGE-Age\",\r",
+							"        \"X-TZLA-EDGE-Grace\",\r",
+							"        \"X-TZLA-EDGE-BACKEND-RETRY\",\r",
+							"        \"X-TZLA-EDGE-BACKEND-CONN-TIME\",\r",
+							"        \"X-TZLA-EDGE-BACKEND-TTFB\",\r",
+							"        \"X-TZLA-EDGE-BACKEND-REASON\",\r",
+							"        \"X-TZLA-EDGE-BACKEND-STATUS\",\r",
+							"        \"X-Varnish\",\r",
+							"        \"X-Frame-Options\",\r",
+							"        \"X-Content-Type-Options\",\r",
+							"        \"X-TZLA-EDGE-Cache-Hit\",\r",
+							"        \"X-TZLA-EDGE-TTL\",\r",
+							"        \"X-TZLA-EDGE-GRACE-BACKEND-UNHEALTHY\",\r",
+							"        \"X-TZLA-EDGE-BACKEND-STREAM\",\r",
+							"        \"X-TZLA-EDGE-CLIENT-RESTARTS\",\r",
+							"        \"X-TZLA-EDGE-CLIENT-REQ-TTL\",\r",
+							"        \"X-TZLA-EDGE-Server\",\r",
+							"        \"X-TZLA-EDGE-Cache-Hits\",\r",
+							"        \"Accept-Ranges\",\r",
+							"        \"Content-Encoding\",\r",
+							"        \"Date\",\r",
+							"        \"Content-Length\",\r",
+							"        \"Connection\",\r",
+							"        \"Set-Cookie\",\r",
+							"        \"Permissions-Policy\"\r",
+							"    ];\r",
+							"\r",
+							"    expectedHeaders.forEach(function(header) {\r",
+							"        pm.expect(pm.response.headers.has(header)).to.be.true;\r",
+							"    });\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "sec-ch-ua-platform",
+						"value": "\"Windows\""
+					},
+					{
+						"key": "User-Agent",
+						"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json, text/plain, */*"
+					},
+					{
+						"key": "sec-ch-ua",
+						"value": "\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\""
+					},
+					{
+						"key": "sec-ch-ua-mobile",
+						"value": "?0"
+					},
+					{
+						"key": "Sec-Fetch-Site",
+						"value": "same-origin"
+					},
+					{
+						"key": "Sec-Fetch-Mode",
+						"value": "cors"
+					},
+					{
+						"key": "Sec-Fetch-Dest",
+						"value": "empty"
+					},
+					{
+						"key": "host",
+						"value": "shop.tesla.com"
+					}
+				],
+				"url": {
+					"raw": "https://shop.tesla.com/carts/{{cartId}}/items/{{lineitemId}}/v1?followLocation=true",
+					"protocol": "https",
+					"host": [
+						"shop",
+						"tesla",
+						"com"
+					],
+					"path": [
+						"carts",
+						"{{cartId}}",
+						"items",
+						"{{lineitemId}}",
+						"v1"
+					],
+					"query": [
+						{
+							"key": "followLocation",
+							"value": "true"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
