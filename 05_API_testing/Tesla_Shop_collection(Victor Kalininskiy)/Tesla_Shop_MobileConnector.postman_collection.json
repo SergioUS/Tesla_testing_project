@@ -1,0 +1,543 @@
+{
+	"info": {
+		"_postman_id": "c26fc27a-db2d-46c6-9af1-0f176c2cd697",
+		"name": "Tesla_Shop_MobileConnector",
+		"description": "# 🚀 Get started here\n\nThis template guides you through CRUD operations (GET, POST, PUT, DELETE), variables, and tests.\n\n## 🔖 **How to use this template**\n\n#### **Step 1: Send requests**\n\nRESTful APIs allow you to perform CRUD operations using the POST, GET, PUT, and DELETE HTTP methods.\n\nThis collection contains each of these [request](https://learning.postman.com/docs/sending-requests/requests/) types. Open each request and click \"Send\" to see what happens.\n\n#### **Step 2: View responses**\n\nObserve the response tab for status code (200 OK), response time, and size.\n\n#### **Step 3: Send new Body data**\n\nUpdate or add new data in \"Body\" in the POST request. Typically, Body data is also used in PUT request.\n\n```\n{\n    \"name\": \"Add your name in the body\"\n}\n\n ```\n\n#### **Step 4: Update the variable**\n\nVariables enable you to store and reuse values in Postman. We have created a [variable](https://learning.postman.com/docs/sending-requests/variables/) called `base_url` with the sample request [https://postman-api-learner.glitch.me](https://postman-api-learner.glitch.me). Replace it with your API endpoint to customize this collection.\n\n#### **Step 5: Add tests in the \"Scripts\" tab**\n\nAdding tests to your requests can help you confirm that your API is working as expected. You can write test scripts in JavaScript and view the output in the \"Test Results\" tab.\n\n<img src=\"https://content.pstmn.io/fa30ea0a-373d-4545-a668-e7b283cca343/aW1hZ2UucG5n\" alt=\"\" height=\"1530\" width=\"2162\">\n\n## 💪 Pro tips\n\n- Use folders to group related requests and organize the collection.\n    \n- Add more [scripts](https://learning.postman.com/docs/writing-scripts/intro-to-scripts/) to verify if the API works as expected and execute workflows.\n    \n\n## 💡Related templates\n\n[API testing basics](https://go.postman.co/redirect/workspace?type=personal&collectionTemplateId=e9a37a28-055b-49cd-8c7e-97494a21eb54&sourceTemplateId=ddb19591-3097-41cf-82af-c84273e56719)  \n[API documentation](https://go.postman.co/redirect/workspace?type=personal&collectionTemplateId=e9c28f47-1253-44af-a2f3-20dce4da1f18&sourceTemplateId=ddb19591-3097-41cf-82af-c84273e56719)  \n[Authorization methods](https://go.postman.co/redirect/workspace?type=personal&collectionTemplateId=31a9a6ed-4cdf-4ced-984c-d12c9aec1c27&sourceTemplateId=ddb19591-3097-41cf-82af-c84273e56719)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19100079"
+	},
+	"item": [
+		{
+			"name": "https://shop.tesla.com/en_ca/carts.json",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let jsonData = pm.response.json();\r",
+							"pm.environment.set(\"cartId\", jsonData.cartId);\r",
+							"pm.environment.set(\"lineitemId\", jsonData.cartItemModelList[0].lineitemId);\r",
+							"\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Response time is less than 2000ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Response size is less than 4 KB\", function () {\r",
+							"    pm.expect(pm.response.responseSize).to.be.below(4000);\r",
+							"});\r",
+							"\r",
+							" pm.test(\"Verify seven response Headers are present \", () => {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"    pm.response.to.have.header(\"Content-Language\");\r",
+							"    pm.response.to.have.header(\"Accept-Ranges\");\r",
+							"    pm.response.to.have.header(\"Content-Encoding\");\r",
+							"    pm.response.to.have.header(\"Date\");\r",
+							"    pm.response.to.have.header(\"Content-Length\");\r",
+							"    pm.response.to.have.header(\"Connection\");\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Response body matches string 'lineitemId'\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"lineitemId\");\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Response body matches string 'cartId'\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"cartId\");\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Response body 'name' is 'Mobile Connector'\",function  () {\r",
+							"    pm.response.json().cartItemModelList.forEach(function\r",
+							"    (item) {\r",
+							"        pm.expect(item.name).to.eql('Mobile Connector');\r",
+							"    });\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Response body 'amount' in 'listPrice' is equal to 380.00\",function  () {\r",
+							"    pm.response.json().cartItemModelList.forEach(function\r",
+							"    (item) {\r",
+							"        pm.expect(item.listPrice.amount).to.eql(380.00);\r",
+							"    });\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Response body 'amount' in 'cartTotal' is  equal to 380.00\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.cartTotal.amount).to.eql(380.00);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Response body 'totalQuantity' is equal to 1\",function  () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.totalQuantity).to.eql(1);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "sec-ch-ua-platform",
+						"value": "\"Windows\""
+					},
+					{
+						"key": "X-Requested-With",
+						"value": "XMLHttpRequest"
+					},
+					{
+						"key": "User-Agent",
+						"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36"
+					},
+					{
+						"key": "Accept",
+						"value": "*/*"
+					},
+					{
+						"key": "sec-ch-ua",
+						"value": "\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "sec-ch-ua-mobile",
+						"value": "?0"
+					},
+					{
+						"key": "Sec-Fetch-Site",
+						"value": "same-origin"
+					},
+					{
+						"key": "Sec-Fetch-Mode",
+						"value": "cors"
+					},
+					{
+						"key": "Sec-Fetch-Dest",
+						"value": "empty"
+					},
+					{
+						"key": "host",
+						"value": "shop.tesla.com"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"followLocation\":true,\"skuCode\":\"1763817-00-A\",\"quantity\":1}"
+				},
+				"url": {
+					"raw": "{{base_url}}/en_ca/carts.json",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"en_ca",
+						"carts.json"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://shop.tesla.com/carts/tpjrnkrd7zuedewctztpx62sviq67uzrhmvlao5hvwuzq5276fek4wmb677sgch5lq6mm35dx7dy33f6da7tp3b6e7rjeex7dfwudmi=/shippingfees/v1/en_ca",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"//let jsonData = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Response time is less than 2000 ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Response size is less than 4 KB\", function () {\r",
+							"    pm.expect(pm.response.responseSize).to.be.below(4000);\r",
+							"});\r",
+							"\r",
+							"\r",
+							" pm.test(\"Verify seven response Headers are present \", () => {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"    pm.response.to.have.header(\"Content-Language\");\r",
+							"    pm.response.to.have.header(\"Accept-Ranges\");\r",
+							"    pm.response.to.have.header(\"Content-Encoding\");\r",
+							"    pm.response.to.have.header(\"Date\");\r",
+							"    pm.response.to.have.header(\"Content-Length\");\r",
+							"    pm.response.to.have.header(\"Connection\");\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Response body matches string 'shippingCost'\", function () {\r",
+							"    pm.expect(pm.response.text()).to.include(\"shippingCost\");\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "sec-ch-ua-platform",
+						"value": "\"Windows\""
+					},
+					{
+						"key": "User-Agent",
+						"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json, text/plain, */*"
+					},
+					{
+						"key": "sec-ch-ua",
+						"value": "\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\""
+					},
+					{
+						"key": "sec-ch-ua-mobile",
+						"value": "?0"
+					},
+					{
+						"key": "Sec-Fetch-Site",
+						"value": "same-origin"
+					},
+					{
+						"key": "Sec-Fetch-Mode",
+						"value": "cors"
+					},
+					{
+						"key": "Sec-Fetch-Dest",
+						"value": "empty"
+					},
+					{
+						"key": "host",
+						"value": "shop.tesla.com"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/carts/{{cartId}}/shippingfees/v1/en_ca",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"carts",
+						"{{cartId}}",
+						"shippingfees",
+						"v1",
+						"en_ca"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://shop.tesla.com/carts/{{cartId}}/items/{{lineItemId}}/v1/en_ca",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"\r",
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Response time is less than 2000 ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+							"});\r",
+							" \r",
+							"\r",
+							"pm.test(\"Response size is less than 4 KB\", function () {\r",
+							"    pm.expect(pm.response.responseSize).to.be.below(4000);\r",
+							"});\r",
+							"\r",
+							"\r",
+							" pm.test(\"Verify seven response Headers are present \", () => {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"    pm.response.to.have.header(\"Content-Language\");\r",
+							"    pm.response.to.have.header(\"Accept-Ranges\");\r",
+							"    pm.response.to.have.header(\"Content-Encoding\");\r",
+							"    pm.response.to.have.header(\"Date\");\r",
+							"    pm.response.to.have.header(\"Content-Length\");\r",
+							"    pm.response.to.have.header(\"Connection\");\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Response body 'name' is 'Mobile Connector'\",function  () {\r",
+							"    pm.response.json().cartItemModelList.forEach(function\r",
+							"    (item) {\r",
+							"        pm.expect(item.name).to.eql('Mobile Connector');\r",
+							"    });\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Response body 'totalQuantity' is equal to 2\",function  () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.totalQuantity).to.eql(2);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Response body 'amount' in 'listPrice' is equal to 380.00\",function  () {\r",
+							"    pm.response.json().cartItemModelList.forEach(function\r",
+							"    (item) {\r",
+							"        pm.expect(item.listPrice.amount).to.eql(380.00);\r",
+							"    });\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Response body 'amount' in 'cartTotal' is  equal to 760.00\",function  () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.cartTotal.amount).to.eql(760.00);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "sec-ch-ua-platform",
+						"value": "\"Windows\""
+					},
+					{
+						"key": "User-Agent",
+						"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json, text/plain, */*"
+					},
+					{
+						"key": "sec-ch-ua",
+						"value": "\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json;charset=UTF-8"
+					},
+					{
+						"key": "sec-ch-ua-mobile",
+						"value": "?0"
+					},
+					{
+						"key": "Sec-Fetch-Site",
+						"value": "same-origin"
+					},
+					{
+						"key": "Sec-Fetch-Mode",
+						"value": "cors"
+					},
+					{
+						"key": "Sec-Fetch-Dest",
+						"value": "empty"
+					},
+					{
+						"key": "host",
+						"value": "shop.tesla.com"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"followLocation\":true,\"includeCartOrder\":false,\"partNumber\":\"1763817-00-A\",\"quantity\":2}"
+				},
+				"url": {
+					"raw": "{{base_url}}/carts/{{cartId}}/items/{{lineitemId}}/v1/en_ca",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"carts",
+						"{{cartId}}",
+						"items",
+						"{{lineitemId}}",
+						"v1",
+						"en_ca"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "https://shop.tesla.com/carts/{{cartId}}/items/{{lineitemId}}/v1/en_ca?followLocation=true",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Response time is less than 2000 ms\", function () {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(2000);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Response size is less than 4 KB\", function () {\r",
+							"    pm.expect(pm.response.responseSize).to.be.below(4000);\r",
+							"});\r",
+							"\r",
+							"\r",
+							" pm.test(\"Verify seven response Headers are present \", () => {\r",
+							"    pm.response.to.have.header(\"Content-Type\");\r",
+							"    pm.response.to.have.header(\"Content-Language\");\r",
+							"    pm.response.to.have.header(\"Accept-Ranges\");\r",
+							"    pm.response.to.have.header(\"Content-Encoding\");\r",
+							"    pm.response.to.have.header(\"Date\");\r",
+							"    pm.response.to.have.header(\"Content-Length\");\r",
+							"    pm.response.to.have.header(\"Connection\");\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Response body 'amount' in 'cartTotal' is equal to '0.00'\", function () {\r",
+							"   pm.expect(pm.response.json().cartTotal.amount).to.eql(0.00);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"Response body 'totalQuantity' is equal to '0'\", function () {\r",
+							"    pm.expect(pm.response.json().totalQuantity).to.eql(0);\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "sec-ch-ua-platform",
+						"value": "\"Windows\""
+					},
+					{
+						"key": "User-Agent",
+						"value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json, text/plain, */*"
+					},
+					{
+						"key": "sec-ch-ua",
+						"value": "\"Google Chrome\";v=\"131\", \"Chromium\";v=\"131\", \"Not_A Brand\";v=\"24\""
+					},
+					{
+						"key": "sec-ch-ua-mobile",
+						"value": "?0"
+					},
+					{
+						"key": "Sec-Fetch-Site",
+						"value": "same-origin"
+					},
+					{
+						"key": "Sec-Fetch-Mode",
+						"value": "cors"
+					},
+					{
+						"key": "Sec-Fetch-Dest",
+						"value": "empty"
+					},
+					{
+						"key": "host",
+						"value": "shop.tesla.com"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/carts/{{cartId}}/items/{{lineitemId}}/v1/en_ca?followLocation=true",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"carts",
+						"{{cartId}}",
+						"items",
+						"{{lineitemId}}",
+						"v1",
+						"en_ca"
+					],
+					"query": [
+						{
+							"key": "followLocation",
+							"value": "true"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "id",
+			"value": "1"
+		},
+		{
+			"key": "base_url",
+			"value": "https://postman-rest-api-learner.glitch.me/"
+		}
+	]
+}
