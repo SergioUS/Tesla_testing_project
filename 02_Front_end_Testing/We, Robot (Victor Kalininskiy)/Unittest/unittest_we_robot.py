@@ -3,6 +3,7 @@ import time
 import unittest
 import random
 
+import selenium
 from webdriver_manager.firefox import GeckoDriverManager
 from selenium.webdriver.firefox.service import Service
 from selenium.webdriver.edge.service import Service as EdgeService
@@ -24,7 +25,6 @@ import HtmlTestRunner
 # randomly sleep between 1 and 2 seconds
 def delay():
     time.sleep(random.randint(1, 2))
-
 
 
 class ChromePositiveNegativeTests(unittest.TestCase):
@@ -227,11 +227,11 @@ class ChromePositiveNegativeTests(unittest.TestCase):
         # check button 'Experience Tesla' at the bottom page
         try:
             WebDriverWait(driver, 10).until(EC.presence_of_element_located(
-                (By.XPATH, "//button[contains(.,'Experience Tesla')]")))
+                (By.XPATH, "//a[contains(.,'Experience Tesla')]")))
             print("Button 'Experience Tesla' was found")
             print("Test Case #092 passed \n")
         except NoSuchElementException:
-            print("IButton 'Experience Tesla' was Not found")
+            print("Button 'Experience Tesla' was Not found")
 
         self.driver.close()
 
@@ -346,7 +346,7 @@ class ChromePositiveNegativeTests(unittest.TestCase):
         driver.execute_script("arguments[0].scrollIntoView(); ", robotaxi)
         time.sleep(2)
         # click on Robotaxi text
-        WebDriverWait(driver, 2).until(EC.element_to_be_clickable(robotaxi))
+        WebDriverWait(driver, 3).until(EC.element_to_be_clickable(robotaxi))
         robotaxi.click()
         # check Robotaxi image open
         try:
@@ -767,7 +767,7 @@ class ChromePositiveNegativeTests(unittest.TestCase):
         except Exception as e:
             print('Test #092_92 fail, error message Not appeared ZIP code field')
 
-            return None
+            #return None
 
         self.driver.close()
 
@@ -820,30 +820,22 @@ class ChromePositiveNegativeTests(unittest.TestCase):
         check_input.clear()  # Clear field
         check_input.send_keys('M5E 1E5')
 
-        try:
-            # click on Submit button
-            # driver.execute_script('arguments[0].scrollIntoView()', submitbut)
-            #driver.save_screenshot('./submitclick_chrome_093_93 -01.png')
-            submitbut = WebDriverWait(driver, 3).until(EC.element_to_be_clickable((
+        # click on Submit button
+        # driver.execute_script('arguments[0].scrollIntoView()', submitbut)
+        #driver.save_screenshot('./submitclick_chrome_093_93 -01.png')
+        submitbut = WebDriverWait(driver, 3).until(EC.element_to_be_clickable((
                     By.XPATH, "//button[contains(.,'Submit')]")))
-            print(check_input.location)
-            submitbut.click()
-            print('Submit button was clicked')
+        #print(check_input.location)
+        submitbut.click()
+        print('Submit button was clicked')
+        time.sleep(3)
 
-            # check error message
-            firstmessage = driver.find_element(By.XPATH,
-                                        "(//div[@class='tds-form-feedback-text'][text()='Required'])[1]")
-            helpers.assert_subtitles('Required', firstmessage)
-            print("Test Case #093_93 passed \n")
-            # error message screenshot
-            #driver.save_screenshot('./errormessage_testcase093_93 -02.png')
-        except Exception as e:
-            # check message data was sent
-            WebDriverWait(driver, 3).until(EC.presence_of_element_located(
-                    (By.XPATH, "//h1[contains(.,'Thank you')]")))
-            print('Test #093-93 fail, error message was Not displayed and the form was submitted')
-            #driver.save_screenshot('./errormessage_testcase093_93 -03.png')
-            return None
+        # check the form was Not sent
+        formsent = driver.find_element(By.XPATH, "//h1[contains(.,'Thank you')]")
+        if formsent.is_displayed():
+            raise Exception("The form was sent\n")
+        else:
+            print("Test 093_93 pass")
 
         self.driver.close()
 
@@ -1235,11 +1227,11 @@ class FirefoxPositiveNegativeTests(unittest.TestCase):
         # check button 'Experience Tesla' at the bottom page
         try:
             WebDriverWait(driver, 10).until(EC.presence_of_element_located(
-                (By.XPATH, "//button[contains(.,'Experience Tesla')]")))
+                (By.XPATH, "//a[contains(.,'Experience Tesla')]")))
             print("Button 'Experience Tesla' was found")
             print("Test Case #092 passed \n")
         except NoSuchElementException:
-            print("IButton 'Experience Tesla' was Not found")
+            print("Button 'Experience Tesla' was Not found")
 
         self.driver.close()
 
@@ -1355,7 +1347,7 @@ class FirefoxPositiveNegativeTests(unittest.TestCase):
         driver.execute_script("arguments[0].scrollIntoView(); ", robotaxi)
         time.sleep(2)
         # click on Robotaxi text
-        WebDriverWait(driver, 2).until(EC.element_to_be_clickable(robotaxi))
+        WebDriverWait(driver, 3).until(EC.element_to_be_clickable(robotaxi))
         robotaxi.click()
         # check Robotaxi image open
         try:
@@ -1434,10 +1426,10 @@ class FirefoxPositiveNegativeTests(unittest.TestCase):
         #print(first_input.location)
         first_input = driver.find_element(By.XPATH, "//input[@name='firstName']")
         WebDriverWait(driver, 4).until(EC.element_to_be_clickable(first_input))
-        first_input.clear()  # Clear field
         # preparation
         action = ActionChains(driver)
         action.move_to_element(first_input).perform()
+        first_input.clear()  # Clear field
         # click into
         first_input.click()
 
@@ -1846,30 +1838,24 @@ class FirefoxPositiveNegativeTests(unittest.TestCase):
         check_input.clear()  # Clear field
         check_input.send_keys('M5E 1E5')
 
-        try:
-            # click on Submit button
-            # driver.execute_script('arguments[0].scrollIntoView()', submitbut)
-            #driver.save_screenshot('./submitclick_ff_093_93 -01.png')
-            submitbut = WebDriverWait(driver, 3).until(EC.element_to_be_clickable((
-                    By.XPATH, "//button[contains(.,'Submit')]")))
-            print(check_input.location)
-            submitbut.click()
-            print('Submit button was clicked')
 
-            # check error message
-            firstmessage = driver.find_element(By.XPATH,
-                                        "(//div[@class='tds-form-feedback-text'][text()='Required'])[1]")
-            helpers.assert_subtitles('Required', firstmessage)
-            print("Test Case #093_93 passed \n")
-            # error message screenshot
-            #driver.save_screenshot('./errormessage_testcase093_93 -02.png')
-        except Exception as e:
-            # check message data was sent
-            WebDriverWait(driver, 3).until(EC.presence_of_element_located(
-                    (By.XPATH, "//h1[contains(.,'Thank you')]")))
-            print('Test #093-93 fail, error message was Not displayed and the form was submitted')
-            #driver.save_screenshot('./errormessage_testcase093_93 -03.png')
-            return None
+        # click on Submit button
+        # driver.execute_script('arguments[0].scrollIntoView()', submitbut)
+        #driver.save_screenshot('./submitclick_chrome_093_93 -01.png')
+        submitbut = WebDriverWait(driver, 3).until(EC.element_to_be_clickable((
+                    By.XPATH, "//button[contains(.,'Submit')]")))
+        #print(check_input.location)
+        submitbut.click()
+        print('Submit button was clicked')
+        time.sleep(3)
+
+        # check the form was Not sent
+        formsent = driver.find_element(By.XPATH, "//h1[contains(.,'Thank you')]")
+        #driver.save_screenshot('./errormessage_testcase093_93 -03.png')
+        if formsent.is_displayed():
+            raise Exception("The form was sent\n")
+        else:
+            print("Test 093_93 pass")
 
         self.driver.close()
 
@@ -2262,10 +2248,10 @@ class EdgePositiveNegativeTests(unittest.TestCase):
         # check button 'Experience Tesla' at the bottom page
         try:
             WebDriverWait(driver, 10).until(EC.presence_of_element_located(
-                (By.XPATH, "//button[contains(.,'Experience Tesla')]")))
+                (By.XPATH, "//a[contains(.,'Experience Tesla')]")))
             print("Button 'Experience Tesla' was found")
         except NoSuchElementException:
-            print("IButton 'Experience Tesla' was Not found")
+            print("Button 'Experience Tesla' was Not found")
 
         self.driver.close()
         print("Test Case #092 passed \n")
@@ -2381,7 +2367,7 @@ class EdgePositiveNegativeTests(unittest.TestCase):
         driver.execute_script("arguments[0].scrollIntoView(); ", robotaxi)
         time.sleep(2)
         # click on Robotaxi text
-        WebDriverWait(driver, 2).until(EC.element_to_be_clickable(robotaxi))
+        WebDriverWait(driver, 3).until(EC.element_to_be_clickable(robotaxi))
         robotaxi.click()
         # check Robotaxi image open
         try:
@@ -2851,30 +2837,25 @@ class EdgePositiveNegativeTests(unittest.TestCase):
         check_input.clear()  # Clear field
         check_input.send_keys('M5E 1E5')
 
-        try:
-            # click on Submit button
-            # driver.execute_script('arguments[0].scrollIntoView()', submitbut)
-            #driver.save_screenshot('./submitclick_edge_093_93 -01.png')
-            submitbut = WebDriverWait(driver, 3).until(EC.element_to_be_clickable((
-                    By.XPATH, "//button[contains(.,'Submit')]")))
-            print(check_input.location)
-            submitbut.click()
-            print('Submit button was clicked')
 
-            # check error message
-            firstmessage = driver.find_element(By.XPATH,
-                                        "(//div[@class='tds-form-feedback-text'][text()='Required'])[1]")
-            helpers.assert_subtitles('Required', firstmessage)
-            print("Test Case #093_93 passed \n")
-            # error message screenshot
-            #driver.save_screenshot('./errormessage_testcase093_93 -02.png')
-        except Exception as e:
-            # check message data was sent
-            WebDriverWait(driver, 3).until(EC.presence_of_element_located(
-                    (By.XPATH, "//h1[contains(.,'Thank you')]")))
-            print('Test #093-93 fail, error message was Not displayed and the form was submitted')
-            #driver.save_screenshot('./errormessage_testcase093_93 -03.png')
-            return None
+        # click on Submit button
+        # driver.execute_script('arguments[0].scrollIntoView()', submitbut)
+        #driver.save_screenshot('./submitclick_chrome_093_93 -01.png')
+        submitbut = WebDriverWait(driver, 3).until(EC.element_to_be_clickable((
+                    By.XPATH, "//button[contains(.,'Submit')]")))
+        #print(check_input.location)
+        submitbut.click()
+        print('Submit button was clicked')
+        time.sleep(3)
+
+        # check the form was Not sent
+        formsent = driver.find_element(By.XPATH, "//h1[contains(.,'Thank you')]")
+        if formsent.is_displayed():
+            raise Exception("The form was sent\n")
+        else:
+            print("Test 093_93 pass")
+
+
 
         self.driver.close()
 
@@ -3079,7 +3060,7 @@ class EdgePositiveNegativeTests(unittest.TestCase):
 # add path to your test file footer:
 if __name__ == '__main__':
     # Allure reports:
-    #unittest.main()
+    unittest.main()
 
     #HTML reports:
-    unittest.main(testRunner=HtmlTestRunner.HTMLTestRunner(output='./HtmlReports'))
+    #unittest.main(testRunner=HtmlTestRunner.HTMLTestRunner(output='./HtmlReports'))
