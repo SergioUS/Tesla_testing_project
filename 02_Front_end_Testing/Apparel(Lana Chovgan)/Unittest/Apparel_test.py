@@ -1,26 +1,26 @@
+import random
 import time
 import unittest
-import random
-import Helpers as H
-import HtmlTestRunner
-import AllureReports
 
-from webdriver_manager.core import driver
-from webdriver_manager.firefox import GeckoDriverManager
-from selenium.webdriver.firefox.service import Service
-from selenium.webdriver.edge.service import Service as EdgeService
-from webdriver_manager.microsoft import EdgeChromiumDriverManager
+import HtmlTestRunner
+from selenium import webdriver
 from selenium.common import WebDriverException as WDE, NoSuchElementException
 from selenium.webdriver import ActionChains
-from selenium.webdriver.common import actions
-from selenium.webdriver.common.keys import Keys
-from selenium import webdriver
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.chrome.service import Service as ChromeService
-from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.common import actions
 from selenium.webdriver.common.action_chains import ActionChains
+from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.edge.service import Service as EdgeService
+from selenium.webdriver.firefox.service import Service
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.ui import WebDriverWait
+from webdriver_manager.chrome import ChromeDriverManager
+from webdriver_manager.core import driver
+from webdriver_manager.firefox import GeckoDriverManager
+from webdriver_manager.microsoft import EdgeChromiumDriverManager
+
+import Helpers as H
 
 
 def delay():
