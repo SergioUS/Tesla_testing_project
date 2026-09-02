@@ -103,6 +103,14 @@ _[Ludmila Zmeu](https://www.linkedin.com/in/ludmila-zmeu/)_
 <code><img width="1%" src="https://github.com/user-attachments/assets/d8634330-234a-4e0e-b163-b8859a1b66bf"></code>
 _[Lana Chovgan](https://www.linkedin.com/in/lana-chovgan/)_
 
+<code><img width="1%" src="https://github.com/user-attachments/assets/d8634330-234a-4e0e-b163-b8859a1b66bf"></code>
+_[Alex Didenko](https://www.linkedin.com/in/alex-didenko-qa)_
 
+<code><img width="1%" src="https://github.com/user-attachments/assets/d8634330-234a-4e0e-b163-b8859a1b66bf"></code>
+_[Dordzhi Yashkeev](https://www.linkedin.com/in/dordzhi-yashkeev/)_
 
+<code><img width="1%" src="https://github.com/user-attachments/assets/d8634330-234a-4e0e-b163-b8859a1b66bf"></code>
+_[Yevheniia Didenko](https://www.linkedin.com/in/jenia-didenko)_
 
+<code><img width="1%" src="https://github.com/user-attachments/assets/d8634330-234a-4e0e-b163-b8859a1b66bf"></code>
+_[Lina Gorelik](https://www.linkedin.com/in/lina-gorelik/)_
