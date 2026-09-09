@@ -1,0 +1,435 @@
+{
+  "info": {
+    "_postman_id": "b2d903da-0e64-490d-b435-2e8a60d6c4b7",
+    "name": "Blue Origin Shop",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "56096614",
+    "_collection_link": "https://go.postman.co/collection/56096614-b2d903da-0e64-490d-b435-2e8a60d6c4b7?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Check cart is empty",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Cart is empty before start\", function () {\n    pm.response.to.have.status(200);\n\n    const cart = pm.response.json();\n\n    pm.expect(cart.item_count).to.eql(0);\n});\n"
+            ]
+          }
+        }
+      ],
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://shop.blueorigin.com/cart.js",
+          "protocol": "https",
+          "host": [
+            "shop",
+            "blueorigin",
+            "com"
+          ],
+          "path": [
+            "cart.js"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Add to cart",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Item added to cart\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"quantity\": \"1\",\n    \"form_type\": \"product\",\n    \"utf8\": \"✓\",\n    \"id\": \"47748390355184\",\n    \"product-id\": \"9538055897328\",\n    \"section-id\": \"template--17946735902960__main\",\n    \"sections\": \"cart-notification-product,cart-notification-button,cart-icon-bubble\",\n    \"sections_url\": \"/products/new-glenn-desk-model-updated\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://shop.blueorigin.com/cart/add",
+          "protocol": "https",
+          "host": [
+            "shop",
+            "blueorigin",
+            "com"
+          ],
+          "path": [
+            "cart",
+            "add"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Check Cart",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "let jsonData = pm.response.json();",
+              "pm.environment.set(\"QTY\", jsonData.items[0].quantity);",
+              "pm.environment.set(\"id\", jsonData.items[0].id);",
+              "pm.environment.set(\"key\", jsonData.items[0].key);",
+              "pm.environment.set(\"title\", jsonData.items[0].title);",
+              "pm.environment.set(\"price\", jsonData.items[0].price);",
+              "pm.environment.set(\"original_price\", jsonData.items[0].original_price);",
+              "pm.environment.set(\"presentment_price\", jsonData.items[0].presentment_price);",
+              "pm.environment.set(\"sku\", jsonData.items[0].sku);",
+              "pm.environment.set(\"Currency\", jsonData.currency);",
+              "",
+              "pm.test(\"Cart contains exactly 1 item\", function () {",
+              "    pm.expect(jsonData.item_count).to.equal(1);",
+              "    pm.expect(jsonData.items).to.have.length(1);",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://shop.blueorigin.com/cart.js",
+          "protocol": "https",
+          "host": [
+            "shop",
+            "blueorigin",
+            "com"
+          ],
+          "path": [
+            "cart.js"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Change Qty in Cart",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              "pm.environment.set(\"QTY\", 3);"
+            ],
+            "type": "text/javascript",
+            "packages": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"quantity\": \"{{QTY}}\",\n    \"sections\": [\n        \"template--17946734461168__cart-items\",\n        \"cart-icon-bubble\",\n        \"cart-live-region-text\",\n        \"template--17946734461168__cart-footer\"\n    ],\n    \"sections_url\": \"/cart\",\n    \"id\": \"{{key}}\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://shop.blueorigin.com/cart/change",
+          "protocol": "https",
+          "host": [
+            "shop",
+            "blueorigin",
+            "com"
+          ],
+          "path": [
+            "cart",
+            "change"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Check Cart Updated QTY",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"New QTY is OK\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.items[0].quantity).to.eql(pm.environment.get(\"QTY\"));",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://shop.blueorigin.com/cart.js",
+          "protocol": "https",
+          "host": [
+            "shop",
+            "blueorigin",
+            "com"
+          ],
+          "path": [
+            "cart.js"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Change Qty in Cart Copy",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              "pm.environment.set(\"QTY\", 1);"
+            ],
+            "type": "text/javascript",
+            "packages": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"quantity\": \"{{QTY}}\",\n    \"sections\": [\n        \"template--17946734461168__cart-items\",\n        \"cart-icon-bubble\",\n        \"cart-live-region-text\",\n        \"template--17946734461168__cart-footer\"\n    ],\n    \"sections_url\": \"/cart\",\n    \"id\": \"{{key}}\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://shop.blueorigin.com/cart/change",
+          "protocol": "https",
+          "host": [
+            "shop",
+            "blueorigin",
+            "com"
+          ],
+          "path": [
+            "cart",
+            "change"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Check Cart Updated QTY Copy",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"New QTY is OK\", function () {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.items[0].quantity).to.eql(pm.environment.get(\"QTY\"));",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://shop.blueorigin.com/cart.js",
+          "protocol": "https",
+          "host": [
+            "shop",
+            "blueorigin",
+            "com"
+          ],
+          "path": [
+            "cart.js"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Remove Item from Cart",
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "exec": [
+              "pm.environment.set(\"QTY\", 0);"
+            ],
+            "type": "text/javascript",
+            "packages": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"quantity\": {{QTY}},\n    \"sections\": [\n        \"template--17946734461168__cart-items\",\n        \"cart-icon-bubble\",\n        \"cart-live-region-text\",\n        \"template--17946734461168__cart-footer\"\n    ],\n    \"sections_url\": \"/cart\",\n    \"id\": \"{{key}}\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "https://shop.blueorigin.com/cart/change",
+          "protocol": "https",
+          "host": [
+            "shop",
+            "blueorigin",
+            "com"
+          ],
+          "path": [
+            "cart",
+            "change"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Check Cart is Empty After Removal",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Response time is less than 500ms\", function () {",
+              "    pm.expect(pm.response.responseTime).to.be.below(500);",
+              "});",
+              "",
+              "const response = pm.response.json();",
+              "",
+              "pm.test(\"item_count is 0 and items array is empty\", function () {",
+              "    pm.expect(response.item_count).to.be.a('number').and.to.equal(0);",
+              "    pm.expect(response.items).to.be.an('array').and.to.have.length(0);",
+              "    pm.expect(response.items.length).to.equal(response.item_count);",
+              "});",
+              "",
+              "pm.test(\"Content-Type is either application/json or text/javascript\", function () {",
+              "    const contentType = pm.response.headers.get(\"Content-Type\");",
+              "    pm.expect(contentType).to.be.oneOf([",
+              "        \"application/json\",",
+              "        \"application/json; charset=utf-8\",",
+              "        \"text/javascript\",",
+              "        \"text/javascript; charset=utf-8\"",
+              "    ]);",
+              "});",
+              "",
+              "pm.test(\"Response has correct top-level fields\", function () {",
+              "    const expectedKeys = [",
+              "        \"token\", \"note\", \"attributes\", \"original_total_price\", \"total_price\",",
+              "        \"total_discount\", \"total_weight\", \"item_count\", \"items\", \"requires_shipping\",",
+              "        \"currency\", \"items_subtotal_price\", \"cart_level_discount_applications\", \"discount_codes\"",
+              "    ];",
+              "    expectedKeys.forEach(key => {",
+              "        pm.expect(response).to.have.property(key);",
+              "    });",
+              "});",
+              "",
+              "pm.test(\"Data types are correct\", function () {",
+              "    pm.expect(response.token).to.be.a('string');",
+              "    pm.expect(response.note).to.be.a('string');",
+              "    pm.expect(response.attributes).to.be.an('object');",
+              "    pm.expect(response.original_total_price).to.be.a('number');",
+              "    pm.expect(response.total_price).to.be.a('number');",
+              "    pm.expect(response.total_discount).to.be.a('number');",
+              "    pm.expect(response.total_weight).to.be.a('number');",
+              "    pm.expect(response.item_count).to.be.a('number');",
+              "    pm.expect(response.items).to.be.an('array');",
+              "    pm.expect(response.requires_shipping).to.be.a('boolean');",
+              "    pm.expect(response.currency).to.be.a('string');",
+              "    pm.expect(response.items_subtotal_price).to.be.a('number');",
+              "    pm.expect(response.cart_level_discount_applications).to.be.an('array');",
+              "    pm.expect(response.discount_codes).to.be.an('array');",
+              "});",
+              "",
+              "pm.test(\"Currency is USD\", function () {",
+              "    pm.expect(response.currency).to.eql(\"USD\");",
+              "});",
+              "",
+              "pm.test(\"Total price, original total price, and discount are zero\", function () {",
+              "    pm.expect(response.total_price).to.eql(0);",
+              "    pm.expect(response.original_total_price).to.eql(0);",
+              "    pm.expect(response.total_discount).to.eql(0);",
+              "    pm.expect(response.items_subtotal_price).to.eql(0);",
+              "});"
+            ],
+            "type": "text/javascript",
+            "packages": {}
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://shop.blueorigin.com/cart.js",
+          "protocol": "https",
+          "host": [
+            "shop",
+            "blueorigin",
+            "com"
+          ],
+          "path": [
+            "cart.js"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
